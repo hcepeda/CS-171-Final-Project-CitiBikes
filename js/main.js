@@ -1,3 +1,4 @@
+
 /* main JS file */
 var dateFormatter = d3.timeFormat("%Y-%m-%d");
 var dateParser = d3.timeParse("%m/%d/%y %H:%M:%S");
@@ -37,3 +38,4 @@ function createVis() {
     // create context bar chart with total rides per day per hour
     var barchart = new TotalVis("totalvis", allData);
 }
+
