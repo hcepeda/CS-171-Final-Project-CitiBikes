@@ -50,6 +50,10 @@ function loadData() {
             return new Date (a.key) - new Date(b.key);
         });
 
+        tripsbyday.forEach(function(d) {
+            d.key = new Date(d.key);
+        });
+
         console.log(tripsbyday);
 
         createVis();

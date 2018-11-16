@@ -35,11 +35,11 @@ TotalVis.prototype.initVis = function() {
 
     vis.svg.append("g")
         .attr("class", "x-axis axis")
-        .attr("transform", "translate(0" + vis.height + ")");
+        .attr("transform", "translate(0," + vis.height + ")");
 
     // Set domains
     var minMaxY = [0, d3.max(vis.data.map(function(d) {
-        return d.key;
+        return d.value;
     }))];
     vis.y.domain(minMaxY);
 
@@ -47,6 +47,8 @@ TotalVis.prototype.initVis = function() {
         return d.key;
     }));
     vis.x.domain(minMaxX);
+
+    console.log(minMaxX);
 
     // Append path for area function
     vis.path = vis.svg.append("path")
