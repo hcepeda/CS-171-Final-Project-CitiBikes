@@ -1,10 +1,12 @@
 
 /* main JS file */
-var dateFormatter = d3.timeFormat("%Y-%m-%d");
+var dateFormatter = d3.timeFormat("%m %d %Y");
 var dateParser = d3.timeParse("%m/%d/%y %H:%M:%S");
+var newdateParser = d3.timeParse("%m %d %Y");
 
 // initialize data variable
 var allData = [];
+var tripsbyday = [];
 
 // Load data
 loadData();
@@ -26,9 +28,30 @@ function loadData() {
             data[i].starttime = dateParser(data[i].starttime);
             data[i].stoptime = dateParser(data[i].stoptime);
 
+            // create new date property
+            data[i].date = dateFormatter(data[i].starttime);
+            data[i].date = newdateParser(data[i].date);
+
         }
+
         allData = data;
         console.log(allData);
+
+        tripsbyday = d3.nest()
+            .key(function(d) {
+                return d.date;
+            })
+            .rollup(function(leaves) {
+                return leaves.length;
+            })
+            .entries(allData);
+
+        tripsbyday.sort(function(a, b) {
+            return new Date (a.key) - new Date(b.key);
+        });
+
+        console.log(tripsbyday);
+
         createVis();
     });
 }
@@ -36,6 +59,6 @@ function loadData() {
 function createVis() {
 
     // create context bar chart with total rides per day per hour
-    var barchart = new TotalVis("totalvis", allData);
+    var barchart = new TotalVis("totalvis", tripsbyday);
 }
 
