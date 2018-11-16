@@ -2,6 +2,9 @@
 var dateFormatter = d3.timeFormat("%Y-%m-%d");
 var dateParser = d3.timeParse("%m/%d/%y %H:%M:%S");
 
+// initialize data variable
+var allData = [];
+
 // Load data
 loadData();
 
@@ -23,6 +26,14 @@ function loadData() {
             data[i].stoptime = dateParser(data[i].stoptime);
 
         }
-        console.log(data);
-    })
+        allData = data;
+        console.log(allData);
+        createVis();
+    });
+}
+
+function createVis() {
+
+    // create context bar chart with total rides per day per hour
+    var barchart = new TotalVis("totalvis", allData);
 }
