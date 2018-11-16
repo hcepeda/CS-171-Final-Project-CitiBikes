@@ -1,18 +1,30 @@
-// testing github
 
-var path = d3.geo.path();
-//Defaults to albersUsa Projection. You might want to set a different one
-var width = 960, height = 600;
-//Create the svg to render the polygon inside of
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-//Bind the geoJSON the path elements in the svg
-//Use the enter selection (new elements) and draw the paths using the geo path generator
-svg.selectAll("path")
-    .data(geoJSON.features)
- .enter().append("path")
-    .attr("d",path)
-    .attr("fill",#999);
-//Note that when you bind new data, you will be changing existing path elements
-//So you would also need to do a exit and modify existing paths
+/* main JS file */
+var dateFormatter = d3.timeFormat("%Y-%m-%d");
+var dateParser = d3.timeParse("%m/%d/%y %H:%M:%S");
+
+// Load data
+loadData();
+
+function loadData() {
+    d3.csv("data/citibike-sample.csv", function(data) {
+        for (var i = 0; i < data.length; i++) {
+            data[i].tripduration = +data[i].tripduration;
+            data[i].bikeid = +data[i].bikeid;
+            data[i]["birth year"] = +data[i]["birth year"];
+            data[i]["end station id"] = +data[i]["end station id"];
+            data[i]["end station longitude"] = +data[i]["end station longitude"];
+            data[i]["end station latitude"] = +data[i]["end station latitude"];
+            data[i]["start station id"] = +data[i]["start station id"];
+            data[i]["start station longitude"] = +data[i]["start station longitude"];
+            data[i]["start station latitude"] = +data[i]["start station latitude"];
+            data[i]["gender"] = +data[i]["gender"];
+
+            data[i].starttime = dateParser(data[i].starttime);
+            data[i].stoptime = dateParser(data[i].stoptime);
+
+        }
+        console.log(data);
+    })
+}
+
