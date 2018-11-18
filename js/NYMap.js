@@ -16,7 +16,7 @@ NYMap.prototype.wrangleData = function(){
       var new_obj = {"name": d['start station name'],
               "latitude": d['start station latitude'],
               "longitude": d['start station longitude']};
-      console.log(unique_array);
+
       unique_locations.push(new_obj);
     }
   });
