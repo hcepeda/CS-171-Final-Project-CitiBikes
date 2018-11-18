@@ -28,8 +28,10 @@ Histogram.prototype.initVis = function() {
     .append("g")
     .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
+  console.log(d3.timeMinute(vis.data[0].starttime));
   vis.xScale = d3.scaleTime()
     .domain(d3.extent(vis.data, d => d.starttime))
+    //.domain([0, 1440])
     .range([0, vis.width]);
 
   vis.yScale = d3.scaleLinear()

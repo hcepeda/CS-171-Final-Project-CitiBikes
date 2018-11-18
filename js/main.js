@@ -1,18 +1,12 @@
 
 /* main JS file */
 var dateFormatter = d3.timeFormat("%m %d %Y");
-var hourFormatter = d3.timeFormat("%H");
 var dateParser = d3.timeParse("%m/%d/%y %H:%M:%S");
 var newdateParser = d3.timeParse("%m %d %Y");
-function roundToHour(date) {
-    p = 60 * 60 * 1000; // milliseconds in an hour
-    return new Date(Math.round(date.getTime() / p ) * p);
-}
 
 // initialize data variable
 var allData = [];
 var tripsbyday = [];
-var dailydata;
 
 // Load data
 loadData();
@@ -38,15 +32,7 @@ function loadData() {
             data[i].date = dateFormatter(data[i].starttime);
             data[i].date = newdateParser(data[i].date);
 
-            // create new hour property
-            // data[i].hour = hourFormatter(data[i].starttime);
         }
-
-        // get select box value
-        var selectbox = d3.select(".selectbox").property("value");
-
-        selectbox = newdateParser(selectbox);
-        console.log(selectbox);
 
         allData = data;
         console.log(allData);
@@ -55,49 +41,20 @@ function loadData() {
             .key(function(d) {
                 return d.date;
             })
-            .rollup(function(leaves) {return {
-                hours: d3.range(0,24).map(function() {
-                    return 0;
-                }),
-                data: leaves,
-                total: leaves.length
-            }
+            .rollup(function(leaves) {
+                return leaves.length;
             })
-            // .key(function(d) {
-            //     return d.hour;
-            // })
-            // .rollup(function(leaves) {
-            //     return leaves.length;
-            // })
             .entries(allData);
 
         tripsbyday.sort(function(a, b) {
             return new Date (a.key) - new Date(b.key);
         });
 
-        // Pull daily data based on selectbox value
-        // tripsbyday.forEach(function(d) {
-        //     d.key = new Date(d.key);
-        //     // d.values.forEach(function(data) {
-        //     //     data.key = new Date(data.key);
-        //     // });
-        //
-        // });
-
         tripsbyday.forEach(function(d) {
             d.key = new Date(d.key);
-            // for (var i=0; i < d.value.data.length; i++) {
-            //     var hour = +hourFormatter(d.value.data[i].starttime);
-            //     d.value.hours[hour] ++;
-            // }
-
-            if (+selectbox == +d.key) { // can't compare objects, so convert to numbers first
-                dailydata = d;
-            }
         });
 
         console.log(tripsbyday);
-        console.log(dailydata);
 
         createVis();
     });
@@ -106,6 +63,9 @@ function loadData() {
 function createVis() {
 
     // create context bar chart with total rides per day per hour
+    var greatmap = new NYMap("mapid", allData);
     var barchart = new TotalVis("totalvis", dailydata);
 }
 
+    // var histogram = new Histogram("histogram", allData);
+}

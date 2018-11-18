@@ -1,5 +1,7 @@
 /* custom css rules */
 
+#mapid { height: 800px; }
+
 body {
 	font-family: 'Roboto', sans-serif;
 	background-color: #f7f7f7;
