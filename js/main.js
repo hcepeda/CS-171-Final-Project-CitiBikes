@@ -7,6 +7,7 @@ var newdateParser = d3.timeParse("%m %d %Y");
 // initialize data variable
 var allData = [];
 var tripsbyday = [];
+var dailydata;
 
 // Load data
 loadData();
@@ -37,12 +38,18 @@ function loadData() {
         allData = data;
         console.log(allData);
 
+        var selectbox = d3.select(".selectbox").property("value");
+        selectbox = newdateParser(selectbox);
+        console.log(selectbox);
+
         tripsbyday = d3.nest()
             .key(function(d) {
                 return d.date;
             })
             .rollup(function(leaves) {
-                return leaves.length;
+                return {
+                    data: leaves
+                }
             })
             .entries(allData);
 
@@ -52,9 +59,14 @@ function loadData() {
 
         tripsbyday.forEach(function(d) {
             d.key = new Date(d.key);
+
+            if (+selectbox == +d.key) {
+                dailydata = d;
+            }
         });
 
         console.log(tripsbyday);
+        console.log(dailydata);
 
         createVis();
     });
@@ -63,8 +75,8 @@ function loadData() {
 function createVis() {
 
     // create context bar chart with total rides per day per hour
-    var greatmap = new NYMap("mapid", allData);
     var barchart = new TotalVis("totalvis", dailydata);
+    var greatmap = new NYMap("mapid", allData);
 
-    // var histogram = new Histogram("histogram", allData);
+    var histogram = new Histogram("histogram", allData);
 }

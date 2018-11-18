@@ -10,6 +10,7 @@ TotalVis = function(_parentElement, _data) {
 /* INITIALIZE VISUALIZATION */
 TotalVis.prototype.initVis = function() {
     var vis = this;
+    console.log(vis.data);
 
     vis.margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
@@ -77,6 +78,10 @@ TotalVis.prototype.wrangleData = function() {
     var vis = this;
     var hourFormatter = d3.timeFormat("%H");
 
+    // create hours property and initialize array to 0
+    vis.data.value.hours = d3.range(0, 24).map(function() {
+        return 0;
+    })
 
     for (var i=0; i < vis.data.value.data.length; i++) {
         var hour = +hourFormatter(vis.data.value.data[i].starttime);
