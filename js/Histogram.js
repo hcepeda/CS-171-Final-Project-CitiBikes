@@ -29,9 +29,17 @@ Histogram.prototype.initVis = function() {
     .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
   console.log(d3.timeMinute(vis.data[0].starttime));
+
+  /*
   vis.xScale = d3.scaleTime()
     .domain(d3.extent(vis.data, d => d.starttime))
     //.domain([0, 1440])
+    .range([0, vis.width]);
+  */
+
+  vis.xScale = d3.scaleLinear()
+    //.domain(d3.extent(vis.data, d => d.tripduration))
+    .domain([0, 4000])
     .range([0, vis.width]);
 
   vis.yScale = d3.scaleLinear()
@@ -45,11 +53,18 @@ Histogram.prototype.updateVis = function(){
   var vis = this;
 
   var histogram = d3.histogram()
+    .value(d => d.tripduration)
+    .domain(vis.xScale.domain())
+    .thresholds(vis.xScale.ticks(100));
+  /*
+  var histogram = d3.histogram()
     .value(d => d.starttime)
     .domain(vis.xScale.domain())
     .thresholds(this.xScale.ticks(d3.timeMinute));
-
+    */
   var bins = histogram(vis.data);
+
+  vis.yScale.domain([0, d3.max(bins, d => d.length)]);
 
   var rect = vis.svg.selectAll(".histo")
     .data(bins);
@@ -59,13 +74,15 @@ Histogram.prototype.updateVis = function(){
     .attr("x", 1)
     .attr("transform", d => "translate(" + vis.xScale(d.x0) + "," + vis.yScale(d.length) + ")")
     .attr("width", d => vis.xScale(d.x1) - vis.xScale(d.x0) - 1)
-    .attr("height", d => vis.height - vis.yScale(d.length));
+    .attr("height", d => vis.height - vis.yScale(d.length))
+    .style("fill", "steelblue");
+
 
   vis.svg.append("g")
       .attr("transform", "translate(0," + vis.height + ")")
-      .call(d3.axisBottom(vis.xScale))
+      .call(d3.axisBottom(vis.xScale));
 
   vis.svg.append("g")
-      .call(d3.axisLeft(vis.yScale))
+      .call(d3.axisLeft(vis.yScale));
 
 }
