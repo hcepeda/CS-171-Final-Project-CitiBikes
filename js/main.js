@@ -65,7 +65,6 @@ function createVis() {
     // create context bar chart with total rides per day per hour
     var greatmap = new NYMap("mapid", allData);
     var barchart = new TotalVis("totalvis", dailydata);
-}
 
     // var histogram = new Histogram("histogram", allData);
 }
