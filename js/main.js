@@ -8,6 +8,7 @@ var newdateParser = d3.timeParse("%m %d %Y");
 var allData = [];
 var tripsbyday = [];
 var dailydata;
+var barchart;
 
 // Load data
 loadData();
@@ -75,8 +76,8 @@ function loadData() {
 function createVis() {
 
     // create context bar chart with total rides per day per hour
-    var barchart = new TotalVis("totalvis", dailydata);
+    barchart = new TotalVis("totalvis", dailydata);
     var greatmap = new NYMap("mapid", allData);
 
-    var histogram = new Histogram("histogram", allData);
+    // var histogram = new Histogram("histogram", allData);
 }

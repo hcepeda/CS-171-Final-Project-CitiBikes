@@ -40,35 +40,6 @@ TotalVis.prototype.initVis = function() {
         .attr("class", "x-axis axis")
         .attr("transform", "translate(0," + vis.height + ")");
 
-    // // Set domains
-    // var minMaxY = [0, d3.max(vis.data.map(function(d) {
-    //     return d.value;
-    // }))];
-    // vis.y.domain(minMaxY);
-    //
-    // var minMaxX = d3.extent(vis.data.map(function(d) {
-    //     return d.key;
-    // }));
-    // vis.x.domain(minMaxX);
-    //
-    // console.log(minMaxX);
-    //
-    // // Append path for area function
-    // vis.path = vis.svg.append("path")
-    //     .attr("class", "area area-time");
-    //
-    // // Define the D3 path generator
-    // vis.area = d3.area()
-    //     .curve(d3.curveStep)
-    //     .x(function(d) {
-    //         return vis.x(d.key);
-    //     })
-    //     .y0(vis.height)
-    //     .y1(function(d) {
-    //         return vis.y(d.value);
-    //     });
-
-
     // Filter, aggregate, modify data
     vis.wrangleData();
 
