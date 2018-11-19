@@ -17,6 +17,7 @@ h2 {
 	font-weight: 400;
 	font-size: 18px;
 	margin-bottom: 20px;
+	display: inline;
 }
 
 p {
@@ -24,6 +25,28 @@ p {
 	font-size: 14px;
 }
 
+select {
+	display: inline;
+}
+
+.selectbox-div {
+	padding: 20px;
+}
 .area {
     fill: #825a5a;
 }
+
+.bar {
+	fill: #3fa3de;
+}
+
+.container-fluid {
+	padding-top: 75px;
+}
+
+.nav {
+	max-height: 75px;
+	width: auto;
+}
+
+

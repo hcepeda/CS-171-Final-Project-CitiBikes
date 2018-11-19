@@ -12,10 +12,10 @@ TotalVis.prototype.initVis = function() {
     var vis = this;
     console.log(vis.data);
 
-    vis.margin = { top: 20, right: 20, bottom: 20, left: 20 };
+    vis.margin = { top: 20, right: 70, bottom: 20, left: 70 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
-        vis.height = 300 - vis.margin.top - vis.margin.bottom;
+        vis.height = 150 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
