@@ -53,6 +53,7 @@ function loadData() {
                 }
             })
             .entries(allData);
+        console.log(tripsbyday);
 
         tripsbyday.sort(function(a, b) {
             return new Date (a.key) - new Date(b.key);
