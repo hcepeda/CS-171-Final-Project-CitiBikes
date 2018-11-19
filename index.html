@@ -10,24 +10,62 @@
           crossorigin=""/>
 </head>
 <body>
+
+    <h1>
+        NYCitiBike Data
+    </h1>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'About CitiBikes')">About Citibikes</button>
+        <button class="tablinks" onclick="openTab(event, 'Daily Visualizations')">Daily Visualizations</button>
+    </div>
+
+    <div id="About CitiBikes" class="tabcontent">
+        <h3>About CitiBikes</h3>
+        <p>Insert information about CitiBikes.</p>
+        <br>
+        <p> This page will likely be the default page when we learn how to insert visualizations into a tab.</p>
+        <br>
+        <p> Visualizations for this page will include information about the average user, likely uses, etc. </p>
+        <span onclick="this.parentElement.style.display='none'">x</span>
+    </div>
+
+    <div id="Daily Visualizations" class="tabcontent">
+    </div>
+
     <div class="container">
 
         <!-- content -->
-        <div class="row">
-            <div class="col-md-12">
-                <h1>
-                    NYCitiBike Data
-                </h1>
-            </div>
-        </div>
         <div class="row">
             <select class="selectbox">
                 <option value="07 01 2018">October 1, 2018</option>
             </select>
         </div>
-        <div id="totalvis"></div>
-        <div id="histogram"></div>
-        <div id="mapid" class = "col-md-6"></div>
+
+        <br> <br>
+        <h2>What's the distribution of trip times? </h2>
+        <div id="histogram"> </div>
+        <br>
+        <h2>On average, how many people are taking trips every hour? </h2>
+        <div id="totalvis"> </div>
+        <br> <br>
+        <div class="row">
+            <div id="mapid" class = "col-md-6"></div>
+            <div class = "col-md-6">
+                <h3> Station locations around New York </h3>
+                <br>
+                <p> Insert information and potential more interactivity with the map.</p>
+                <br>
+                <p> Right now, the tooltip will give the name of each station, and hopefully we will have a search feature available by the end of next week. </p>
+                <br>
+                <p> In general, these visualizations work when we expand out dataset, though as we finalize our filtering functions we're working with a
+                much smaller dataset, which is why some visualizations look a little underwhelming right now. </p>
+                <br>
+                <p> We also plan to have the website separated out into tabs, as seen briefly at the top. However, as you can see it's not fully implemented yet as we debug further and learn how to implement.</p>
+                <br>
+                <p> Please see our process book for more detailed explanations about each visualization and our plan to connect the different elements together moving forward :)</p>
+            </div>
+        </div>
         <br><br><br>
 
     </div>
