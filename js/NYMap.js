@@ -65,6 +65,16 @@ NYMap.prototype.updateVis = function() {
         radius: 25
       }).addTo(vis.mymap);
     circle.bindPopup(d["name"]);
-  })
+  });
 
+  /*
+  vis.data.forEach(function(d){
+    L.Routing.control({
+      waypoints: [
+        L.latLng(d['start station latitude'], d['start station longitude']),
+        L.latLng(d['end station latitude'], d['end station longitude'])
+      ]
+    }).addTo(vis.mymap);
+  });
+  */
 }
