@@ -8,7 +8,8 @@ var newdateParser = d3.timeParse("%m %d %Y");
 var allData = [];
 var tripsbyday = [];
 var dailydata;
-var barchart;
+var barchart, histogram, age, gender, subscriber;
+
 
 // Load data
 loadData();
@@ -37,38 +38,7 @@ function loadData() {
         }
 
         allData = data;
-        console.log(allData);
-
-        var selectbox = d3.select(".selectbox").property("value");
-        selectbox = newdateParser(selectbox);
-        console.log(selectbox);
-
-        tripsbyday = d3.nest()
-            .key(function(d) {
-                return d.date;
-            })
-            .rollup(function(leaves) {
-                return {
-                    data: leaves
-                }
-            })
-            .entries(allData);
-        console.log(tripsbyday);
-
-        tripsbyday.sort(function(a, b) {
-            return new Date (a.key) - new Date(b.key);
-        });
-
-        tripsbyday.forEach(function(d) {
-            d.key = new Date(d.key);
-
-            if (+selectbox == +d.key) {
-                dailydata = d;
-            }
-        });
-
-        console.log(tripsbyday);
-        console.log(dailydata);
+        // console.log(allData);
 
         createVis();
     });
@@ -77,8 +47,19 @@ function loadData() {
 function createVis() {
 
     // create context bar chart with total rides per day per hour
-    barchart = new TotalVis("totalvis", dailydata);
+    barchart = new TotalVis("totalvis", allData);
+    age = new AgeChart("age", allData);
+    gender = new GenderChart("gender", allData);
+    subscriber = new SubChart("subscriber", allData);
     var greatmap = new NYMap("mapid", allData);
 
-    // var histogram = new Histogram("histogram", allData);
+    histogram = new Histogram("tripduration", allData);
+}
+
+function selectionChanged() {
+    barchart.wrangleData();
+    histogram.wrangleData();
+    age.wrangleData();
+    gender.wrangleData();
+    subscriber.wrangleData();
 }
