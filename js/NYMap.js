@@ -207,13 +207,47 @@ NYMap.prototype.updateVis = function() {
         //   fitBounds: true
         // }));
         // console.log(vis.dir);
+
+        // Creating multi polyline options
+        vis.multiPolyLineOptions = {color:'red', weight: 5,};
+
+        // // Creating multi polylines
+        // var multipolyline = L.multiPolyline(latlang , multiPolyLineOptions);
         L.Routing.control({
           waypoints: [
           L.latLng(d['latitude'], d['longitude']),
           L.latLng(d['endlat'], d['endlong'])
           ],
           createMarker: function() { return false;},
-          show: false
+          show: false,
+          routeLine: function(route) {
+            console.log(route);
+            var line = L.polyline(route.coordinates,
+            {
+            //   multiOptions:
+            //   { optionIdxFn: function(latLng) {}
+            //   // options: thresholdRoute.colors
+            // },
+              weight: 5,
+              lineCap: 'butt',
+              opacity: 0.75,
+              smoothFactor: 1,
+              color: "red"
+            });
+
+            line.on('mouseover', function() {
+              this.setText('  ►  ', {
+                repeat: true,
+                attributes: {
+                  fill: 'purple'
+                }
+              });
+            });
+            line.on('mouseout', function() {
+              this.setText(null);
+            });
+            console.log(line);
+            return line;}
         }).addTo(vis.mymap);
       }
       // end station (green)
