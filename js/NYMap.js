@@ -76,7 +76,7 @@ NYMap.prototype.initVis = function() {
     "Starting Station": vis.red,
     "Ending Station": vis.green,
     "Subway Lines": vis.subway, 
-    "Empty Slot": vis.yellow,
+    "Route Lines": vis.yellow,
     "Empty Slot 2": vis.blue
   }
 
@@ -158,7 +158,7 @@ NYMap.prototype.updateVis = function() {
   // clear the layer groups
   vis.red.clearLayers();
   vis.green.clearLayers();
-  // vis.yellow.clearLayers();
+  vis.yellow.clearLayers();
   vis.blue.clearLayers();
 
   vis.unique_locations.forEach(function(d){
@@ -209,7 +209,7 @@ NYMap.prototype.updateVis = function() {
         // console.log(vis.dir);
 
         // Creating multi polyline options
-        vis.multiPolyLineOptions = {color:'red', weight: 5,};
+        // vis.multiPolyLineOptions = {color:'red', weight: 5,};
 
         // // Creating multi polylines
         // var multipolyline = L.multiPolyline(latlang , multiPolyLineOptions);
@@ -247,6 +247,7 @@ NYMap.prototype.updateVis = function() {
               this.setText(null);
             });
             console.log(line);
+            vis.yellow.addLayer(line);
             return line;}
         }).addTo(vis.mymap);
       }
