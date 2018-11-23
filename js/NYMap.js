@@ -72,10 +72,27 @@ NYMap.prototype.initVis = function() {
     "Ending Station": vis.green,
     "Subway Lines": vis.subway, 
     "Empty Slot": vis.yellow,
-    "Empty Slot": vis.blue
+    "Empty Slot 2": vis.blue
   }
 
   L.control.layers(vis.baseMaps, vis.overlayMaps).addTo(vis.mymap);
+
+ 
+// add the search bar to the map
+  vis.controlSearch = new L.Control.Search({
+    position:'topleft',    // search bar location
+    layer: vis.red,  // name of the layer
+    initial: false,
+    zoom: 16,        // set zoom to found location when searched
+    marker: false,
+    textPlaceholder: 'search...' // placeholder while nothing is searched
+  });
+ 
+  vis.mymap.addControl(vis.controlSearch); // add it to the map
+
+
+
+
 
   // draw geojson objects on map
   // L.geoJson(vis.geo).addTo(vis.mymap);
@@ -111,7 +128,8 @@ NYMap.prototype.initVis = function() {
   vis.blueMarker = new stationIcon({ iconUrl:  "img/marker-blue.png" });
   vis.yellowMarker = new stationIcon({ iconUrl:  "img/marker-yellow.png" });
   vis.greenMarker = new stationIcon({ iconUrl:  "img/marker-green.png" });
-  
+
+
 
   vis.updateVis();
 
@@ -153,12 +171,16 @@ NYMap.prototype.updateVis = function() {
 
     vis.lat = d['latitude'];
     vis.long = d['longitude'];
+    vis.title = d["name"],  //value searched
+    vis.loc = [vis.long, vis.lat];  //position found
+
 
       // start station (red)
       if(vis.long) {
         // create marker for each station
-        vis.stationMarker = L.marker([vis.lat, vis.long], { icon: vis.redMarker }).bindPopup(vis.stationContent);
-
+        // vis.stationMarker = L.marker([vis.lat, vis.long], { icon: vis.redMarker }).bindPopup(vis.stationContent);
+        vis.stationMarker = L.marker([d['latitude'], d['longitude']], {title: vis.title, icon: vis.redMarker} ).bindPopup(vis.stationContent);;
+        //set property searched above 
         // add markers to layer group
         vis.red.addLayer(vis.stationMarker);
       }
@@ -186,6 +208,13 @@ NYMap.prototype.updateVis = function() {
         // add markers to layer group
         vis.blue.addLayer(vis.stationMarker);
       }
+      // vis.controlSearch = new L.Control.Search({layer: vis.red, initial: false});
+      // vis.mymap.addControl(vis.controlSearch);
+
+  vis.controlSearch.on('search:collapsed', function(e) {
+      vis.mymap.setView([40.733060, -73.971249], 13);
+  })
+  
   });
 
   /*
