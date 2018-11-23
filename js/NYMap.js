@@ -59,6 +59,7 @@ NYMap.prototype.initVis = function() {
   vis.blue = L.layerGroup().addTo(vis.mymap);
   vis.yellow = L.layerGroup().addTo(vis.mymap);
   vis.green = L.layerGroup().addTo(vis.mymap);
+  vis.subway = L.geoJSON().addTo(vis.mymap);
 
   // base layers and overlays objects
   vis.baseMaps = {
@@ -69,14 +70,15 @@ NYMap.prototype.initVis = function() {
   vis.overlayMaps = {
     "Starting Station": vis.red,
     "Ending Station": vis.green,
-    "Subwaylines": vis.yellow,
+    "Subway Lines": vis.subway, 
+    "Empty Slot": vis.yellow,
     "Empty Slot": vis.blue
   }
 
   L.control.layers(vis.baseMaps, vis.overlayMaps).addTo(vis.mymap);
 
   // draw geojson objects on map
-  L.geoJson(vis.geo).addTo(vis.mymap);
+  // L.geoJson(vis.geo).addTo(vis.mymap);
   //   weight: 7,
   //   opacity: 0.9
   //   // style: function(geo) {
@@ -87,8 +89,8 @@ NYMap.prototype.initVis = function() {
   //   // }
   // }).addTo(vis.mymap);
 
-  // var myLayer = L.geoJSON().addTo(vis.mymap);
-  // myLayer.addData(vis.geo);
+
+  vis.subway.addData(vis.geo);
 
 
   // vis.yellow.addLayer(vis.subway);

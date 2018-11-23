@@ -11,12 +11,22 @@ var dailydata;
 var barchart;
 var geojsondata = []; // add json file for geojson layer
 
-$.getJSON("data/Subway-Lines.json", function(geo) {
-    return geo;
+// $.getJSON("data/Subway-Lines.json", function(geo) {
+//     geojsondata = geo;
+//     console.log(geojsondata);
+
+//  });
+
+$.ajax({
+  url: 'data/Subway-Lines.json',
+  async: false,
+  dataType: 'json',
+  success: function (geo) {
+    // do stuff with response.
+    geojsondata = geo;
     console.log(geojsondata);
-
- });
-
+  }
+});
 
 
 
