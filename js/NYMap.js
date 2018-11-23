@@ -211,7 +211,9 @@ NYMap.prototype.updateVis = function() {
           waypoints: [
           L.latLng(d['latitude'], d['longitude']),
           L.latLng(d['endlat'], d['endlong'])
-          ]
+          ],
+          createMarker: function() { return false;},
+          show: false
         }).addTo(vis.mymap);
       }
       // end station (green)
