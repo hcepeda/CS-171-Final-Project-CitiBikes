@@ -9,11 +9,28 @@ var allData = [];
 var tripsbyday = [];
 var dailydata;
 var barchart;
+var geojsondata = []; // add json file for geojson layer
+
+$.getJSON("data/Subway-Lines.json", function(geo) {
+    return geo;
+    console.log(geojsondata);
+
+ });
+
+
+
 
 // Load data
+
 loadData();
 
 function loadData() {
+
+    // d3.queue()
+    //     .defer(d3.csv, "data/Compiled.csv")
+    //     .defer(d3.csv, "data/citibike-sample.csv")
+    //     .defer($.getJSON,"data/Subway-Lines.json" )
+    //     .await(createVis);
     d3.csv("data/citibike-sample.csv", function(data) {
         for (var i = 0; i < data.length; i++) {
             data[i].tripduration = +data[i].tripduration;
@@ -66,7 +83,6 @@ function loadData() {
                 dailydata = d;
             }
         });
-
         console.log(tripsbyday);
         console.log(dailydata);
 
@@ -74,11 +90,17 @@ function loadData() {
     });
 }
 
-function createVis() {
 
+
+ 
+                        
+
+function createVis() {
+    var vis = this;
+    console.log(vis.geojsondata)
     // create context bar chart with total rides per day per hour
     barchart = new TotalVis("totalvis", dailydata);
-    var greatmap = new NYMap("mapid", allData);
+    var greatmap = new NYMap("mapid", vis.allData, [40.733060, -73.971249], vis.geojsondata);
 
     // var histogram = new Histogram("histogram", allData);
 }
