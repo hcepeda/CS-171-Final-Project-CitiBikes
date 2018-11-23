@@ -1,5 +1,4 @@
-
-TotalVis = function(_parentElement, _data) {
+SubChart = function(_parentElement, _data) {
     this.parentElement = _parentElement;
     this.data = _data;
     this.displayData = [];
@@ -8,14 +7,14 @@ TotalVis = function(_parentElement, _data) {
 };
 
 /* INITIALIZE VISUALIZATION */
-TotalVis.prototype.initVis = function() {
+SubChart.prototype.initVis = function() {
     var vis = this;
     // console.log(vis.data);
 
-    vis.margin = { top: 20, right: 150, bottom: 20, left: 150 };
+    vis.margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
-        vis.height = 150 - vis.margin.top - vis.margin.bottom;
+        vis.height = 250 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -28,7 +27,8 @@ TotalVis.prototype.initVis = function() {
     vis.x = d3.scaleBand()
         .rangeRound([0, vis.width])
         .paddingInner(0.1)
-        .domain(d3.range(0,24));
+        .paddingOuter(0.1)
+        .domain(["Subscriber", "Customer"]);
 
     vis.y = d3.scaleLinear()
         .range([vis.height, 0]);
@@ -37,17 +37,22 @@ TotalVis.prototype.initVis = function() {
         .scale(vis.x)
         .tickSize(0);
 
+    vis.yAxis = d3.axisLeft()
+        .scale(vis.y);
+
     vis.svg.append("g")
         .attr("class", "x-axis axis")
         .attr("transform", "translate(0," + vis.height + ")");
+
+    vis.svg.append("g")
+        .attr("class", "y-axis axis");
 
     // Create tooltip
     vis.tooltip = d3.tip()
         .attr("class", "d3-tip")
         .offset([-8, 0])
-        .html(function(d, i) {
-            return "Time: " + i + ":00 - " + i + ":59 EST" +
-                "<br>Number of Rides: " + d;
+        .html(function(d) {
+            return "Total: " + d.number;
         });
 
     vis.svg.call(vis.tooltip);
@@ -57,9 +62,8 @@ TotalVis.prototype.initVis = function() {
 
 };
 
-TotalVis.prototype.wrangleData = function() {
+SubChart.prototype.wrangleData = function() {
     var vis = this;
-    var hourFormatter = d3.timeFormat("%H");
     var newdateParser = d3.timeParse("%m %d %Y");
 
     var selectbox = d3.select(".selectbox").property("value");
@@ -85,55 +89,73 @@ TotalVis.prototype.wrangleData = function() {
         d.key = new Date(d.key);
 
         if (+selectbox == +d.key) {
-           vis.displayData = d;
+            vis.displayData = d;
         }
     });
 
-    // create hours property and initialize array to 0
-    vis.displayData.value.hours = d3.range(0, 24).map(function() {
-        return 0;
+    // count people of each gender
+    var subcount = [];
+    var customer = {
+        type: "Customer",
+        number: 0
+    };
+    var subscriber = {
+        type: "Subscriber",
+        number: 0
+    };
+    subcount.push(customer, subscriber);
+
+    vis.displayData.value.data.forEach(function(d) {
+       if (d.usertype == "Customer") {
+            subcount[0].number++;
+       }
+       else if (d.usertype == "Subscriber") {
+           subcount[1].number++;
+       }
     });
 
-    for (var i=0; i < vis.displayData.value.data.length; i++) {
-        var hour = +hourFormatter(vis.displayData.value.data[i].starttime);
-        vis.displayData.value.hours[hour] ++;
-    }
+    console.log(subcount);
 
-    vis.displayData = vis.displayData.value.hours;
+    vis.displayData = subcount;
 
     // Update visualization
     vis.updateVis();
 };
 
-TotalVis.prototype.updateVis = function() {
+SubChart.prototype.updateVis = function() {
     var vis = this;
 
     // Update domains
-    vis.y.domain([0, d3.max(vis.displayData)]);
+    vis.y.domain([0, d3.max(vis.displayData, function(d) {return d.number;})]);
 
-    var bars = vis.svg.selectAll(".bar")
+    var bars = vis.svg.selectAll(".detailbar")
         .data(vis.displayData);
 
     bars.enter().append("rect")
-        .attr("class", "bar")
+        .attr("class", "detailbar")
         .on("mouseover", vis.tooltip.show)
         .on("mouseout", vis.tooltip.hide)
         .merge(bars)
         .transition()
         .attr("width", vis.x.bandwidth())
-        .attr("height", function(d) {
-            return vis.height - vis.y(d);
+        .attr("height", function (d) {
+            return vis.height - vis.y(d.number);
         })
-        .attr("x", function(d, i) {
-            return vis.x(i);
+        .attr("x", function (d) {
+            return vis.x(d.type);
         })
-        .attr("y", function(d) {
-            return vis.y(d);
+        .attr("y", function (d) {
+            return vis.y(d.number);
         });
 
     bars.exit().remove();
 
-    // Append axes to chart
+    // Append axes to chart and adjust labels
     vis.svg.select(".x-axis")
-        .call(vis.xAxis);
+        .call(vis.xAxis)
+        .selectAll("text");
+
+    vis.svg.select(".y-axis")
+        .call(vis.yAxis);
+
 };

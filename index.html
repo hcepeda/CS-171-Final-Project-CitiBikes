@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<nav class="navbar fixed-top navbar-dark bg-dark">
+<nav class="navbar fixed-top navbar-dark" id="navbar">
     <a class="navbar-brand" href="#">
         <i class="fas fa-bicycle"></i>
         NYCitiBikes
@@ -41,27 +41,24 @@
 
 <div class="container-fluid">
         <!-- content -->
+
+    <h1>Daily Visualization</h1>
         <div class="row">
             <div class="col-md-12">
                 <div class="selectbox-div">
                     <h2>Select a day:</h2>
-                    <select class="selectbox" onchange= barchart.updateVis()>
+                    <select class="selectbox" onchange= selectionChanged()>
                         <option value="07 01 2018">July 1, 2018</option>
                         <option value="07 02 2018">July 2, 2018</option>
-                        <option value="07 03 2018">July 2, 2018</option>
-                        <option value="07 04 2018">July 2, 2018</option>
-                        <option value="07 05 2018">July 2, 2018</option>
-                        <option value="07 06 2018">July 2, 2018</option>
+                        <option value="07 03 2018">July 3, 2018</option>
+                        <option value="07 04 2018">July 4, 2018</option>
+                        <option value="07 05 2018">July 5, 2018</option>
+                        <option value="07 06 2018">July 6, 2018</option>
                     </select>
                 </div>
             </div>
         </div>
 
-        <!--<br> <br>-->
-        <!--<h2>What's the distribution of trip times? </h2>-->
-        <div id="histogram"> </div>
-        <!--<br>-->
-        <!--<h2>On average, how many people are taking trips every hour? </h2>-->
         <div id="totalvis"> </div>
         <br> <br>
         <div class="row">
@@ -69,18 +66,37 @@
                 <div id="mapid"></div>
             </div>
             <div class = "col-md-7">
-                <h3> Station locations around New York </h3>
-                <br>
-                <p> Insert information and potential more interactivity with the map.</p>
-                <br>
-                <p> Right now, the tooltip will give the name of each station, and hopefully we will have a search feature available by the end of next week. </p>
-                <br>
-                <p> In general, these visualizations work when we expand out dataset, though as we finalize our filtering functions we're working with a
-                much smaller dataset, which is why some visualizations look a little underwhelming right now. </p>
-                <br>
-                <p> We also plan to have the website separated out into tabs, as seen briefly at the top. However, as you can see it's not fully implemented yet as we debug further and learn how to implement.</p>
-                <br>
-                <p> Please see our process book for more detailed explanations about each visualization and our plan to connect the different elements together moving forward :)</p>
+                <!--<h3> Station locations around New York </h3>-->
+                <!--<br>-->
+                <!--<p> Insert information and potential more interactivity with the map.</p>-->
+                <!--<br>-->
+                <!--<p> Right now, the tooltip will give the name of each station, and hopefully we will have a search feature available by the end of next week. </p>-->
+                <!--<br>-->
+                <!--<p> In general, these visualizations work when we expand out dataset, though as we finalize our filtering functions we're working with a-->
+                <!--much smaller dataset, which is why some visualizations look a little underwhelming right now. </p>-->
+                <!--<br>-->
+                <!--<p> We also plan to have the website separated out into tabs, as seen briefly at the top. However, as you can see it's not fully implemented yet as we debug further and learn how to implement.</p>-->
+                <!--<br>-->
+                <!--<p> Please see our process book for more detailed explanations about each visualization and our plan to connect the different elements together moving forward :)</p>-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="age"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="gender"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="subscriber"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div id="tripduration"> </div>
+                    </div>
+                    <!--<div class="col-md-3">-->
+                        <!--<div id="distance"></div>-->
+                    <!--</div>-->
+                </div>
             </div>
         </div>
 
@@ -91,6 +107,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/d3.min.js"></script>
+    <script src="js/d3-tip.js"></script>
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
             integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
             crossorigin=""></script>
@@ -100,6 +117,9 @@
     <script src="js/totalvis.js"></script>
     <script src="js/histogram.js"></script>
     <script src="js/NYMap.js"></script>
+    <script src="js/age.js"></script>
+    <script src="js/gender.js"></script>
+    <script src="js/subscriber.js"></script>
 
     <script src="js/main.js"></script>
 
