@@ -20,13 +20,17 @@ NYMap.prototype.wrangleData = function(){
       var new_obj = {"name": d['start station name'],
               "latitude": d['start station latitude'],
               "longitude": d['start station longitude'],
-              "stationid": d['start station id']};
+              "stationid": d['start station id'],
+              "endlat": d['end station latitude'],
+              "endlong": d['end station longitude'],
+              "endname": d['end station name']}
 
       unique_locations.push(new_obj);
     }
   });
 
   vis.unique_locations = unique_locations;
+  console.log(vis.unique_locations);
   //this.unique_locations = [...new Set(this.data.map(item => item['start station name']))];
 }
 
@@ -53,6 +57,7 @@ NYMap.prototype.initVis = function() {
 
   // set up leaflet map
   vis.mymap = L.map('mapid', {layers: [vis.google]}).setView(vis.mapPosition, 13);
+  vis.dir = MQ.routing.directions();
 
   // add empty layer groups for makers and map objects
   vis.red = L.layerGroup().addTo(vis.mymap);
@@ -173,6 +178,9 @@ NYMap.prototype.updateVis = function() {
     vis.long = d['longitude'];
     vis.title = d["name"],  //value searched
     vis.loc = [vis.long, vis.lat];  //position found
+    // vis.endlat = d['end station latitude']
+    // vis.endlong = d['end station longitude']
+    vis.endname = d['endname']
 
 
       // start station (red)
@@ -183,6 +191,28 @@ NYMap.prototype.updateVis = function() {
         //set property searched above 
         // add markers to layer group
         vis.red.addLayer(vis.stationMarker);
+
+        vis.endMarker = L.marker([d['endlat'], d['endlong']], {title: vis.endname, icon: vis.greenMarker} ).bindPopup(vis.stationContent);;
+        vis.green.addLayer(vis.endMarker);
+
+        // vis.dir.route({
+        //   locations: [
+        //     { latLng: { lat: d['latitude'], lng: d['longitude'] } },
+        //     { latLng: { lat: d['endlat'], lng: d['endlong'] } }
+        //   ]
+        // });
+
+        // vis.mymap.addLayer(MQ.routing.routeLayer({
+        //   directions: vis.dir,
+        //   fitBounds: true
+        // }));
+        // console.log(vis.dir);
+        L.Routing.control({
+          waypoints: [
+          L.latLng(d['latitude'], d['longitude']),
+          L.latLng(d['endlat'], d['endlong'])
+          ]
+        }).addTo(vis.mymap);
       }
       // end station (green)
       else if(d['latitude'] === 0) {
