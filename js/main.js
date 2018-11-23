@@ -10,11 +10,39 @@ var tripsbyday = [];
 var dailydata;
 var barchart, histogram, age, gender, subscriber;
 
+var barchart;
+var geojsondata = []; // add json file for geojson layer
+
+// $.getJSON("data/Subway-Lines.json", function(geo) {
+//     geojsondata = geo;
+//     console.log(geojsondata);
+
+//  });
+
+$.ajax({
+  url: 'data/Subway-Lines.json',
+  async: false,
+  dataType: 'json',
+  success: function (geo) {
+    // do stuff with response.
+    geojsondata = geo;
+    console.log(geojsondata);
+  }
+});
+
+
 
 // Load data
+
 loadData();
 
 function loadData() {
+
+    // d3.queue()
+    //     .defer(d3.csv, "data/Compiled.csv")
+    //     .defer(d3.csv, "data/citibike-sample.csv")
+    //     .defer($.getJSON,"data/Subway-Lines.json" )
+    //     .await(createVis);
     d3.csv("data/citibike-sample.csv", function(data) {
         for (var i = 0; i < data.length; i++) {
             data[i].tripduration = +data[i].tripduration;
@@ -44,9 +72,17 @@ function loadData() {
     });
 }
 
-function createVis() {
 
+
+
+
+
+function createVis() {
+    var vis = this;
+    console.log(vis.geojsondata)
     // create context bar chart with total rides per day per hour
+    barchart = new TotalVis("totalvis", allData);
+    var greatmap = new NYMap("mapid", vis.allData, [40.733060, -73.971249], vis.geojsondata);
     barchart = new TotalVis("totalvis", allData);
     age = new AgeChart("age", allData);
     gender = new GenderChart("gender", allData);
