@@ -51,7 +51,8 @@ NYMap.prototype.wrangleData = function(){
               "stationid": d['start station id'],
               "endlat": d['end station latitude'],
               "endlong": d['end station longitude'],
-              "endname": d['end station name']}
+              "endname": d['end station name'],
+              "endstationid": d["end station id"]}
 
       unique_locations.push(new_obj);
       // console.log(unique_locations);
@@ -190,7 +191,7 @@ NYMap.prototype.updateVis = function() {
   vis.green.clearLayers();
   vis.yellow.clearLayers();
   vis.blue.clearLayers();
-
+  console.log(vis.unique_locations);
   vis.unique_locations.forEach(function(d){
     // var circle = L.circle([d['latitude'], d['longitude']], {
     //     color: 'red',
@@ -203,6 +204,10 @@ NYMap.prototype.updateVis = function() {
     // create popup content for each station
     vis.stationContent = "<strong>" + d["name"] + "</strong><br/>";
     vis.stationContent += "Station ID: " + d["stationid"] + "<br/>";
+    // vis.stationContent = "<strong>" + d["name"] + "</strong><br/>";
+
+    vis.stationContentend = "<strong>" + d["endname"] + "</strong><br/>";
+    vis.stationContentend += "Station ID: " + d["endstationid"] + "<br/>";
 
     vis.lat = d['latitude'];
     vis.long = d['longitude'];
@@ -222,7 +227,7 @@ NYMap.prototype.updateVis = function() {
         // add markers to layer group
         vis.red.addLayer(vis.stationMarker);
 
-        vis.endMarker = L.marker([d['endlat'], d['endlong']], {title: vis.endname, icon: vis.greenMarker} ).bindPopup(vis.stationContent);;
+        vis.endMarker = L.marker([d['endlat'], d['endlong']], {title: vis.endname, icon: vis.greenMarker} ).bindPopup(vis.stationContentend);;
         vis.green.addLayer(vis.endMarker);
 
         // vis.dir.route({
