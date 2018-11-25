@@ -3,6 +3,7 @@ NYMap = function(_parentElement, _data, _mapPosition, _geojsondata){
   this.data = _data;
   this.mapPosition = _mapPosition;
   this.geo = _geojsondata;
+  this.displayData = _data;
 
   this.initVis();
 }
@@ -13,8 +14,35 @@ NYMap.prototype.wrangleData = function(){
 
   var unique_locations = [];
   var unique_array = [];
+  var selectbox = d3.select(".selectbox").property("value");
+    selectbox = newdateParser(selectbox);
+    console.log(selectbox);
 
-  vis.data.forEach(function(d){
+    vis.nestedData = d3.nest()
+        .key(function(d) {
+            return d.date;
+        })
+        .rollup(function(leaves) {
+            return {
+                data: leaves
+            }
+        })
+        .entries(vis.data);
+
+    vis.nestedData.sort(function(a, b) {
+        return new Date (a.key) - new Date(b.key);
+    });
+
+    vis.nestedData.forEach(function(d) {
+        d.key = new Date(d.key);
+
+        if (+selectbox == +d.key) {
+            vis.displayData = d;
+        }
+    });
+    console.log(vis.displayData);
+
+  vis.displayData.value.data.forEach(function(d){
     if (!(unique_array.includes(d['start station name']))){
       unique_array.push(d['start station name']);
       var new_obj = {"name": d['start station name'],
@@ -23,24 +51,27 @@ NYMap.prototype.wrangleData = function(){
               "stationid": d['start station id'],
               "endlat": d['end station latitude'],
               "endlong": d['end station longitude'],
-              "endname": d['end station name']}
+              "endname": d['end station name'],
+              "endstationid": d["end station id"]}
 
       unique_locations.push(new_obj);
+      // console.log(unique_locations);
     }
   });
 
   vis.unique_locations = unique_locations;
   console.log(vis.unique_locations);
   //this.unique_locations = [...new Set(this.data.map(item => item['start station name']))];
+  vis.updateVis();
 }
 
 NYMap.prototype.initVis = function() {
   var vis = this;
-    console.log(vis.geo);
+    // console.log(vis.geo);
   // If the images are in the directory "/img":
   L.Icon.Default.imagePath = "img/";
 
-  vis.wrangleData();
+  // vis.wrangleData();
 
   // set up dual layers 
   vis.google = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGF5YWxhIiwiYSI6ImNqb25ibjQwYjB0OWkzcW81aDk1dTQ1NnAifQ.efDqfmRxK8A4OkuxaDR6jw', {
@@ -135,7 +166,7 @@ NYMap.prototype.initVis = function() {
   vis.greenMarker = new stationIcon({ iconUrl:  "img/marker-green.png" });
 
 
-
+vis.wrangleData();
   vis.updateVis();
 
 }
@@ -160,7 +191,7 @@ NYMap.prototype.updateVis = function() {
   vis.green.clearLayers();
   vis.yellow.clearLayers();
   vis.blue.clearLayers();
-
+  console.log(vis.unique_locations);
   vis.unique_locations.forEach(function(d){
     // var circle = L.circle([d['latitude'], d['longitude']], {
     //     color: 'red',
@@ -173,6 +204,10 @@ NYMap.prototype.updateVis = function() {
     // create popup content for each station
     vis.stationContent = "<strong>" + d["name"] + "</strong><br/>";
     vis.stationContent += "Station ID: " + d["stationid"] + "<br/>";
+    // vis.stationContent = "<strong>" + d["name"] + "</strong><br/>";
+
+    vis.stationContentend = "<strong>" + d["endname"] + "</strong><br/>";
+    vis.stationContentend += "Station ID: " + d["endstationid"] + "<br/>";
 
     vis.lat = d['latitude'];
     vis.long = d['longitude'];
@@ -192,7 +227,7 @@ NYMap.prototype.updateVis = function() {
         // add markers to layer group
         vis.red.addLayer(vis.stationMarker);
 
-        vis.endMarker = L.marker([d['endlat'], d['endlong']], {title: vis.endname, icon: vis.greenMarker} ).bindPopup(vis.stationContent);;
+        vis.endMarker = L.marker([d['endlat'], d['endlong']], {title: vis.endname, icon: vis.greenMarker} ).bindPopup(vis.stationContentend);;
         vis.green.addLayer(vis.endMarker);
 
         // vis.dir.route({
@@ -268,13 +303,13 @@ NYMap.prototype.updateVis = function() {
         vis.yellow.addLayer(vis.stationMarker);
       }
       // empty slot (blue)
-      else {
-        // create marker for each station
-        vis.stationMarker = L.marker([d['latitude'], d['longitude']], { icon: vis.blueMarker }).bindPopup(vis.stationContent);
+      // else {
+      //   // create marker for each station
+      //   vis.stationMarker = L.marker([d['latitude'], d['longitude']], { icon: vis.blueMarker }).bindPopup(vis.stationContent);
 
-        // add markers to layer group
-        vis.blue.addLayer(vis.stationMarker);
-      }
+      //   // add markers to layer group
+      //   vis.blue.addLayer(vis.stationMarker);
+      // }
       // vis.controlSearch = new L.Control.Search({layer: vis.red, initial: false});
       // vis.mymap.addControl(vis.controlSearch);
 
