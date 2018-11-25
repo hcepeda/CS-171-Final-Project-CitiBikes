@@ -81,7 +81,7 @@ function createVis() {
     var vis = this;
     console.log(vis.geojsondata)
     // create context bar chart with total rides per day per hour
-    var greatmap = new NYMap("mapid", vis.allData, [40.733060, -73.971249], vis.geojsondata);
+    greatmap = new NYMap("mapid", allData, [40.733060, -73.971249], vis.geojsondata);
     barchart = new TotalVis("totalvis", allData);
     age = new AgeChart("age", allData);
     gender = new GenderChart("gender", allData);
@@ -96,4 +96,5 @@ function selectionChanged() {
     age.wrangleData();
     gender.wrangleData();
     subscriber.wrangleData();
+    greatmap.wrangleData();
 }

@@ -9,7 +9,7 @@ var allData = [];
 
 
 function createVis(error, aggregatedData, sampleData) {
-  if(error) { console.log(error); }
+
 
   aggregatedData.forEach(function(d){
     d.Date = dateParser(d.Date)
