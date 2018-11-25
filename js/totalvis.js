@@ -1,7 +1,8 @@
 
-TotalVis = function(_parentElement, _data) {
+TotalVis = function(_parentElement, _data, _eventHandler) {
     this.parentElement = _parentElement;
     this.data = _data;
+    this.eventHandler = _eventHandler;
     this.displayData = [];
 
     this.initVis();
@@ -118,6 +119,13 @@ TotalVis.prototype.updateVis = function() {
         .attr("class", "bar")
         .on("mouseover", vis.tooltip.show)
         .on("mouseout", vis.tooltip.hide)
+        .on("click", function(d, i) {
+            d3.selectAll(".bar").style("fill", "lightgrey");
+            d3.select(this).style("fill", "#082d6a");
+            vis.currentHour = i;
+
+            $(vis.eventHandler).trigger("hourChanged", vis.currentHour);
+        })
         .merge(bars)
         .transition()
         .attr("width", vis.x.bandwidth())

@@ -1,6 +1,7 @@
 
 /* main JS file */
 var dateFormatter = d3.timeFormat("%m %d %Y");
+var hourFormatter = d3.timeFormat("%H");
 var dateParser = d3.timeParse("%m/%d/%y %H:%M:%S");
 var newdateParser = d3.timeParse("%m %d %Y");
 
@@ -63,6 +64,8 @@ function loadData() {
             data[i].date = dateFormatter(data[i].starttime);
             data[i].date = newdateParser(data[i].date);
 
+            data[i].hour = +hourFormatter(data[i].starttime);
+
         }
 
         allData = data;
@@ -73,21 +76,28 @@ function loadData() {
 }
 
 
-
-
-
-
 function createVis() {
     var vis = this;
-    console.log(vis.geojsondata)
+    console.log(vis.geojsondata);
+
+    var myEventHandler = {};
+
+    barchart = new TotalVis("totalvis", allData, myEventHandler);
+
     // create context bar chart with total rides per day per hour
     var greatmap = new NYMap("mapid", vis.allData, [40.733060, -73.971249], vis.geojsondata);
-    barchart = new TotalVis("totalvis", allData);
     age = new AgeChart("age", allData);
     gender = new GenderChart("gender", allData);
     subscriber = new SubChart("subscriber", allData);
 
     histogram = new Histogram("tripduration", allData);
+
+    $(myEventHandler).bind("hourChanged", function(event, hour) {
+        age.onSelectionChange(hour);
+    })
+
+
+
 }
 
 function selectionChanged() {

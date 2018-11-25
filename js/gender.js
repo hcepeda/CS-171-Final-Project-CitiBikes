@@ -11,7 +11,7 @@ GenderChart.prototype.initVis = function() {
     var vis = this;
     // console.log(vis.data);
 
-    vis.margin = { top: 20, right: 0, bottom: 20, left: 20 };
+    vis.margin = { top: 20, right: 20, bottom: 40, left: 20 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
         vis.height = 250 - vis.margin.top - vis.margin.bottom;
@@ -47,15 +47,6 @@ GenderChart.prototype.initVis = function() {
     vis.svg.append("g")
         .attr("class", "y-axis axis");
 
-    // Create tooltip
-    vis.tooltip = d3.tip()
-        .attr("class", "d3-tip")
-        .offset([-8, 0])
-        .html(function(d) {
-            return "Total: " + d.number;
-        });
-
-    vis.svg.call(vis.tooltip);
 
     // Filter, aggregate, modify data
     vis.wrangleData();
@@ -141,8 +132,6 @@ GenderChart.prototype.updateVis = function() {
 
     bars.enter().append("rect")
         .attr("class", "detailbar")
-        .on("mouseover", vis.tooltip.show)
-        .on("mouseout", vis.tooltip.hide)
         .merge(bars)
         .transition()
         .attr("width", vis.x.bandwidth())
@@ -158,10 +147,38 @@ GenderChart.prototype.updateVis = function() {
 
     bars.exit().remove();
 
+    var labels = vis.svg.selectAll(".label")
+        .data(vis.displayData);
+
+    labels.enter().append("text")
+        .merge(labels)
+        .transition()
+        .attr("class", "label")
+        .attr("x", function(d) {
+            return vis.x(d.gender) + vis.x.bandwidth()/3;
+        })
+        .attr("y", function (d) {
+            return vis.y(d.number) - 5;
+        })
+        .text(function(d) {
+            if (d.number == 0) {
+                return;
+            }
+            else {
+                return d.number;
+            }
+        });
+
+    labels.exit().remove();
+
     // Append axes to chart and adjust labels
     vis.svg.select(".x-axis")
         .call(vis.xAxis)
-        .selectAll("text");
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", "translate(10, 0) rotate(-45)");
 
     vis.svg.select(".y-axis")
         .call(vis.yAxis);

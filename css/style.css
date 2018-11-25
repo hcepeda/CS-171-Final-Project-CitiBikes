@@ -1,6 +1,6 @@
 /* custom css rules */
 
-#mapid { height: 800px; }
+#mapid { height: 500px; }
 
 body {
 	font-family: 'Roboto', sans-serif;
@@ -86,5 +86,11 @@ select {
 	width: auto;
 	box-shadow: 0 5px 20px #686868;
 	background-color: #082d6a;
+}
+
+.label {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	font-size: 10px;
 }
 

@@ -9,9 +9,9 @@ AgeChart = function(_parentElement, _data) {
 /* INITIALIZE VISUALIZATION */
 AgeChart.prototype.initVis = function() {
     var vis = this;
-    // console.log(vis.data);
+    console.log(vis.data);
 
-    vis.margin = { top: 20, right: 0, bottom: 20, left: 20 };
+    vis.margin = { top: 20, right: 0, bottom: 30, left: 20 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
         vis.height = 250 - vis.margin.top - vis.margin.bottom;
@@ -34,7 +34,7 @@ AgeChart.prototype.initVis = function() {
 
     vis.xAxis = d3.axisBottom()
         .scale(vis.x)
-        .tickSizeOuter(0);
+        .tickSize(0);
 
     vis.yAxis = d3.axisLeft()
         .scale(vis.y);
@@ -46,17 +46,6 @@ AgeChart.prototype.initVis = function() {
     vis.svg.append("g")
         .attr("class", "y-axis axis");
 
-    // Create tooltip
-    vis.tooltip = d3.tip()
-        .attr("class", "d3-tip")
-        .offset([-8, 0]);
-        // .html(function(d, i) {
-        //     return "Time: " + i + ":00 - " + i + ":59" +
-        //         "<br>Total Rides: " + d;
-        // });
-
-    vis.svg.call(vis.tooltip);
-
     // Filter, aggregate, modify data
     vis.wrangleData();
 
@@ -64,7 +53,6 @@ AgeChart.prototype.initVis = function() {
 
 AgeChart.prototype.wrangleData = function() {
     var vis = this;
-    var hourFormatter = d3.timeFormat("%H");
     var newdateParser = d3.timeParse("%m %d %Y");
 
     var selectbox = d3.select(".selectbox").property("value");
@@ -131,6 +119,7 @@ AgeChart.prototype.wrangleData = function() {
     }
 
     vis.displayData = ages;
+    console.log(vis.displayData);
 
     // Update visualization
     vis.updateVis();
@@ -147,8 +136,6 @@ AgeChart.prototype.updateVis = function() {
 
     bars.enter().append("rect")
         .attr("class", "detailbar")
-        .on("mouseover", vis.tooltip.show)
-        .on("mouseout", vis.tooltip.hide)
         .merge(bars)
         .transition()
         .attr("width", vis.x.bandwidth())
@@ -164,15 +151,55 @@ AgeChart.prototype.updateVis = function() {
 
     bars.exit().remove();
 
+    var labels = vis.svg.selectAll(".label")
+        .data(vis.displayData);
+
+    labels.enter().append("text")
+        .merge(labels)
+        .transition()
+        .attr("class", "label")
+        .attr("x", function(d, i) {
+            return vis.x(i) + 10;
+        })
+        .attr("y", function (d) {
+            return vis.y(d) - 5;
+        })
+        .text(function(d) {
+            if (d == 0) {
+                return;
+            }
+            else {
+                return d;
+            }
+        });
+
+    labels.exit().remove();
+
     // Append axes to chart and adjust labels
     vis.svg.select(".x-axis")
         .call(vis.xAxis)
         .selectAll("text")
         .text(function(d, i) {
             return i*10 + "-" + ((i+1)*10 -1);
-        });
+        })
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", "translate(10, 0) rotate(-45)");
 
     vis.svg.select(".y-axis")
         .call(vis.yAxis);
 
 };
+
+AgeChart.prototype.onSelectionChange = function(hour) {
+    var vis = this;
+
+    vis.data = vis.data.filter(function(d) {
+        return d.hour == hour;
+    });
+
+    vis.wrangleData();
+
+};
+
