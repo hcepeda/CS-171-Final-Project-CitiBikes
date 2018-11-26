@@ -44,7 +44,7 @@ function loadData() {
     //     .defer(d3.csv, "data/citibike-sample.csv")
     //     .defer($.getJSON,"data/Subway-Lines.json" )
     //     .await(createVis);
-    d3.csv("data/citibike-sample.csv", function(data) {
+    d3.csv("data/201807-citibike-tripdata.csv", function(data) {
         for (var i = 0; i < data.length; i++) {
             data[i].tripduration = +data[i].tripduration;
             data[i].bikeid = +data[i].bikeid;
@@ -89,7 +89,7 @@ function createVis() {
     barchart = new TotalVis("totalvis", allData, myEventHandler);
 
     // create context bar chart with total rides per day per hour
-    greatmap = new NYMap("mapid", allData, [40.733060, -73.971249], vis.geojsondata);
+    // greatmap = new NYMap("mapid", allData, [40.733060, -73.971249], vis.geojsondata);
     age = new AgeChart("age", allData);
     gender = new GenderChart("gender", allData);
     subscriber = new SubChart("subscriber", allData);
