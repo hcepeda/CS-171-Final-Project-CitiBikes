@@ -62,20 +62,36 @@ CitiLineGraph.prototype.updateVis = function() {
     .attr("d", this.valueline)
     .attr("fill", "none")
     .attr("stroke", "steelblue")
-    .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
-    .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
+      .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
+      .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
   var t = d3.transition()
     .duration(5000)
     .ease(d3.easeLinear);
   /*
-  this.svg.append("path")
-    .data(this.data)
-    .attr("class", "line")
-    .attr("d", this.valueline(this.data))
-    .attr("stroke", "steelblue")
-    //.attr("fill", "none")
-    .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
-    .attr("stroke-dashoffset", function(d){ return this.getTotalLength() })
+  this.svg.append("rect")
+    .attr("class", "overlay")
+    .attr("width", this.width)
+    .attr("height", this.height)
+    .on("mouseover", function() { focus.style("display", null); })
+    .on("mouseout", function() { focus.style("display", "none"); })
+    .on("mousemove", mousemove);
+
+  function mousemove() {
+    var x0 = this.xScale.invert(d3.mouse(this)[0]),
+      i = bisectDate(this.data, x0, 1),
+      d0 = this.data[i - 1],
+      d1 = this.data[i],
+      d = x0 - d0.Date > d1.Date - x0 ? d1 : d0;
+    focus.select('line.x')
+      .attr('x1', 0)
+      .attr('x2', 0)
+      .attr('y1', 0)
+      .attr('y2', this.height - this.yScale(d.TripsToday))
+      .style("stroke-width", 2)
+      .style("stroke", "steelblue");
+    focus.attr("transform", "translate(" + this.xScale(d.Date) + "," + this.yScale(d.TripsToday) +")");
+    focus.select("text").text(d.TripsToday);
+  }
   */
   this.svg.append("g")
     .attr("transform", "translate(0," + this.height + ")")

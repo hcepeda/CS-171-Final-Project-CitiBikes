@@ -2,37 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About CitiBikes</title>
+    <title>Daily Visualization</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin=""/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+     <link rel="stylesheet" href="css/leaflet-search.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+
 </head>
 <body>
-<nav class="navbar fixed-top navbar-dark bg-dark">
+
+<nav class="navbar fixed-top navbar-dark" id="navbar">
     <a class="navbar-brand" href="#">
         <i class="fas fa-bicycle"></i>
         NYCitiBikes
     </a>
-    <ul class="nav">
-        <li class="nav-item">
+        <ul class="nav">
+            <li class="nav-item">
                 <span class="navbar-text">
                     <a class="nav-link" href="index.html">Daily Visualization</a>
                 </span>
-        </li>
-        <li class="nav-item">
+            </li>
+            <li class="nav-item">
                 <span class="navbar-text">
-                    <a class="nav-link" href="about.html"><u>About CitiBikes</u></a>
+                <a class="nav-link" href="about.html"><u>About CitiBikes</u></a>
                 </span>
-        </li>
-        <li class="nav-item">
+            </li>
+            <li class="nav-item">
                 <span class="navbar-text">
                     <a class="nav-link" href="team.html">Our Team</a>
                 </span>
-        </li>
-    </ul>
+            </li>
+        </ul>
 </nav>
 
 <div class="container-fluid">
     <h1>About CitiBikes</h1>
-    <div id = "line_chart"> </div>
+    <h1>The Beginnings</h1>
+    <p>In an effort to reduce air pollution, road damage, collisions, and
+      congestion, the New York City Department of Transportations (NYCDOT)
+      researched alternative forms of transportations to service the city of
+      New York in 2008. In an effort to reduce the number of short trips taken
+      within the city, they advocated for and proposed a bike sharing program
+      in which users could borrow and drop off bikes at designated locations.
+
+      In May of 2013, after some initial delays due to Hurricane Sandy,
+      Citibike began its operations with a total of 332 bike stations servicing
+      6,000 bicycles</p>
+
+      <div id = "line_chart"> </div>
+      <h1> Wowee: Look at how popular it's become!</h1>
+      <p>Citibike did not expect its bikesharing program to be as popular as it
+        became, especially within its first year of service. It's peak number of
+        travelers within the first year was 42,010 trips, achieved on August 6,
+        2013. Citibike enocurterned numerours issues within the first years,
+        particularly with its software and inequality with station demand.
+        Numerous van drivers were hired to distribute bikes equally across stations
+        and deal with the overflow issues that many statinos were having. </p>
+
 
 </div>
 
