@@ -94,3 +94,13 @@ select {
 	font-size: 10px;
 }
 
+img {
+    border-radius: 50%;
+	align-content: center;
+	align: center;
+}
+
+p {
+    text-align: center;
+}
+
