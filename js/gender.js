@@ -11,7 +11,7 @@ GenderChart.prototype.initVis = function() {
     var vis = this;
     // console.log(vis.data);
 
-    vis.margin = { top: 20, right: 20, bottom: 40, left: 20 };
+    vis.margin = { top: 20, right: 0, bottom: 45, left: 30 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
         vis.height = 250 - vis.margin.top - vis.margin.bottom;
@@ -38,7 +38,8 @@ GenderChart.prototype.initVis = function() {
         .tickSize(0);
 
     vis.yAxis = d3.axisLeft()
-        .scale(vis.y);
+        .scale(vis.y)
+        .tickSizeOuter(0);
 
     vis.svg.append("g")
         .attr("class", "x-axis axis")
@@ -47,6 +48,7 @@ GenderChart.prototype.initVis = function() {
     vis.svg.append("g")
         .attr("class", "y-axis axis");
 
+    vis.filtereddata = vis.data;
 
     // Filter, aggregate, modify data
     vis.wrangleData();
@@ -70,7 +72,7 @@ GenderChart.prototype.wrangleData = function() {
                 data: leaves
             }
         })
-        .entries(vis.data);
+        .entries(vis.filtereddata);
 
     vis.nestedData.sort(function(a, b) {
         return new Date (a.key) - new Date(b.key);
@@ -155,7 +157,7 @@ GenderChart.prototype.updateVis = function() {
         .transition()
         .attr("class", "label")
         .attr("x", function(d) {
-            return vis.x(d.gender) + vis.x.bandwidth()/3;
+            return vis.x(d.gender) + vis.x.bandwidth()*0.2;
         })
         .attr("y", function (d) {
             return vis.y(d.number) - 5;
@@ -184,3 +186,22 @@ GenderChart.prototype.updateVis = function() {
         .call(vis.yAxis);
 
 };
+
+GenderChart.prototype.onSelectionChange = function(hour) {
+    var vis = this;
+
+    vis.filtereddata = vis.data.filter(function(d) {
+        return d.hour == hour;
+    });
+
+    vis.wrangleData();
+
+};
+
+GenderChart.prototype.onClick = function() {
+    var vis = this;
+
+    vis.filtereddata = vis.data;
+
+    vis.wrangleData();
+}

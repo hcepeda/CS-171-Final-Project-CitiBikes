@@ -11,7 +11,7 @@ SubChart.prototype.initVis = function() {
     var vis = this;
     // console.log(vis.data);
 
-    vis.margin = { top: 20, right: 40, bottom: 40, left: 20 };
+    vis.margin = { top: 20, right: 40, bottom: 45, left: 30 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
         vis.height = 250 - vis.margin.top - vis.margin.bottom;
@@ -38,7 +38,8 @@ SubChart.prototype.initVis = function() {
         .tickSize(0);
 
     vis.yAxis = d3.axisLeft()
-        .scale(vis.y);
+        .scale(vis.y)
+        .tickSizeOuter(0);
 
     vis.svg.append("g")
         .attr("class", "x-axis axis")
@@ -47,6 +48,7 @@ SubChart.prototype.initVis = function() {
     vis.svg.append("g")
         .attr("class", "y-axis axis");
 
+    vis.filtereddata = vis.data;
 
     // Filter, aggregate, modify data
     vis.wrangleData();
@@ -70,7 +72,7 @@ SubChart.prototype.wrangleData = function() {
                 data: leaves
             }
         })
-        .entries(vis.data);
+        .entries(vis.filtereddata);
 
     vis.nestedData.sort(function(a, b) {
         return new Date (a.key) - new Date(b.key);
@@ -147,7 +149,7 @@ SubChart.prototype.updateVis = function() {
         .transition()
         .attr("class", "label")
         .attr("x", function(d) {
-            return vis.x(d.type) + 5;
+            return vis.x(d.type) + vis.x.bandwidth()*0.2;
         })
         .attr("y", function (d) {
             return vis.y(d.number) - 5;
@@ -176,3 +178,22 @@ SubChart.prototype.updateVis = function() {
         .call(vis.yAxis);
 
 };
+
+SubChart.prototype.onSelectionChange = function(hour) {
+    var vis = this;
+
+    vis.filtereddata = vis.data.filter(function(d) {
+        return d.hour == hour;
+    });
+
+    vis.wrangleData();
+
+};
+
+SubChart.prototype.onClick = function() {
+    var vis = this;
+
+    vis.filtereddata = vis.data;
+
+    vis.wrangleData();
+}
