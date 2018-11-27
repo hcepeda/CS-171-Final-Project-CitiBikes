@@ -16,7 +16,7 @@ NYMap.prototype.wrangleData = function(){
   var unique_array = [];
   var selectbox = d3.select(".selectbox").property("value");
     selectbox = newdateParser(selectbox);
-    console.log(selectbox);
+    // console.log(selectbox);
 
     vis.nestedData = d3.nest()
         .key(function(d) {
@@ -40,7 +40,7 @@ NYMap.prototype.wrangleData = function(){
             vis.displayData = d;
         }
     });
-    console.log(vis.displayData);
+    // console.log(vis.displayData);
 
   vis.displayData.value.data.forEach(function(d){
     if (!(unique_array.includes(d['start station name']))){
@@ -60,7 +60,7 @@ NYMap.prototype.wrangleData = function(){
   });
 
   vis.unique_locations = unique_locations;
-  console.log(vis.unique_locations);
+  // console.log(vis.unique_locations);
   //this.unique_locations = [...new Set(this.data.map(item => item['start station name']))];
   vis.updateVis();
 }
@@ -191,7 +191,21 @@ NYMap.prototype.updateVis = function() {
   vis.green.clearLayers();
   vis.yellow.clearLayers();
   vis.blue.clearLayers();
+
+
+
+
   console.log(vis.unique_locations);
+  // vis.myroute = L.Routing.control();
+  // vis.myroute.clearLayers();
+  // vis.mymap.removeControl(vis.myroute);
+// var myroute
+// var myroute;
+// vis.myroute.removeControl();
+// myroute = L.Routing.control({
+//           waypoints: null});
+//   vis.red.removeLayer(myroute);
+  // vis.myroute = null;
   vis.unique_locations.forEach(function(d){
     // var circle = L.circle([d['latitude'], d['longitude']], {
     //     color: 'red',
@@ -219,16 +233,16 @@ NYMap.prototype.updateVis = function() {
 
 
       // start station (red)
-      if(vis.long) {
+        // vis.endMarker = L.marker([d['endlat'], d['endlong']], {title: vis.endname, icon: vis.greenMarker} ).bindPopup(vis.stationContentend);;
+        // vis.green.addLayer(vis.endMarker);
         // create marker for each station
         // vis.stationMarker = L.marker([vis.lat, vis.long], { icon: vis.redMarker }).bindPopup(vis.stationContent);
-        vis.stationMarker = L.marker([d['latitude'], d['longitude']], {title: vis.title, icon: vis.redMarker} ).bindPopup(vis.stationContent);;
+        // vis.stationMarker = L.marker([d['latitude'], d['longitude']], {title: vis.title, icon: vis.redMarker} ).bindPopup(vis.stationContent);;
         //set property searched above 
         // add markers to layer group
-        vis.red.addLayer(vis.stationMarker);
+        // vis.red.addLayer(vis.stationMarker);
 
-        vis.endMarker = L.marker([d['endlat'], d['endlong']], {title: vis.endname, icon: vis.greenMarker} ).bindPopup(vis.stationContentend);;
-        vis.green.addLayer(vis.endMarker);
+
 
         // vis.dir.route({
         //   locations: [
@@ -248,16 +262,48 @@ NYMap.prototype.updateVis = function() {
 
         // // Creating multi polylines
         // var multipolyline = L.multiPolyline(latlang , multiPolyLineOptions);
-        L.Routing.control({
+        // vis.my.route = null;
+        // markers.clearLayers();
+        myroute = L.Routing.control({
           waypoints: [
           L.latLng(d['latitude'], d['longitude']),
           L.latLng(d['endlat'], d['endlong'])
           ],
-          createMarker: function() { return false;},
+          // createMarker: function() {return vis.red.addLayer(vis.stationMarker);},
+          createMarker: function (i, start, n){
+                          // var marker_icon = null
+                            if (i == 0) {
+                              // This is the first marker, indicating start
+                              vis.stationMarker = L.marker([d['latitude'], d['longitude']], {title: vis.title, icon: vis.redMarker} ).bindPopup(vis.stationContent);
+                              vis.red.addLayer(vis.stationMarker);
+                              // marker_icon = vis.stationMarker
+                            } 
+                            else if (i == n -1) {
+                              //This is the last marker indicating destination
+                              // marker_icon = vis.endMarker
+                              vis.endMarker = L.marker([d['endlat'], d['endlong']], {title: vis.endname, icon: vis.greenMarker} ).bindPopup(vis.stationContentend);;
+                              vis.green.addLayer(vis.endMarker);
+                            }},
+          //                   // console.log(start.latLng);
+          //                   var marker = L.marker (start.latLng, {
+          //                     draggable: false,
+          //                     bounceOnAdd: false,
+          //                     bounceOnAddOptions: {
+          //                     duration: 1000,
+          //                     height: 800, 
+          //                   function(){
+          //                     (bindPopup(vis.stationContent).openOn(vis.mymap))
+          //                   }
+          //                   },
+          //                   icon: marker_icon
+          //                   })
+          //                   return marker}, 
           show: false,
+          fitSelectedRoutes: false,
           routeLine: function(route) {
-            console.log(route);
-            var line = L.polyline(route.coordinates,
+            // console.log(route);
+
+            line = L.polyline(route.coordinates,
             {
             //   multiOptions:
             //   { optionIdxFn: function(latLng) {}
@@ -270,6 +316,19 @@ NYMap.prototype.updateVis = function() {
               color: "red"
             });
 
+            // line.on("click", function() {
+            //   console.log("click");
+            //   var routingControl = new L.Routing.Control({
+            //     waypoints: [
+            //       L.latLng(d['latitude'], d['longitude']),
+            //       L.latLng(d['endlat'], d['endlong'])
+            //     ],
+            //     show: true,
+            //     createMarker: function() {return false;},
+            //     routeLine: function() {return line;}
+            //     }).addTo(vis.mymap);
+            //     });
+
             line.on('mouseover', function() {
               this.setText('  ►  ', {
                 repeat: true,
@@ -280,28 +339,29 @@ NYMap.prototype.updateVis = function() {
             });
             line.on('mouseout', function() {
               this.setText(null);
+              routingControl = null;
             });
-            console.log(line);
+            // console.log(line);
             vis.yellow.addLayer(line);
             return line;}
         }).addTo(vis.mymap);
-      }
-      // end station (green)
-      else if(d['latitude'] === 0) {
-        // create marker for each station
-        vis.stationMarker = L.marker([d['latitude'], d['longitude']], { icon: vis.greenMarker }).bindPopup(vis.stationContent);
+      
+      // // end station (green)
+      // else if(d['latitude'] === 0) {
+      //   // create marker for each station
+      //   vis.stationMarker = L.marker([d['latitude'], d['longitude']], { icon: vis.greenMarker }).bindPopup(vis.stationContent);
 
-        // add markers to layer group
-        vis.green.addLayer(vis.stationMarker);
-      }
-      // empty slot (yellow)
-      else if(d['latitude'] === 1) {
-        // create marker for each station
-        vis.stationMarker = L.marker([d['latitude'], d['longitude']], { icon: vis.yellowMarker }).bindPopup(vis.stationContent);
+      //   // add markers to layer group
+      //   vis.green.addLayer(vis.stationMarker);
+      // }
+      // // empty slot (yellow)
+      // else if(d['latitude'] === 1) {
+      //   // create marker for each station
+      //   vis.stationMarker = L.marker([d['latitude'], d['longitude']], { icon: vis.yellowMarker }).bindPopup(vis.stationContent);
 
-        // add markers to layer group
-        vis.yellow.addLayer(vis.stationMarker);
-      }
+      //   // add markers to layer group
+      //   vis.yellow.addLayer(vis.stationMarker);
+      // }
       // empty slot (blue)
       // else {
       //   // create marker for each station
