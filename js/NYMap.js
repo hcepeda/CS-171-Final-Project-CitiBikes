@@ -87,7 +87,7 @@ NYMap.prototype.initVis = function() {
   });
 
   // set up leaflet map
-  vis.mymap = L.map('mapid', {layers: [vis.google]}).setView(vis.mapPosition, 13);
+  vis.mymap = L.map('mapid', {layers: [vis.google]}).setView(vis.mapPosition, 12);
   vis.dir = MQ.routing.directions();
 
   // add empty layer groups for makers and map objects
