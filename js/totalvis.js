@@ -203,6 +203,7 @@ TotalVis.prototype.onClick = function() {
 
     vis.svg.selectAll("image").remove();
 
+
     $(".bar").remove();
     $(".info").remove();
     $("#clickout").remove();
