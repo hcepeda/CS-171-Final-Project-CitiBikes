@@ -89,7 +89,7 @@ function createVis() {
     barchart = new TotalVis("totalvis", allData, myEventHandler, myEventHandler2);
 
     // create context bar chart with total rides per day per hour
-    // greatmap = new NYMap("mapid", allData, [40.733060, -73.971249], geojsondata);
+    greatmap = new NYMap("mapid", allData, [40.733060, -73.971249], vis.geojsondata);
     age = new AgeChart("age", allData);
     gender = new GenderChart("gender", allData);
     subscriber = new SubChart("subscriber", allData);
@@ -100,6 +100,7 @@ function createVis() {
         age.onSelectionChange(hour);
         gender.onSelectionChange(hour);
         subscriber.onSelectionChange(hour);
+        greatmap.onSelectionChange(hour);
     })
 
     $(myEventHandler2).bind("resetHour", function() {

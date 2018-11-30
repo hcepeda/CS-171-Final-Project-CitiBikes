@@ -19,6 +19,7 @@ h1 {
 h2 {
 	font-weight: 400;
 	font-size: 18px;
+    margin-bottom: 20px;
 	display: inline;
 }
 
@@ -163,6 +164,13 @@ select {
     background-size: cover;
     position: relative;
 }
+.leaflet-control-container .leaflet-routing-container-hide {
+    display: none;
+}
+
+.leaflet-zoom-anim .leaflet-zoom-hide {
+	visibility: hidden;
+	}
 
 .image-about {
     height: 550px;

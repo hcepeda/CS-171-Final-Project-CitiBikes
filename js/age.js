@@ -2,6 +2,7 @@ AgeChart = function(_parentElement, _data) {
     this.parentElement = _parentElement;
     this.data = _data;
     this.displayData = [];
+    this.filtereddata = _data;
 
     this.initVis();
 };
