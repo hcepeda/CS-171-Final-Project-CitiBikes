@@ -44,7 +44,7 @@ function loadData() {
     //     .defer(d3.csv, "data/citibike-sample.csv")
     //     .defer($.getJSON,"data/Subway-Lines.json" )
     //     .await(createVis);
-    d3.csv("data/citibike-sample.csv", function(data) {
+    d3.csv("data/sample-data.csv", function(data) {
         for (var i = 0; i < data.length; i++) {
             data[i].tripduration = +data[i].tripduration;
             data[i].bikeid = +data[i].bikeid;
@@ -78,15 +78,15 @@ function loadData() {
 
 
 
-
+var myEventHandler = {};
+var myEventHandler2 = {};
 
 function createVis() {
     var vis = this;
     console.log(vis.geojsondata);
 
-    var myEventHandler = {};
 
-    barchart = new TotalVis("totalvis", allData, myEventHandler);
+    barchart = new TotalVis("totalvis", allData, myEventHandler, myEventHandler2);
 
     // create context bar chart with total rides per day per hour
     greatmap = new NYMap("mapid", allData, [40.733060, -73.971249], vis.geojsondata);
@@ -98,10 +98,17 @@ function createVis() {
 
     $(myEventHandler).bind("hourChanged", function(event, hour) {
         age.onSelectionChange(hour);
-        greatmap.onSelectionChange(hour);
         gender.onSelectionChange(hour);
         subscriber.onSelectionChange(hour);
-        histogram.onSelectionChange(hour);
+        greatmap.onSelectionChange(hour);
+    })
+
+    $(myEventHandler2).bind("resetHour", function() {
+        barchart.onClick();
+        age.onClick();
+        gender.onClick();
+        subscriber.onClick();
+
     })
 
 
@@ -109,6 +116,8 @@ function createVis() {
 }
 
 function selectionChanged() {
+    $(myEventHandler2).trigger("resetHour");
+
     barchart.wrangleData();
     histogram.wrangleData();
     age.wrangleData();

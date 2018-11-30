@@ -2,7 +2,7 @@ AgeChart = function(_parentElement, _data) {
     this.parentElement = _parentElement;
     this.data = _data;
     this.displayData = [];
-    this.datafiltered = _data;
+    this.filtereddata = _data;
 
     this.initVis();
 };
@@ -12,7 +12,7 @@ AgeChart.prototype.initVis = function() {
     var vis = this;
     console.log(vis.data);
 
-    vis.margin = { top: 20, right: 0, bottom: 30, left: 20 };
+    vis.margin = { top: 40, right: 0, bottom: 30, left: 30 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
         vis.height = 250 - vis.margin.top - vis.margin.bottom;
@@ -38,7 +38,8 @@ AgeChart.prototype.initVis = function() {
         .tickSize(0);
 
     vis.yAxis = d3.axisLeft()
-        .scale(vis.y);
+        .scale(vis.y)
+        .tickSizeOuter(0);
 
     vis.svg.append("g")
         .attr("class", "x-axis axis")
@@ -46,6 +47,8 @@ AgeChart.prototype.initVis = function() {
 
     vis.svg.append("g")
         .attr("class", "y-axis axis");
+
+    vis.filtereddata = vis.data;
 
     // Filter, aggregate, modify data
     vis.wrangleData();
@@ -59,6 +62,7 @@ AgeChart.prototype.wrangleData = function() {
     var selectbox = d3.select(".selectbox").property("value");
     selectbox = newdateParser(selectbox);
     console.log(selectbox);
+    console.log(vis.data);
 
     vis.nestedData = d3.nest()
         .key(function(d) {
@@ -69,7 +73,7 @@ AgeChart.prototype.wrangleData = function() {
                 data: leaves
             }
         })
-        .entries(vis.datafiltered);
+        .entries(vis.filtereddata);
 
     vis.nestedData.sort(function(a, b) {
         return new Date (a.key) - new Date(b.key);
@@ -87,7 +91,7 @@ AgeChart.prototype.wrangleData = function() {
     var ages = d3.range(0, 9).map(function() {
         return 0;
     });
-console.log(vis.displayData.value.data.length);
+
     for (var i=0; i < vis.displayData.value.data.length; i++) {
         var age = 2018 - vis.displayData.value.data[i]["birth year"];
         if (age < 10) {
@@ -160,7 +164,7 @@ AgeChart.prototype.updateVis = function() {
         .transition()
         .attr("class", "label")
         .attr("x", function(d, i) {
-            return vis.x(i) + 10;
+            return vis.x(i) + vis.x.bandwidth()*0.2;
         })
         .attr("y", function (d) {
             return vis.y(d) - 5;
@@ -191,16 +195,32 @@ AgeChart.prototype.updateVis = function() {
     vis.svg.select(".y-axis")
         .call(vis.yAxis);
 
+    vis.svg.selectAll(".title").remove();
+    vis.svg.append("text")
+        .attr("class", "title")
+        .attr("text-anchor", "middle")
+        .attr("x", vis.width/2)
+        .attr("y", -30)
+        .text("Age");
+
+
 };
 
 AgeChart.prototype.onSelectionChange = function(hour) {
     var vis = this;
-    vis.datafiltered = vis.data;
-    vis.datafiltered = vis.data.filter(function(d) {
+
+    vis.filtereddata = vis.data.filter(function(d) {
         return d.hour == hour;
     });
 
     vis.wrangleData();
 
+};
+
+AgeChart.prototype.onClick = function() {
+    var vis = this;
+
+    vis.filtereddata = vis.data;
+    vis.wrangleData();
 };
 

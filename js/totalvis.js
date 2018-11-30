@@ -1,8 +1,9 @@
 
-TotalVis = function(_parentElement, _data, _eventHandler) {
+TotalVis = function(_parentElement, _data, _eventHandler, _eventHandler2) {
     this.parentElement = _parentElement;
     this.data = _data;
     this.eventHandler = _eventHandler;
+    this.secondHandler = _eventHandler2;
     this.displayData = [];
 
     this.initVis();
@@ -13,10 +14,10 @@ TotalVis.prototype.initVis = function() {
     var vis = this;
     // console.log(vis.data);
 
-    vis.margin = { top: 20, right: 150, bottom: 20, left: 150 };
+    vis.margin = { top: 30, right: 150, bottom: 50, left: 150 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
-        vis.height = 150 - vis.margin.top - vis.margin.bottom;
+        vis.height = 200 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -120,14 +121,49 @@ TotalVis.prototype.updateVis = function() {
         .on("mouseover", vis.tooltip.show)
         .on("mouseout", vis.tooltip.hide)
         .on("click", function(d, i) {
-            d3.selectAll(".bar").style("fill", "lightgrey");
-            d3.select(this).style("fill", "#082d6a");
-            vis.currentHour = i;
+            // change other bars to grey
+            $(".bar").addClass("grey");
 
+            // highlight currently selected bar
+            $(this).addClass("detailbar");
+
+            // attach bicycle image
+            vis.svg.selectAll("image").remove();
+            vis.svg.append("image")
+                .attr("xlink:href", "images/bicycle-solid.svg")
+                .attr("x", vis.x(i))
+                .attr("y", vis.y(d) - vis.x.bandwidth())
+                .attr("width", vis.x.bandwidth())
+                .attr("height", vis.x.bandwidth());
+
+            // append informational labels
+            $(".info").remove();
+            vis.svg.append("text")
+                .attr("class", "info")
+                .attr("x", 5)
+                .attr("y", 0)
+                .text("Time Range: "+ i + ":00 - " + i + ":59 EST   ||  Number of Rides: " + d);
+
+
+            // append invisible rectangle to click out
+            vis.svg.append("rect")
+                .attr("id", "clickout")
+                .on("click", function() {
+                    $(vis.secondHandler).trigger("resetHour");
+                })
+                .attr("width", vis.width)
+                .attr("height", vis.height)
+                .attr("opacity", 0);
+
+            vis.currentHour = i;
             $(vis.eventHandler).trigger("hourChanged", vis.currentHour);
+
         })
         .merge(bars)
-        .transition()
+        .transition(3000)
+        .styleTween("opacity", function() { return d3.interpolate(0, 1); });
+
+    d3.selectAll(".bar")
         .attr("width", vis.x.bandwidth())
         .attr("height", function(d) {
             return vis.height - vis.y(d);
@@ -139,9 +175,39 @@ TotalVis.prototype.updateVis = function() {
             return vis.y(d);
         });
 
-    bars.exit().remove();
+    bars.exit().transition().remove();
+
+    $(".title").remove();
+    // Append x-axis label
+    vis.svg.append("text")
+        .attr("class", "title")
+        .attr("text-anchor", "middle")
+        .attr("x", vis.width/2)
+        .attr("y", vis.height + 40)
+        .text("Time (24 hours)");
+
+    $(".info").remove();
+    // Append info label
+    vis.svg.append("text")
+        .attr("class", "info")
+        .attr("x", 5)
+        .attr("y", 0)
+        .text("Click on a bar to learn more!");
+
 
     // Append axes to chart
     vis.svg.select(".x-axis")
         .call(vis.xAxis);
+};
+
+TotalVis.prototype.onClick = function() {
+    var vis = this;
+
+    vis.svg.selectAll("image").remove();
+
+
+    $(".bar").remove();
+    $(".info").remove();
+    $("#clickout").remove();
+    vis.updateVis();
 };
