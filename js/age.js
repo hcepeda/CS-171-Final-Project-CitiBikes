@@ -2,6 +2,7 @@ AgeChart = function(_parentElement, _data) {
     this.parentElement = _parentElement;
     this.data = _data;
     this.displayData = [];
+    this.datafiltered = _data;
 
     this.initVis();
 };
@@ -68,7 +69,7 @@ AgeChart.prototype.wrangleData = function() {
                 data: leaves
             }
         })
-        .entries(vis.data);
+        .entries(vis.datafiltered);
 
     vis.nestedData.sort(function(a, b) {
         return new Date (a.key) - new Date(b.key);
@@ -86,7 +87,7 @@ AgeChart.prototype.wrangleData = function() {
     var ages = d3.range(0, 9).map(function() {
         return 0;
     });
-
+console.log(vis.displayData.value.data.length);
     for (var i=0; i < vis.displayData.value.data.length; i++) {
         var age = 2018 - vis.displayData.value.data[i]["birth year"];
         if (age < 10) {
@@ -194,8 +195,8 @@ AgeChart.prototype.updateVis = function() {
 
 AgeChart.prototype.onSelectionChange = function(hour) {
     var vis = this;
-
-    vis.data = vis.data.filter(function(d) {
+    vis.datafiltered = vis.data;
+    vis.datafiltered = vis.data.filter(function(d) {
         return d.hour == hour;
     });
 
