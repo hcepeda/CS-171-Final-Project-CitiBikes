@@ -2,7 +2,7 @@ SubChart = function(_parentElement, _data) {
     this.parentElement = _parentElement;
     this.data = _data;
     this.displayData = [];
-
+    this.datafiltered = _data;
     this.initVis();
 };
 
@@ -70,7 +70,7 @@ SubChart.prototype.wrangleData = function() {
                 data: leaves
             }
         })
-        .entries(vis.data);
+        .entries(vis.datafiltered);
 
     vis.nestedData.sort(function(a, b) {
         return new Date (a.key) - new Date(b.key);
@@ -174,5 +174,16 @@ SubChart.prototype.updateVis = function() {
 
     vis.svg.select(".y-axis")
         .call(vis.yAxis);
+
+};
+
+SubChart.prototype.onSelectionChange = function(hour) {
+    var vis = this;
+    vis.datafiltered = vis.data;
+    vis.datafiltered = vis.data.filter(function(d) {
+        return d.hour == hour;
+    });
+
+    vis.wrangleData();
 
 };

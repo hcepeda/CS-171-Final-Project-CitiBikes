@@ -99,6 +99,9 @@ function createVis() {
     $(myEventHandler).bind("hourChanged", function(event, hour) {
         age.onSelectionChange(hour);
         greatmap.onSelectionChange(hour);
+        gender.onSelectionChange(hour);
+        subscriber.onSelectionChange(hour);
+        histogram.onSelectionChange(hour);
     })
 
 

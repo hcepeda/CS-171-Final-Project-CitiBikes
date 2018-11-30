@@ -4,7 +4,7 @@ Histogram = function(_parentElement, _data){
   this.parentElement = _parentElement;
   this.data = _data;
   this.displayData = _data;
-
+  this.datafiltered = _data;
   this.initVis()
 }
 
@@ -77,7 +77,7 @@ Histogram.prototype.wrangleData = function() {
                 data: leaves
             }
         })
-        .entries(vis.data);
+        .entries(vis.datafiltered);
 
     vis.nestedData.sort(function(a, b) {
         return new Date (a.key) - new Date(b.key);
@@ -134,4 +134,15 @@ Histogram.prototype.updateVis = function(){
 
   vis.svg.select(".x-axis").transition().call(vis.xAxis);
     vis.svg.select(".y-axis").transition().call(vis.yAxis);
+};
+
+Histogram.prototype.onSelectionChange = function(hour) {
+    var vis = this;
+    vis.datafiltered = vis.data;
+    vis.datafiltered = vis.data.filter(function(d) {
+        return d.hour == hour;
+    });
+
+    vis.wrangleData();
+
 };
