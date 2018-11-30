@@ -4,6 +4,7 @@ NYMap = function(_parentElement, _data, _mapPosition, _geojsondata){
   this.mapPosition = _mapPosition;
   this.geo = _geojsondata;
   this.displayData = _data;
+  this.datafiltered = _data;
 
   this.initVis();
 }
@@ -21,7 +22,6 @@ var sizescale = d3.scaleLinear().range([.5, 1]);
 NYMap.prototype.wrangleData = function(){
   var vis = this; 
 
-
   var unique_locations = [];
   var unique_array = [];
   var unique_route = [];
@@ -38,7 +38,7 @@ NYMap.prototype.wrangleData = function(){
                 data: leaves
             }
         })
-        .entries(vis.data);
+        .entries(vis.datafiltered);
 
     vis.nestedData.sort(function(a, b) {
         return new Date (a.key) - new Date(b.key);
@@ -317,9 +317,12 @@ NYMap.prototype.updateVis = function() {
         // var multipolyline = L.multiPolyline(latlang , multiPolyLineOptions);
         // vis.my.route = null;
         // markers.clearLayers();
-        
-        var myroute = null;
-        myroute = L.Routing.control({
+    var routingControl = null;
+    var addRoutingControl = function () { 
+        if (routingControl != null)
+            removeRoutingControl();
+
+        routingControl = L.Routing.control({
           waypoints: [
           L.latLng(d['latitude'], d['longitude']),
           L.latLng(d['endlat'], d['endlong'])
@@ -372,6 +375,7 @@ NYMap.prototype.updateVis = function() {
               lineCap: 'butt',
               opacity: sizescale(vis.count),
               smoothFactor: 1,
+              autoRoute: false,
               // color: color(vis.count)
               color: color(vis.count)
             });
@@ -403,10 +407,113 @@ NYMap.prototype.updateVis = function() {
             });
             // console.log(line);
             vis.yellow.addLayer(line);
+            line.options.autoRoute = false;
             return line;}
 
 
         }).addTo(vis.mymap);
+    };
+
+    var removeRoutingControl = function () {
+        if (routingControl != null) {
+            vis.mymap.removeControl(routingControl);
+            routingControl = null;
+        }
+    };
+    
+    removeRoutingControl();
+    addRoutingControl();
+
+        // myroute = L.Routing.control({
+        //   waypoints: [
+        //   L.latLng(d['latitude'], d['longitude']),
+        //   L.latLng(d['endlat'], d['endlong'])
+        //   ],
+        //   // createMarker: function() {return vis.red.addLayer(vis.stationMarker);},
+        //   createMarker: function (i, start, n){
+        //                   // var marker_icon = null
+        //                     if (i == 0) {
+        //                       // This is the first marker, indicating start
+        //                       vis.stationMarker = L.marker([d['latitude'], d['longitude']], {title: vis.title, icon: vis.redMarker} ).bindPopup(vis.stationContent);
+        //                       vis.red.addLayer(vis.stationMarker);
+        //                       // marker_icon = vis.stationMarker
+        //                     } 
+        //                     else if (i == n -1) {
+        //                       //This is the last marker indicating destination
+        //                       // marker_icon = vis.endMarker
+        //                       vis.endMarker = L.marker([d['endlat'], d['endlong']], {title: vis.endname, icon: vis.greenMarker} ).bindPopup(vis.stationContentend);;
+        //                       vis.green.addLayer(vis.endMarker);
+        //                     }},
+        //   //                   // console.log(start.latLng);
+        //   //                   var marker = L.marker (start.latLng, {
+        //   //                     draggable: false,
+        //   //                     bounceOnAdd: false,
+        //   //                     bounceOnAddOptions: {
+        //   //                     duration: 1000,
+        //   //                     height: 800, 
+        //   //                   function(){
+        //   //                     (bindPopup(vis.stationContent).openOn(vis.mymap))
+        //   //                   }
+        //   //                   },
+        //   //                   icon: marker_icon
+        //   //                   })
+        //   //                   return marker}, 
+        //   show: false,
+        //   fitSelectedRoutes: false,
+        //   // autoRoute: false,
+        //   routeWhileDragging: false,
+        //   useZoomParameter: false,
+        //   showAlternatives: false,
+        //   routeLine: function(route) {
+        //     console.log(route);
+
+        //     line = L.polyline(route.coordinates,
+        //     {
+        //     //   multiOptions:
+        //     //   { optionIdxFn: function(latLng) {}
+        //     //   // options: thresholdRoute.colors
+        //     // },
+        //       weight: 4,
+        //       lineCap: 'butt',
+        //       opacity: sizescale(vis.count),
+        //       smoothFactor: 1,
+        //       autoRoute: false,
+        //       // color: color(vis.count)
+        //       color: color(vis.count)
+        //     });
+
+        //     // line.on("click", function() {
+        //     //   console.log("click");
+        //     //   var routingControl = new L.Routing.Control({
+        //     //     waypoints: [
+        //     //       L.latLng(d['latitude'], d['longitude']),
+        //     //       L.latLng(d['endlat'], d['endlong'])
+        //     //     ],
+        //     //     show: true,
+        //     //     createMarker: function() {return false;},
+        //     //     routeLine: function() {return line;}
+        //     //     }).addTo(vis.mymap);
+        //     //     });
+
+        //     line.on('mouseover', function() {
+        //       this.setText('  ►  ', {
+        //         repeat: true,
+        //         attributes: {
+        //           fill: 'purple'
+        //         }
+        //       });
+        //     });
+        //     line.on('mouseout', function() {
+        //       this.setText(null);
+        //       routingControl = null;
+        //     });
+        //     // console.log(line);
+        //     vis.yellow.addLayer(line);
+        //     line.options.autoRoute = false;
+        //     return line;}
+
+
+        // }).addTo(vis.mymap);
       
       // // end station (green)
       // else if(d['latitude'] === 0) {
@@ -454,8 +561,9 @@ NYMap.prototype.updateVis = function() {
 };
 NYMap.prototype.onSelectionChange = function(hour) {
     var vis = this;
-      vis.yellow.removeLayer(line);
-    vis.data = vis.data.filter(function(d) {
+      // vis.yellow.removeLayer(line);
+    vis.datafiltered = vis.data; 
+    vis.datafiltered = vis.data.filter(function(d) {
         return d.hour == hour;
     });
     // myroute.autoRoute(false);

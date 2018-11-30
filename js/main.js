@@ -97,7 +97,7 @@ function createVis() {
     histogram = new Histogram("tripduration", allData);
 
     $(myEventHandler).bind("hourChanged", function(event, hour) {
-        age.onSelectionChange(hour);
+        // age.onSelectionChange(hour);
         greatmap.onSelectionChange(hour);
     })
 
@@ -108,7 +108,7 @@ function createVis() {
 function selectionChanged() {
     barchart.wrangleData();
     histogram.wrangleData();
-    age.wrangleData();
+    // age.wrangleData();
     gender.wrangleData();
     subscriber.wrangleData();
     greatmap.wrangleData();
