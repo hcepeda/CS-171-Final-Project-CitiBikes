@@ -98,6 +98,7 @@ function createVis() {
 
     $(myEventHandler).bind("hourChanged", function(event, hour) {
         age.onSelectionChange(hour);
+        greatmap.onSelectionChange(hour);
     })
 
 

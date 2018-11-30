@@ -8,12 +8,23 @@ NYMap = function(_parentElement, _data, _mapPosition, _geojsondata){
   this.initVis();
 }
 
+// set up color scale 
+var color = d3.scaleQuantize()
+              .range(["rgb(186,228,179)",
+               "rgb(116,196,118)", "rgb(49,163,84)", "rgb(0,109,44)"]);
+var sizescale = d3.scaleLinear().range([.5, 1]);
+
+// var sizescale2 = d3.scaleOrdinal().range("red", "green", "orange", "brown")
+
+
+
 NYMap.prototype.wrangleData = function(){
   var vis = this; 
 
 
   var unique_locations = [];
   var unique_array = [];
+  var unique_route = [];
   var selectbox = d3.select(".selectbox").property("value");
     selectbox = newdateParser(selectbox);
     // console.log(selectbox);
@@ -40,11 +51,29 @@ NYMap.prototype.wrangleData = function(){
             vis.displayData = d;
         }
     });
-    // console.log(vis.displayData);
+    console.log(vis.displayData);
+
+  function countInArray(array, what) {
+    var count = 0;
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === what) {
+            count++;
+        }
+    }
+    return count;
+  }
+
+vis.displayData.value.data.forEach(function(d){
+        unique_route.push(d['start station name'] + " to " + d['end station name']);
+        });
+      console.log(unique_route);
 
   vis.displayData.value.data.forEach(function(d){
-    if (!(unique_array.includes(d['start station name']))){
-      unique_array.push(d['start station name']);
+    if (!(unique_array.includes(d['start station name'] + " to " + d['end station name']))){
+      unique_array.push(d['start station name'] + " to " + d['end station name']);
+      
+      
+
       var new_obj = {"name": d['start station name'],
               "latitude": d['start station latitude'],
               "longitude": d['start station longitude'],
@@ -52,18 +81,39 @@ NYMap.prototype.wrangleData = function(){
               "endlat": d['end station latitude'],
               "endlong": d['end station longitude'],
               "endname": d['end station name'],
-              "endstationid": d["end station id"]}
+              "endstationid": d["end station id"],
+              "route": (d['start station name'] + "to " + d['end station name']),
+              "routecount": countInArray(unique_route, d['start station name'] + " to " + d['end station name'])}
 
       unique_locations.push(new_obj);
-      // console.log(unique_locations);
+      console.log(unique_locations);
     }
   });
+
 
   vis.unique_locations = unique_locations;
   // console.log(vis.unique_locations);
   //this.unique_locations = [...new Set(this.data.map(item => item['start station name']))];
+
+  // set color domain
+  color.domain([
+      d3.min(vis.unique_locations, function(d) { return d["routecount"]; }),
+      d3.max(vis.unique_locations, function(d) { return d["routecount"]; })
+  ]);
+console.log(d3.min(vis.unique_locations, function(d) { return d["routecount"]; }));
+console.log(d3.max(vis.unique_locations, function(d) { return d["routecount"]; }));
+  sizescale.domain([
+      d3.min(vis.unique_locations, function(d) { return d["routecount"]; }),
+      d3.max(vis.unique_locations, function(d) { return d["routecount"]; })
+  ]);
+  // sizescale.domain([1,3]);
+
   vis.updateVis();
 }
+
+
+
+
 
 NYMap.prototype.initVis = function() {
   var vis = this;
@@ -167,7 +217,7 @@ NYMap.prototype.initVis = function() {
 
 
 vis.wrangleData();
-  vis.updateVis();
+vis.updateVis();
 
 }
 
@@ -191,6 +241,7 @@ NYMap.prototype.updateVis = function() {
   vis.green.clearLayers();
   vis.yellow.clearLayers();
   vis.blue.clearLayers();
+
 
 
 
@@ -230,6 +281,8 @@ NYMap.prototype.updateVis = function() {
     // vis.endlat = d['end station latitude']
     // vis.endlong = d['end station longitude']
     vis.endname = d['endname']
+    vis.count = d["routecount"];
+    console.log(vis.count);
 
 
       // start station (red)
@@ -264,6 +317,8 @@ NYMap.prototype.updateVis = function() {
         // var multipolyline = L.multiPolyline(latlang , multiPolyLineOptions);
         // vis.my.route = null;
         // markers.clearLayers();
+        
+        var myroute = null;
         myroute = L.Routing.control({
           waypoints: [
           L.latLng(d['latitude'], d['longitude']),
@@ -300,8 +355,12 @@ NYMap.prototype.updateVis = function() {
           //                   return marker}, 
           show: false,
           fitSelectedRoutes: false,
+          // autoRoute: false,
+          routeWhileDragging: false,
+          useZoomParameter: false,
+          showAlternatives: false,
           routeLine: function(route) {
-            // console.log(route);
+            console.log(route);
 
             line = L.polyline(route.coordinates,
             {
@@ -309,11 +368,12 @@ NYMap.prototype.updateVis = function() {
             //   { optionIdxFn: function(latLng) {}
             //   // options: thresholdRoute.colors
             // },
-              weight: 5,
+              weight: 4,
               lineCap: 'butt',
-              opacity: 0.75,
+              opacity: sizescale(vis.count),
               smoothFactor: 1,
-              color: "red"
+              // color: color(vis.count)
+              color: color(vis.count)
             });
 
             // line.on("click", function() {
@@ -344,6 +404,8 @@ NYMap.prototype.updateVis = function() {
             // console.log(line);
             vis.yellow.addLayer(line);
             return line;}
+
+
         }).addTo(vis.mymap);
       
       // // end station (green)
@@ -374,7 +436,7 @@ NYMap.prototype.updateVis = function() {
       // vis.mymap.addControl(vis.controlSearch);
 
   vis.controlSearch.on('search:collapsed', function(e) {
-      vis.mymap.setView([40.733060, -73.971249], 13);
+      vis.mymap.setView([40.733060, -73.971249], 12);
   })
   
   });
@@ -389,4 +451,14 @@ NYMap.prototype.updateVis = function() {
     }).addTo(vis.mymap);
   });
   */
-}
+};
+NYMap.prototype.onSelectionChange = function(hour) {
+    var vis = this;
+      vis.yellow.removeLayer(line);
+    vis.data = vis.data.filter(function(d) {
+        return d.hour == hour;
+    });
+    // myroute.autoRoute(false);
+    vis.wrangleData();
+
+};
