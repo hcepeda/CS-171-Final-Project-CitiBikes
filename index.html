@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
      <link rel="stylesheet" href="css/leaflet-search.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
 
 </head>
@@ -25,12 +26,12 @@
         <ul class="nav">
             <li class="nav-item">
                 <span class="navbar-text">
-                    <a class="nav-link" href="index.html"><u>Daily Visualization</u></a>
+                <a class="nav-link" href="about.html">About CitiBikes</a>
                 </span>
             </li>
             <li class="nav-item">
                 <span class="navbar-text">
-                <a class="nav-link" href="about.html">About CitiBikes</a>
+                    <a class="nav-link" href="index.html"><u>Daily Visualization</u></a>
                 </span>
             </li>
             <li class="nav-item">
@@ -41,16 +42,20 @@
         </ul>
 </nav>
 
+<div class="image-dailyvis">
+    <div class="image-text">
+        <h1>Daily Visualization</h1>
+        <h2><i>an inside look on the day-to-day travel movements and demographics of our riders</i></h2>
+    </div>
+</div>
+
 <div class="container">
         <!-- content -->
         <div class="row">
             <div class="col-md-12">
                 <div class="text center">
-                    <h1>Daily Visualization</h1>
-                    <h2><i>an inside look on the day-to-day travel movements and demographics of our riders</i></h2>
-                    <br><br>
                     <div class="selectbox-div">
-                        <h2>Select a day:</h2>
+                        <h2>Select a day: </h2>
                         <select class="selectbox" onchange= selectionChanged()>
                             <option value="07 01 2018">July 1, 2018</option>
                             <option value="07 02 2018">July 2, 2018</option>
@@ -59,6 +64,7 @@
                             <option value="07 05 2018">July 5, 2018</option>
                             <option value="07 06 2018">July 6, 2018</option>
                         </select>
+                        <h2> *</h2>
                     </div>
                     <br>
                     <p>*Note: Data displayed is a random sample of ~5% of the data (10,000 out of 209k rides) in order to minimize load time of the visualizations.
@@ -67,23 +73,36 @@
             </div>
         </div>
 
-        <div id="totalvis"> </div>
-
+        <div class="row">
+            <div class="col-md-12 border-bottom">
+                <div id="totalvis"></div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-6">
                 <div id="mapid"></div>
             </div>
             <div class = "col-md-6">
-                <div class="row">
+                <div class="row" id="rider-tab">
+                    <div class="col-md-12">
+                        <h2>Who Rides Our Bikes?</h2>
+                    </div>
+                </div>
+                <div class="row border-bottom">
                     <div class="col-md-6">
                         <div id="age"></div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 border-left">
                         <div id="gender"></div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 border-left">
                         <div id="subscriber"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>What Are Our Trips Like?</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -96,8 +115,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
     <!--Load JS libraries-->

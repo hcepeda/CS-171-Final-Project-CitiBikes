@@ -11,7 +11,7 @@ SubChart.prototype.initVis = function() {
     var vis = this;
     // console.log(vis.data);
 
-    vis.margin = { top: 20, right: 40, bottom: 45, left: 30 };
+    vis.margin = { top: 40, right: 0, bottom: 30, left: 35 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
         vis.height = 250 - vis.margin.top - vis.margin.bottom;
@@ -28,7 +28,7 @@ SubChart.prototype.initVis = function() {
         .rangeRound([0, vis.width])
         .paddingInner(0.1)
         .paddingOuter(0.1)
-        .domain(["Subscriber", "Customer"]);
+        .domain(["Yes", "No"]);
 
     vis.y = d3.scaleLinear()
         .range([vis.height, 0]);
@@ -89,11 +89,11 @@ SubChart.prototype.wrangleData = function() {
     // count people of each gender
     var subcount = [];
     var customer = {
-        type: "Customer",
+        type: "No",
         number: 0
     };
     var subscriber = {
-        type: "Subscriber",
+        type: "Yes",
         number: 0
     };
     subcount.push(customer, subscriber);
@@ -169,13 +169,20 @@ SubChart.prototype.updateVis = function() {
     vis.svg.select(".x-axis")
         .call(vis.xAxis)
         .selectAll("text")
-        .style("text-anchor", "end")
         .attr("dx", "-.8em")
         .attr("dy", ".15em")
-        .attr("transform", "translate(10, 0) rotate(-45)");
+        .attr("transform", "translate(10, 10)");
 
     vis.svg.select(".y-axis")
         .call(vis.yAxis);
+
+    vis.svg.selectAll(".title").remove();
+    vis.svg.append("text")
+        .attr("class", "title")
+        .attr("text-anchor", "middle")
+        .attr("x", vis.width/2)
+        .attr("y", -30)
+        .text("Subscriber");
 
 };
 

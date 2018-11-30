@@ -11,7 +11,7 @@ AgeChart.prototype.initVis = function() {
     var vis = this;
     console.log(vis.data);
 
-    vis.margin = { top: 20, right: 0, bottom: 45, left: 30 };
+    vis.margin = { top: 40, right: 0, bottom: 30, left: 30 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
         vis.height = 250 - vis.margin.top - vis.margin.bottom;
@@ -193,6 +193,15 @@ AgeChart.prototype.updateVis = function() {
 
     vis.svg.select(".y-axis")
         .call(vis.yAxis);
+
+    vis.svg.selectAll(".title").remove();
+    vis.svg.append("text")
+        .attr("class", "title")
+        .attr("text-anchor", "middle")
+        .attr("x", vis.width/2)
+        .attr("y", -30)
+        .text("Age");
+
 
 };
 

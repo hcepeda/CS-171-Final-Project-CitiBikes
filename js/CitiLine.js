@@ -7,7 +7,7 @@ CitiLineGraph = function(_parentElement, _data){
 
 CitiLineGraph.prototype.initVis = function() {
   this.margin = {left: 50, right: 30, top: 30, bottom: 30};
-  this.width = 960 - this.margin.left - this.margin.right;
+  this.width = $("#" + this.parentElement).width() - this.margin.left - this.margin.right;
   this.height = 500 - this.margin.top - this.margin.bottom;
 
   this.svg = d3.select("#" + this.parentElement).append("svg")

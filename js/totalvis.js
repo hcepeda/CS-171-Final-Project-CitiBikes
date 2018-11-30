@@ -128,6 +128,7 @@ TotalVis.prototype.updateVis = function() {
             $(this).addClass("detailbar");
 
             // attach bicycle image
+            vis.svg.selectAll("image").remove();
             vis.svg.append("image")
                 .attr("xlink:href", "images/bicycle-solid.svg")
                 .attr("x", vis.x(i))
@@ -159,7 +160,7 @@ TotalVis.prototype.updateVis = function() {
 
         })
         .merge(bars)
-        .transition(2000)
+        .transition(3000)
         .styleTween("opacity", function() { return d3.interpolate(0, 1); });
 
     d3.selectAll(".bar")
@@ -174,7 +175,7 @@ TotalVis.prototype.updateVis = function() {
             return vis.y(d);
         });
 
-    bars.exit().remove();
+    bars.exit().transition().remove();
 
     $(".title").remove();
     // Append x-axis label
@@ -185,6 +186,7 @@ TotalVis.prototype.updateVis = function() {
         .attr("y", vis.height + 40)
         .text("Time (24 hours)");
 
+    $(".info").remove();
     // Append info label
     vis.svg.append("text")
         .attr("class", "info")

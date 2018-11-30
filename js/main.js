@@ -78,19 +78,18 @@ function loadData() {
 
 
 
-
+var myEventHandler = {};
+var myEventHandler2 = {};
 
 function createVis() {
     var vis = this;
     console.log(vis.geojsondata);
 
-    var myEventHandler = {};
-    var myEventHandler2 = {};
 
     barchart = new TotalVis("totalvis", allData, myEventHandler, myEventHandler2);
 
     // create context bar chart with total rides per day per hour
-    // greatmap = new NYMap("mapid", allData, [40.733060, -73.971249], vis.geojsondata);
+    // greatmap = new NYMap("mapid", allData, [40.733060, -73.971249], geojsondata);
     age = new AgeChart("age", allData);
     gender = new GenderChart("gender", allData);
     subscriber = new SubChart("subscriber", allData);
@@ -116,6 +115,8 @@ function createVis() {
 }
 
 function selectionChanged() {
+    $(myEventHandler2).trigger("resetHour");
+
     barchart.wrangleData();
     histogram.wrangleData();
     age.wrangleData();

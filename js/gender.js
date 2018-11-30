@@ -11,7 +11,7 @@ GenderChart.prototype.initVis = function() {
     var vis = this;
     // console.log(vis.data);
 
-    vis.margin = { top: 20, right: 0, bottom: 45, left: 30 };
+    vis.margin = { top: 40, right: 10, bottom: 30, left: 30 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
         vis.height = 250 - vis.margin.top - vis.margin.bottom;
@@ -28,7 +28,7 @@ GenderChart.prototype.initVis = function() {
         .rangeRound([0, vis.width])
         .paddingInner(0.1)
         .paddingOuter(0.1)
-        .domain(["Male", "Female", "Unknown"]);
+        .domain(["M", "F", "N/A"]);
 
     vis.y = d3.scaleLinear()
         .range([vis.height, 0]);
@@ -89,15 +89,15 @@ GenderChart.prototype.wrangleData = function() {
     // count people of each gender
     var gendercount = [];
     var male = {
-        gender: "Male",
+        gender: "M",
         number: 0
     };
     var female = {
-        gender: "Female",
+        gender: "F",
         number: 0
     };
     var unknown = {
-        gender: "Unknown",
+        gender: "N/A",
         number: 0
     }
     gendercount.push(male, female, unknown);
@@ -177,13 +177,20 @@ GenderChart.prototype.updateVis = function() {
     vis.svg.select(".x-axis")
         .call(vis.xAxis)
         .selectAll("text")
-        .style("text-anchor", "end")
         .attr("dx", "-.8em")
         .attr("dy", ".15em")
-        .attr("transform", "translate(10, 0) rotate(-45)");
+        .attr("transform", "translate(10, 10)");
 
     vis.svg.select(".y-axis")
         .call(vis.yAxis);
+
+    vis.svg.selectAll(".title").remove();
+    vis.svg.append("text")
+        .attr("class", "title")
+        .attr("text-anchor", "middle")
+        .attr("x", vis.width/2)
+        .attr("y", -30)
+        .text("Gender");
 
 };
 
