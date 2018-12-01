@@ -178,3 +178,15 @@ select {
     background-size: cover;
     position: relative;
 }
+
+.axisRed line{
+  stroke: red;
+}
+
+.axisRed path{
+  stroke: red;
+}
+
+.axisRed text{
+  fill: red;
+}  

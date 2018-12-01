@@ -317,6 +317,9 @@ NYMap.prototype.updateVis = function() {
         // var multipolyline = L.multiPolyline(latlang , multiPolyLineOptions);
         // vis.my.route = null;
         // markers.clearLayers();
+
+
+
     var routingControl = null;
     var addRoutingControl = function () { 
         if (routingControl != null)
@@ -330,6 +333,7 @@ NYMap.prototype.updateVis = function() {
           // createMarker: function() {return vis.red.addLayer(vis.stationMarker);},
           createMarker: function (i, start, n){
                           // var marker_icon = null
+                                      // routingControl.spliceWaypoints(0, (n*2))
                             if (i == 0) {
                               // This is the first marker, indicating start
                               vis.stationMarker = L.marker([d['latitude'], d['longitude']], {title: vis.title, icon: vis.redMarker} ).bindPopup(vis.stationContent);
@@ -376,8 +380,8 @@ NYMap.prototype.updateVis = function() {
               opacity: sizescale(vis.count),
               smoothFactor: 1,
               autoRoute: false,
+              color: "red"
               // color: color(vis.count)
-              color: color(vis.count)
             });
 
             // line.on("click", function() {
@@ -542,6 +546,8 @@ NYMap.prototype.updateVis = function() {
       // vis.controlSearch = new L.Control.Search({layer: vis.red, initial: false});
       // vis.mymap.addControl(vis.controlSearch);
 
+
+
   vis.controlSearch.on('search:collapsed', function(e) {
       vis.mymap.setView([40.733060, -73.971249], 12);
   })
@@ -559,6 +565,9 @@ NYMap.prototype.updateVis = function() {
   });
   */
 };
+
+
+
 NYMap.prototype.onSelectionChange = function(hour) {
     var vis = this;
       // vis.yellow.removeLayer(line);
@@ -570,3 +579,30 @@ NYMap.prototype.onSelectionChange = function(hour) {
     vis.wrangleData();
 
 };
+
+vis.mymap.on("zoomstart", function (event) {
+      removeRoutingControl();
+      // routingControl = null; 
+      console.log("zoooom");
+      // routingControl.hide()
+      // tipp_marker = L.marker(event.latlng).addTo(map);
+    });
+
+    vis.mymap.on("zoomend", function(event, hour) {
+      // routingControl.setWaypoints([
+      //     L.latLng(d['latitude'], d['longitude']),
+      //     L.latLng(d['endlat'], d['endlong'])
+      //     ]);
+      // addRoutingControl();
+            // routingControl.show();
+        // greatmap.onSelectionChange(hour);
+            var vis = this;
+      // vis.yellow.removeLayer(line);
+    vis.datafiltered = vis.data; 
+    vis.datafiltered = vis.data.filter(function(d) {
+        return d.hour == hour;
+    });
+    // myroute.autoRoute(false);
+    console.log("zoooom end");
+    vis.wrangleData();
+    });

@@ -1,12 +1,13 @@
-CitiLineGraph = function(_parentElement, _data){
+GeneralLine = function(_parentElement, _data, _column_item){
   this.parentElement = _parentElement;
   this.data = _data;
+  this.column_item = _column_item;
 
   this.initVis()
 }
 
-CitiLineGraph.prototype.initVis = function() {
-  this.margin = {left: 50, right: 30, top: 30, bottom: 30};
+GeneralLine.prototype.initVis = function() {
+  this.margin = {left: 50, right: 50, top: 30, bottom: 30};
   this.width = $("#" + this.parentElement).width() - this.margin.left - this.margin.right;
   this.height = 500 - this.margin.top - this.margin.bottom;
 
@@ -21,14 +22,18 @@ CitiLineGraph.prototype.initVis = function() {
     .range([0, this.width]);
   this.yScale = d3.scaleLinear()
     .range([this.height, 0]);
+  this.yScale_R = d3.scaleLinear()
+    .range([this.height, 0]);
 
   this.updateVis();
 }
 
-CitiLineGraph.prototype.updateVis = function() {
+GeneralLine.prototype.updateVis = function() {
   this.xScale.domain(d3.extent(this.data, d => d.Date));
-  this.yScale.domain(d3.extent(this.data, d => d.TripsToday));
+  this.yScale.domain([0, d3.max(this.data, d => d[this.column_item])])
+  this.yScale_R.domain([0, d3.max(this.data, d => d.num_bikes)]); // d3.extent(this.data, d => d[this.column_item]));
 
+  /*
   movingAvg = function (data, neighbors) {
   return data.map((val, idx, arr) => {
     let start = Math.max(0, idx - neighbors), end = idx + neighbors
@@ -53,11 +58,15 @@ CitiLineGraph.prototype.updateVis = function() {
     .x(d => this.xScale(d.Date))
     .y(d => this.yScale(d.TripsAveraged))
     .curve(d3.curveBasis)
-  this.valueline_stations = d3.line()
+  */
+  this.valueline = d3.line()
     .x(d => this.xScale(d.Date))
-    .y(d => this.yScale(d.num_bikes))
+    .y(d => this.yScale(d[this.column_item]))
     .curve(d3.curveBasis)
-
+  this.valueline_bikes = d3.line()
+    .x(d => this.xScale(d.Date))
+    .y(d => this.yScale_R(d.num_bikes))
+    .curve(d3.curveBasis)
   this.line = this.svg.selectAll(".line")
     .data([this.data])
   this.line.enter().append("path")
@@ -71,7 +80,7 @@ CitiLineGraph.prototype.updateVis = function() {
   this.line.enter().append("path")
     .classed("line", true)
     .merge(this.line)
-    .attr("d", this.valueline_stations)
+    .attr("d", this.valueline_bikes)
     .attr("fill", "none")
     .attr("stroke", "red")
     .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
@@ -110,6 +119,10 @@ CitiLineGraph.prototype.updateVis = function() {
     .call(d3.axisBottom(this.xScale));
   this.svg.append("g")
     .call(d3.axisLeft(this.yScale));
+  this.svg.append("g")
+    .attr("transform", "translate(" + this.width + ",0)")
+    .attr("class", "axisRed")
+    .call(d3.axisRight(this.yScale_R));
 
   this.svg.selectAll(".line").transition(t)
     .attr("stroke-dashoffset", 0);
