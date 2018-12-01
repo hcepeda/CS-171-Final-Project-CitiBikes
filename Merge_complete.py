@@ -18,15 +18,10 @@ for sub_df in df_list:
         pass
 
 full_df = pd.concat(df_list, sort=False)
-
-full_df.shape
-full_df.columns
-
 full_df['starttime'] = pd.to_datetime(full_df['starttime'])
-
 full_df.sort_values(by = "starttime", inplace = True)
-
 full_df.to_csv("Absolute_Complete_69M.csv")
+
 
 stations_occurence = full_df.drop_duplicates(subset = "start station name")
 bike_occurence = full_df.drop_duplicates(subset = "bikeid")
