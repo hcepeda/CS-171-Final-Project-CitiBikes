@@ -9,9 +9,8 @@ var newdateParser = d3.timeParse("%m %d %Y");
 var allData = [];
 var tripsbyday = [];
 var dailydata;
-var barchart, histogram, age, gender, subscriber;
+var barchart, histogram, age, gender, subscriber, duration;
 
-var barchart;
 var geojsondata = []; // add json file for geojson layer
 
 // $.getJSON("data/Subway-Lines.json", function(geo) {
@@ -75,9 +74,6 @@ function loadData() {
     });
 }
 
-
-
-
 var myEventHandler = {};
 var myEventHandler2 = {};
 
@@ -85,21 +81,21 @@ function createVis() {
     var vis = this;
     console.log(vis.geojsondata);
 
-
     barchart = new TotalVis("totalvis", allData, myEventHandler, myEventHandler2);
 
     // create context bar chart with total rides per day per hour
-    greatmap = new NYMap("mapid", allData, [40.733060, -73.971249], vis.geojsondata);
+    // greatmap = new NYMap("mapid", allData, [40.733060, -73.971249], vis.geojsondata);
     age = new AgeChart("age", allData);
     gender = new GenderChart("gender", allData);
     subscriber = new SubChart("subscriber", allData);
 
-    histogram = new Histogram("tripduration", allData);
+    duration = new DurationChart("tripduration", "longtrip", allData);
 
     $(myEventHandler).bind("hourChanged", function(event, hour) {
         age.onSelectionChange(hour);
         gender.onSelectionChange(hour);
         subscriber.onSelectionChange(hour);
+        duration.onSelectionChange(hour);
         greatmap.onSelectionChange(hour);
     })
 
@@ -108,6 +104,7 @@ function createVis() {
         age.onClick();
         gender.onClick();
         subscriber.onClick();
+        duration.onClick();
 
     })
 

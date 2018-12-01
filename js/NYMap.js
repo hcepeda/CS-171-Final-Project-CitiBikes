@@ -51,7 +51,7 @@ NYMap.prototype.wrangleData = function(){
             vis.displayData = d;
         }
     });
-    console.log(vis.displayData);
+    // console.log(vis.displayData);
 
   function countInArray(array, what) {
     var count = 0;
@@ -66,7 +66,7 @@ NYMap.prototype.wrangleData = function(){
 vis.displayData.value.data.forEach(function(d){
         unique_route.push(d['start station name'] + " to " + d['end station name']);
         });
-      console.log(unique_route);
+      // console.log(unique_route);
 
   vis.displayData.value.data.forEach(function(d){
     if (!(unique_array.includes(d['start station name'] + " to " + d['end station name']))){
@@ -86,7 +86,7 @@ vis.displayData.value.data.forEach(function(d){
               "routecount": countInArray(unique_route, d['start station name'] + " to " + d['end station name'])}
 
       unique_locations.push(new_obj);
-      console.log(unique_locations);
+      // console.log(unique_locations);
     }
   });
 
@@ -100,8 +100,8 @@ vis.displayData.value.data.forEach(function(d){
       d3.min(vis.unique_locations, function(d) { return d["routecount"]; }),
       d3.max(vis.unique_locations, function(d) { return d["routecount"]; })
   ]);
-console.log(d3.min(vis.unique_locations, function(d) { return d["routecount"]; }));
-console.log(d3.max(vis.unique_locations, function(d) { return d["routecount"]; }));
+// console.log(d3.min(vis.unique_locations, function(d) { return d["routecount"]; }));
+// console.log(d3.max(vis.unique_locations, function(d) { return d["routecount"]; }));
   sizescale.domain([
       d3.min(vis.unique_locations, function(d) { return d["routecount"]; }),
       d3.max(vis.unique_locations, function(d) { return d["routecount"]; })
@@ -282,7 +282,7 @@ NYMap.prototype.updateVis = function() {
     // vis.endlong = d['end station longitude']
     vis.endname = d['endname']
     vis.count = d["routecount"];
-    console.log(vis.count);
+    // console.log(vis.count);
 
 
       // start station (red)
@@ -363,7 +363,7 @@ NYMap.prototype.updateVis = function() {
           useZoomParameter: false,
           showAlternatives: false,
           routeLine: function(route) {
-            console.log(route);
+            // console.log(route);
 
             line = L.polyline(route.coordinates,
             {
