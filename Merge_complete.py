@@ -37,3 +37,9 @@ AboutCitiBike['num_bikes'] = vect_of_bike_adds
 
 #AboutCitiBike = AboutCitiBike.drop(columns=["Unnamed: 10", "Unnamed: 11"])
 AboutCitiBike.to_csv("Compiled_V2.csv")
+
+full_df.head()
+
+full_df.columns
+Top15['Citable docs per Capita'].corr(Top15['Energy Supply per Capita'])
+full_df['start station name'].corr(full_df['end station name'])

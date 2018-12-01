@@ -23,4 +23,5 @@ function createVis(error, aggregatedData, sampleData) {
   });
 
   var LineChart = new CitiLineGraph("line_chart", aggregatedData);
+  var LineChart_new = new GeneralLine("station_bike_line", aggregatedData, "num_stations")
 }
