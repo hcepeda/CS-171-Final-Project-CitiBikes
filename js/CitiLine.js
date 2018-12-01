@@ -53,6 +53,10 @@ CitiLineGraph.prototype.updateVis = function() {
     .x(d => this.xScale(d.Date))
     .y(d => this.yScale(d.TripsAveraged))
     .curve(d3.curveBasis)
+  this.valueline_stations = d3.line()
+    .x(d => this.xScale(d.Date))
+    .y(d => this.yScale(d.num_bikes))
+    .curve(d3.curveBasis)
 
   this.line = this.svg.selectAll(".line")
     .data([this.data])
@@ -62,8 +66,16 @@ CitiLineGraph.prototype.updateVis = function() {
     .attr("d", this.valueline)
     .attr("fill", "none")
     .attr("stroke", "steelblue")
-      .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
-      .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
+    .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
+    .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
+  this.line.enter().append("path")
+    .classed("line", true)
+    .merge(this.line)
+    .attr("d", this.valueline_stations)
+    .attr("fill", "none")
+    .attr("stroke", "red")
+    .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
+    .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
   var t = d3.transition()
     .duration(5000)
     .ease(d3.easeLinear);
