@@ -589,14 +589,14 @@ NYMap.prototype.onSelectionChange = function(hour) {
 
 NYMap.prototype.onClick = function() {
     var vis = this;
-
-    // vis.datafiltered = vis.data;
+    var alerted = localStorage.getItem('alerted') || '';
+    if (alerted != 'yes') {
     alert("Dear 🚲 User, " + "In order to avoid slow map loading, the onClick reset feature has been disabled for the map. The map will only change when you select an hour." + 
-      " If you wish to see the full map again, please refresh your page");
-
-    // vis.wrangleData();
+      " If you wish to see the full map again, please use the reset button");
+     localStorage.setItem('alerted','yes');
+    };
 }
-
+var vis = this;
 vis.mymap.on("zoomstart", function (event) {
       removeRoutingControl();
       // routingControl = null; 
@@ -623,5 +623,11 @@ vis.mymap.on("zoomstart", function (event) {
     console.log("zoooom end");
     vis.wrangleData();
     });
+
+NYMap.prototype.reset = function() {
+  var vis = this;
+  vis.datafiltered = vis.data;
+  vis.wrangleData();
+};
 
 

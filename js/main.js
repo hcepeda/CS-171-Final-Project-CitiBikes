@@ -13,16 +13,34 @@ var barchart, histogram, age, gender, subscriber, duration;
 
 var geojsondata = []; // add json file for geojson layer
 
-// $.getJSON("data/Subway-Lines.json", function(geo) {
-//     geojsondata = geo;
-//     console.log(geojsondata);
 
-//  });
+
+
+
+    
+
+
+
 
 document.onreadystatechange = function () {
-  var state = document.readyState
+    // function countDown(secs, elem) {
+    // var element = document.getElementById(elem);
+    // element.innerHTML = "This should take about "+secs+" more seconds";
+    // console.log("working");
+    // if(secs < 1) {
+    //     clearTimeout(timer);
+    //     element.innerHTML = '<h2> CitiBikes coming your way! </h2>'
+    // }
+    // secs--;
+    // var timer = setTimeout('countDown('+secs+',"'+elem+'")', 1000);
+    // }
+    // countDown(20,"status");
+    var state = document.readyState
   if (state == 'interactive') {
+
        document.getElementById('contents').style.visibility="hidden";
+
+
   } else if (state == 'complete') {
       setTimeout(function(){
          document.getElementById('interactive');
@@ -55,6 +73,8 @@ function loadData() {
     //     .defer(d3.csv, "data/citibike-sample.csv")
     //     .defer($.getJSON,"data/Subway-Lines.json" )
     //     .await(createVis);
+
+
     d3.csv("data/sample-data.csv", function(data) {
         for (var i = 0; i < data.length; i++) {
             data[i].tripduration = +data[i].tripduration;
@@ -135,3 +155,11 @@ function selectionChanged() {
     subscriber.wrangleData();
     greatmap.wrangleData();
 }
+
+function resetmap() {
+    greatmap.reset();
+}
+
+
+
+
