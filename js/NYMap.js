@@ -94,6 +94,22 @@ vis.displayData.value.data.forEach(function(d){
   vis.unique_locations = unique_locations;
   // console.log(vis.unique_locations);
 
+  
+
+    vis.decending = vis.unique_locations.sort(function(a, b) {
+        return b.routecount - a.routecount;
+    });
+
+  console.log(vis.decending);
+
+console.log(vis.unique_locations);
+var size = 10;
+vis.top10 = vis.decending.slice(0, size);
+
+console.log(vis.top10);
+
+
+
   // set color domain
   color.domain([
       d3.min(vis.unique_locations, function(d) { return d["routecount"]; }),
@@ -178,7 +194,7 @@ NYMap.prototype.initVis = function() {
   vis.mymap.addControl(vis.controlSearch); // add it to the map
 
   // draw geojson objects on map
-  vis.subway.addData(vis.geo);
+  // vis.subway.addData(vis.geo);
 
   // initialize dynamic markers
   // define an icon class with general options
@@ -217,7 +233,7 @@ NYMap.prototype.updateVis = function() {
 
   // loop through locations and make markers and routes
   // console.log(vis.unique_locations);
-  vis.unique_locations.forEach(function(d){
+  // vis.unique_locations.forEach(function(d){
     // var circle = L.circle([d['latitude'], d['longitude']], {
     //     color: 'red',
     //     fillColor: '#f03',
@@ -225,13 +241,14 @@ NYMap.prototype.updateVis = function() {
     //     radius: 25
     //   }).addTo(vis.mymap);
     // circle.bindPopup(d["name"]);
-
+  vis.top10.forEach(function(d){
     // create popup content for each station
     vis.stationContent = "<strong>" + d["name"] + "</strong><br/>";
     vis.stationContent += "Station ID: " + d["stationid"] + "<br/>";
 
     vis.stationContentend = "<strong>" + d["endname"] + "</strong><br/>";
     vis.stationContentend += "Station ID: " + d["endstationid"] + "<br/>";
+    vis.lineContent = "This route was traveled " + vis.count + " time(s)";
 
     // create easily accesible variables 
     vis.lat = d['latitude'];
@@ -242,7 +259,7 @@ NYMap.prototype.updateVis = function() {
     vis.count = d["routecount"];
     // vis.endlat = d['end station latitude']
     // vis.endlong = d['end station longitude']
-    // console.log(vis.count);
+    console.log(vis.count);
 
 
     var routingControl = null;
@@ -256,6 +273,11 @@ NYMap.prototype.updateVis = function() {
           L.latLng(d['endlat'], d['endlong'])
           ],
           createMarker: function (i, start, n){
+                if (vis.title == vis.endname) {
+                    vis.stationMarker = L.marker([d['latitude'], d['longitude']], {title: vis.title, icon: vis.yellowMarker} ).bindPopup(vis.stationContent);
+                              vis.blue.addLayer(vis.stationMarker);
+                }
+                else {
                             if (i == 0) {
                               // This is the first marker, indicating start
                               vis.stationMarker = L.marker([d['latitude'], d['longitude']], {title: vis.title, icon: vis.redMarker} ).bindPopup(vis.stationContent);
@@ -263,9 +285,9 @@ NYMap.prototype.updateVis = function() {
                             } 
                             else if (i == n -1) {
                               //This is the last marker indicating destination
-                              vis.endMarker = L.marker([d['endlat'], d['endlong']], {title: vis.endname, icon: vis.greenMarker} ).bindPopup(vis.stationContentend);;
+                              vis.endMarker = L.marker([d['endlat'], d['endlong']], {title: vis.endname, icon: vis.greenMarker} ).bindPopup(vis.stationContentend);
                               vis.green.addLayer(vis.endMarker);
-                            }},
+                            }}},
 
           show: false,
           fitSelectedRoutes: false,
@@ -284,7 +306,7 @@ NYMap.prototype.updateVis = function() {
               autoRoute: false,
               color: "red"
               // color: color(vis.count)
-            });
+            }).bindPopup(vis.lineContent);
 
             // line.on("click", function() {
             //   console.log("click");
@@ -311,6 +333,11 @@ NYMap.prototype.updateVis = function() {
               this.setText(null);
               routingControl = null;
             });
+
+            // line.on('click', function() {
+            //     console.log("line clicked");
+            //     line.bindPopup(vis.lineContent);
+            // });
             // console.log(line);
             vis.yellow.addLayer(line);
             line.options.autoRoute = false;

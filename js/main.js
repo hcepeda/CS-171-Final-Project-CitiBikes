@@ -49,16 +49,16 @@ document.onreadystatechange = function () {
       },1000);
   }
 }
-$.ajax({
-  url: 'data/Subway-Lines.json',
-  async: false,
-  dataType: 'json',
-  success: function (geo) {
-    // do stuff with response.
-    geojsondata = geo;
-    console.log(geojsondata);
-  }
-});
+// $.ajax({
+//   url: 'data/Subway-Lines.json',
+//   async: false,
+//   dataType: 'json',
+//   success: function (geo) {
+//     // do stuff with response.
+//     geojsondata = geo;
+//     console.log(geojsondata);
+//   }
+// });
 
 
 

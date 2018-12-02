@@ -114,6 +114,10 @@
         </div>
 
         <div class="row">
+
+            <div class="col-md-6"> 
+                <div id="mapid"></div>
+
             <div class="col-md-12 center">
                 <div class="info-div">
                     <p> The graphs below show trip information for <var id="date"></var><var id="time"></var>.</p>
@@ -130,14 +134,16 @@
         <div class="row border-bottom">
             <div class="col-md-6">
                 <p class="small"> The following map visualizes daily travel patterns in NYC.
-                    Green markers represent starting stations while red represents ending stations.
+                    Green markers represent starting stations while red represents ending stations. 
+                    Yellow markers represent trips that started and ended in the same station.
                     Click any marker to see the station name and ID.
                     Search for stations by name using the search bar on the left.
                     Red lines represent routes commonly taken by riders. The darker the lines, the more commonly travelled the route.
                     Hover over a route to see its direction.
-                    Blue lines represent NYC subway lines.
+                    Click any route to see how many times it was traveled. 
                     Click on the top right square to check/uncheck the elements you wish to show/hide.</p>
                  <div id="mapid"></div>
+
             </div>
             <div class = "col-md-6 border-left">
                 <div class="row" id="rider-tab">
