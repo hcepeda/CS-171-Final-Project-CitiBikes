@@ -5,11 +5,12 @@ var allData = [];
   d3.queue()
     .defer(d3.csv, "data/Compiled_V2.csv")
     .defer(d3.csv, "data/sample-data.csv")
-    .defer(d3.csv, "data/chord_data_2.csv")
+    .defer(d3.csv, "data/chord_data_3.csv")
+    .defer(d3.csv, "data/colors_yee.csv")
     .await(createVis);
 
 
-function createVis(error, aggregatedData, sampleData, chord_data) {
+function createVis(error, aggregatedData, sampleData, chord_data, colors_df) {
 
 
   aggregatedData.forEach(function(d){
@@ -25,5 +26,5 @@ function createVis(error, aggregatedData, sampleData, chord_data) {
 
   var LineChart = new CitiLineGraph("line_chart", aggregatedData);
   var LineChart_new = new GeneralLine("station_bike_line", aggregatedData, "num_stations");
-  var Chord_Dia = new ChordMaker("chord_product", chord_data);
+  var Chord_Dia = new ChordMaker("chord_product", chord_data, colors_df);
 }

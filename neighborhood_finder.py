@@ -45,7 +45,7 @@ for starting_loc in interesting_starts:
 #sub_df = sample_df[sample_df['neighborhood_start'] == "Astoria"]
 #dict(sub_df['neighborhood_end'].value_counts())
 sample_df.to_csv("data/random_sample.csv")
-
+color_dict = {"Manhattan": "#333", "Brooklyn": "#34DDDD", "Queens": "#AAAAAA"}
 #chord_dict['Astoria'].keys()
 long_df = []
 for key in chord_dict.keys():
@@ -55,5 +55,9 @@ for key in chord_dict.keys():
 
 np.unique(chord_dataframe['borough'])
 chord_dataframe = pd.DataFrame(long_df, columns=["root", "node", "value", "borough"])
+chord_dataframe['color'] = chord_dataframe['borough'].map(color_dict)
 chord_dataframe = chord_dataframe[chord_dataframe['value'] >= 10]
 chord_dataframe.to_csv("data/chord_data_3.csv")
+color_vect = chord_dataframe.drop_duplicates(subset="root")
+len(color_vect['color'].values)
+color_vect.to_csv("data/colors_yee.csv")

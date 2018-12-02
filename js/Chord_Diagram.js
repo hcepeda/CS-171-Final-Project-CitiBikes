@@ -1,16 +1,24 @@
 ChordMaker = function(_parentElement, _data){
   this.parentElement = _parentElement;
   this.data = _data;
+  //this.colorDf = _colorDf
 
   this.wrangleData()
 }
 
 ChordMaker.prototype.initVis = function(matrix, mmap) {
-  this.margin = {left: 30, right: 30, top: 30, bottom: 30};
+  this.margin = {left: 40, right: 40, top: 40, bottom: 40};
   this.width = $("#" + this.parentElement).width() - this.margin.left - this.margin.right;
   this.height = this.width; //  - this.margin.top - this.margin.bottom;
-
-  console.log(mmap);
+  var vis = this;
+  var colorDf = this.colorDf;
+  //console.log(this.colorDf);
+  //console.log(mmap['Astoria']);
+  //for (i = 0; i < 43; i++){
+  //  mmap[i].coloring = colorDf[i].color
+  //}
+  //console.log(matrix)
+  //console.log(mmap)
   this.r1 = this.height / 2;
   this.r0 = this.r1 - 110;
   // Do not delete this var.
@@ -34,11 +42,43 @@ ChordMaker.prototype.initVis = function(matrix, mmap) {
     .datum(this.chord(matrix));
   this.svg.append("circle").attr("r", this.r0 + 20);
   this.ribbon = d3.ribbon().radius(this.r0)
-
+  console.log(mmap);
   var mapReader = chordRdr(matrix, mmap);
+  var legendRectSize = 20;
+  var legendSpacing = 4;
   var sampleCategoricalData = ["Manhattan", "Brooklyn", "Queens"];
-  var color = d3.scaleOrdinal().domain(sampleCategoricalData).range(["#333", "#34DDDD", "#AAAAAA"]);
+  var color = d3.scaleOrdinal().domain(sampleCategoricalData).range(["#333", "#CC0000", "#0000FF"]);
+  var colors = ["#0000ff", '#333', '#CC0000', '#CC0000', '#CC0000', '#CC0000',
+       '#333', '#333', '#333', '#333', '#CC0000', '#34DDDD', '#CC0000',
+       '#333', '#333', '#333', '#CC0000', '#CC0000', '#333', '#CC0000',
+       '#333', '#AAAAAA', '#333', '#333', '#333', '#333', '#333', '#333',
+       '#CC0000', "#0000ff", '#CC0000', '#CC0000', "#0000ff", '#333',
+       "#0000ff", '#CC0000', '#333', '#333', '#333', '#333', '#333',
+       '#CC0000', '#333'];
+  var legend = this.svg.selectAll('.legend')
+    .data(color.domain())
+    .enter()
+    .append('g')
+    .attr('class', 'legend')
+    .attr('transform', function(d, i) {
+      var height = legendRectSize + legendSpacing;
+      var offset =  height * color.domain().length / 2;
+      var horz = vis.width - 480;
+      console.log(horz);
+      var vert = i * height - offset + (vis.height / 3);
+      return 'translate(' + horz + ',' + vert + ')';
+    });
 
+  legend.append('rect')
+    .attr('width', legendRectSize)
+    .attr('height', legendRectSize)
+    .style('fill', color)
+    .style('stroke', color)
+
+  legend.append('text')
+    .attr('x', legendRectSize + legendSpacing)
+    .attr('y', legendRectSize - legendSpacing)
+    .text(function(d) { return d; });
   var g = this.svg.selectAll("g.group")
     .data(function(chords) {
         console.log(chords.groups);
@@ -51,8 +91,9 @@ ChordMaker.prototype.initVis = function(matrix, mmap) {
 
   g.append("svg:path")
     .style("stroke", "grey")
-    .style("fill", function(d) {
-        return mapReader(d).gdata;
+    .style("fill", function(d,i ) {
+        return colors[i]
+        //return mapReader(d).gdata;
     })
     .attr("d", this.arc);
 
@@ -74,8 +115,6 @@ ChordMaker.prototype.initVis = function(matrix, mmap) {
         return mapReader(d).gname;
     });
 
-  var colors = d3.scaleOrdinal(d3.schemeCategory20c);
-
   var chordPaths = this.svg.selectAll("path.chord")
     .data(function(chords) {
         return chords;
@@ -84,7 +123,7 @@ ChordMaker.prototype.initVis = function(matrix, mmap) {
     .attr("class", "chord")
     .style("stroke", "grey")
     .style("fill", function(d, i) {
-        return colors(i)
+        return colors[d.source.index]
     })
     .attr("d", this.ribbon.radius(r0))
     .on("mouseover", function(d){
