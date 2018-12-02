@@ -5,6 +5,7 @@
     <title>About CitiBikes</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="css/chord.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
           integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
           crossorigin=""/>
@@ -86,9 +87,16 @@
     </div>
     <div class = "row">
       <div class = "col-md-12 text center">
-        <div id = "station_bike_line"
+        <div id = "station_bike_line"></div>
       </div>
     </div>
+    <div class = "row">
+      <div class = "col-md-12 text center">
+        <div id = "tooltip"></div>
+        <div id = "chord_product"></div>
+      </div>
+    </div>
+
 
 </div>
 
@@ -96,15 +104,18 @@
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/d3.min.js"></script>
+<script src="http://underscorejs.org/underscore-min.js"></script>
+<script src="https://rawgit.com/sghall/7859113/raw/422da4401f7d4fc0352a7c49961d24f03716be7a/gistfile1.js"></script>
 <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
         integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
         crossorigin=""></script>
 <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 
 <script src="js/totalvis.js"></script>
-<script src="js/histogram.js"></script>
+<script src="js/duration.js"></script>
 <script src="js/CitiLine.js"></script>
 <script src="js/CitiLine_v2.js"></script>
+<script src="js/Chord_Diagram.js"></script>
 <script src="js/main_about.js"></script>
 
 </body>

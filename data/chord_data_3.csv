@@ -1,0 +1,580 @@
+,root,node,value,borough
+0,Astoria,Astoria,91,Queens
+1,Astoria,Queensbridge-Ravenswood-Long Island City,28,Queens
+2,Astoria,Old Astoria,23,Queens
+3,Astoria,Steinway,22,Queens
+4,Astoria,Hunters Point-Sunnyside-West Maspeth,13,Queens
+17,Battery Park City-Lower Manhattan,Battery Park City-Lower Manhattan,1647,Manhattan
+18,Battery Park City-Lower Manhattan,SoHo-TriBeCa-Civic Center-Little Italy,985,Manhattan
+19,Battery Park City-Lower Manhattan,Hudson Yards-Chelsea-Flatiron-Union Square,577,Manhattan
+20,Battery Park City-Lower Manhattan,West Village,566,Manhattan
+21,Battery Park City-Lower Manhattan,Chinatown,383,Manhattan
+22,Battery Park City-Lower Manhattan,Lower East Side,254,Manhattan
+23,Battery Park City-Lower Manhattan,East Village,154,Manhattan
+24,Battery Park City-Lower Manhattan,Clinton,122,Manhattan
+25,Battery Park City-Lower Manhattan,Murray Hill-Kips Bay,114,Manhattan
+26,Battery Park City-Lower Manhattan,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,109,Manhattan
+27,Battery Park City-Lower Manhattan,Midtown-Midtown South,94,Manhattan
+28,Battery Park City-Lower Manhattan,Stuyvesant Town-Cooper Village,73,Manhattan
+29,Battery Park City-Lower Manhattan,Turtle Bay-East Midtown,66,Manhattan
+30,Battery Park City-Lower Manhattan,Lincoln Square,55,Manhattan
+31,Battery Park City-Lower Manhattan,North Side-South Side,44,Manhattan
+32,Battery Park City-Lower Manhattan,Gramercy,38,Manhattan
+33,Battery Park City-Lower Manhattan,Upper West Side,37,Manhattan
+34,Battery Park City-Lower Manhattan,Brooklyn Heights-Cobble Hill,35,Manhattan
+35,Battery Park City-Lower Manhattan,Fort Greene,20,Manhattan
+36,Battery Park City-Lower Manhattan,park-cemetery-etc-Manhattan,20,Manhattan
+37,Battery Park City-Lower Manhattan,Park Slope-Gowanus,19,Manhattan
+38,Battery Park City-Lower Manhattan,Lenox Hill-Roosevelt Island,11,Manhattan
+53,Bedford,Bedford,166,Brooklyn
+54,Bedford,Fort Greene,66,Brooklyn
+55,Bedford,Clinton Hill,65,Brooklyn
+56,Bedford,North Side-South Side,54,Brooklyn
+57,Bedford,Stuyvesant Heights,48,Brooklyn
+58,Bedford,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,39,Brooklyn
+59,Bedford,East Williamsburg,14,Brooklyn
+60,Bedford,Williamsburg,14,Brooklyn
+61,Bedford,Park Slope-Gowanus,14,Brooklyn
+62,Bedford,West Village,13,Brooklyn
+63,Bedford,SoHo-TriBeCa-Civic Center-Little Italy,12,Brooklyn
+64,Bedford,Crown Heights North,12,Brooklyn
+65,Bedford,park-cemetery-etc-Brooklyn,12,Brooklyn
+66,Bedford,Greenpoint,11,Brooklyn
+67,Bedford,East Village,10,Brooklyn
+68,Bedford,Prospect Heights,10,Brooklyn
+85,Brooklyn Heights-Cobble Hill,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,269,Brooklyn
+86,Brooklyn Heights-Cobble Hill,Brooklyn Heights-Cobble Hill,260,Brooklyn
+87,Brooklyn Heights-Cobble Hill,Carroll Gardens-Columbia Street-Red Hook,143,Brooklyn
+88,Brooklyn Heights-Cobble Hill,SoHo-TriBeCa-Civic Center-Little Italy,88,Brooklyn
+89,Brooklyn Heights-Cobble Hill,Park Slope-Gowanus,52,Brooklyn
+90,Brooklyn Heights-Cobble Hill,Fort Greene,37,Brooklyn
+91,Brooklyn Heights-Cobble Hill,Battery Park City-Lower Manhattan,30,Brooklyn
+92,Brooklyn Heights-Cobble Hill,West Village,21,Brooklyn
+93,Brooklyn Heights-Cobble Hill,Chinatown,21,Brooklyn
+94,Brooklyn Heights-Cobble Hill,Clinton Hill,16,Brooklyn
+95,Brooklyn Heights-Cobble Hill,Hudson Yards-Chelsea-Flatiron-Union Square,15,Brooklyn
+96,Brooklyn Heights-Cobble Hill,park-cemetery-etc-Brooklyn,11,Brooklyn
+97,Brooklyn Heights-Cobble Hill,East Village,11,Brooklyn
+98,Brooklyn Heights-Cobble Hill,North Side-South Side,11,Brooklyn
+117,Bushwick South,North Side-South Side,21,Brooklyn
+118,Bushwick South,East Williamsburg,19,Brooklyn
+136,Carroll Gardens-Columbia Street-Red Hook,Carroll Gardens-Columbia Street-Red Hook,334,Brooklyn
+137,Carroll Gardens-Columbia Street-Red Hook,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,189,Brooklyn
+138,Carroll Gardens-Columbia Street-Red Hook,Brooklyn Heights-Cobble Hill,126,Brooklyn
+139,Carroll Gardens-Columbia Street-Red Hook,Park Slope-Gowanus,101,Brooklyn
+140,Carroll Gardens-Columbia Street-Red Hook,SoHo-TriBeCa-Civic Center-Little Italy,21,Brooklyn
+141,Carroll Gardens-Columbia Street-Red Hook,Fort Greene,16,Brooklyn
+142,Carroll Gardens-Columbia Street-Red Hook,Battery Park City-Lower Manhattan,11,Brooklyn
+163,Central Harlem North-Polo Grounds,Central Harlem South,14,Manhattan
+174,Central Harlem South,Central Harlem South,42,Manhattan
+175,Central Harlem South,park-cemetery-etc-Manhattan,24,Manhattan
+176,Central Harlem South,East Harlem North,23,Manhattan
+177,Central Harlem South,Upper West Side,21,Manhattan
+178,Central Harlem South,Morningside Heights,18,Manhattan
+179,Central Harlem South,East Harlem South,16,Manhattan
+190,Chinatown,SoHo-TriBeCa-Civic Center-Little Italy,595,Manhattan
+191,Chinatown,Chinatown,521,Manhattan
+192,Chinatown,Lower East Side,432,Manhattan
+193,Chinatown,Battery Park City-Lower Manhattan,377,Manhattan
+194,Chinatown,West Village,346,Manhattan
+195,Chinatown,East Village,302,Manhattan
+196,Chinatown,Hudson Yards-Chelsea-Flatiron-Union Square,177,Manhattan
+197,Chinatown,Murray Hill-Kips Bay,122,Manhattan
+198,Chinatown,North Side-South Side,111,Manhattan
+199,Chinatown,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,109,Manhattan
+200,Chinatown,Midtown-Midtown South,106,Manhattan
+201,Chinatown,Gramercy,75,Manhattan
+202,Chinatown,Stuyvesant Town-Cooper Village,52,Manhattan
+203,Chinatown,Turtle Bay-East Midtown,46,Manhattan
+204,Chinatown,Fort Greene,27,Manhattan
+205,Chinatown,Clinton,25,Manhattan
+206,Chinatown,Brooklyn Heights-Cobble Hill,19,Manhattan
+207,Chinatown,Park Slope-Gowanus,17,Manhattan
+208,Chinatown,Greenpoint,15,Manhattan
+209,Chinatown,Bedford,12,Manhattan
+210,Chinatown,park-cemetery-etc-Brooklyn,11,Manhattan
+211,Chinatown,Lenox Hill-Roosevelt Island,10,Manhattan
+212,Chinatown,Lincoln Square,10,Manhattan
+227,Clinton,Hudson Yards-Chelsea-Flatiron-Union Square,933,Manhattan
+228,Clinton,Midtown-Midtown South,829,Manhattan
+229,Clinton,Clinton,708,Manhattan
+230,Clinton,West Village,273,Manhattan
+231,Clinton,Turtle Bay-East Midtown,226,Manhattan
+232,Clinton,Murray Hill-Kips Bay,225,Manhattan
+233,Clinton,Lincoln Square,205,Manhattan
+234,Clinton,SoHo-TriBeCa-Civic Center-Little Italy,150,Manhattan
+235,Clinton,Battery Park City-Lower Manhattan,134,Manhattan
+236,Clinton,Upper West Side,84,Manhattan
+237,Clinton,park-cemetery-etc-Manhattan,61,Manhattan
+238,Clinton,East Village,53,Manhattan
+239,Clinton,Gramercy,49,Manhattan
+240,Clinton,Lenox Hill-Roosevelt Island,39,Manhattan
+241,Clinton,Upper East Side-Carnegie Hill,24,Manhattan
+242,Clinton,Chinatown,23,Manhattan
+243,Clinton,Stuyvesant Town-Cooper Village,19,Manhattan
+244,Clinton,Yorkville,18,Manhattan
+245,Clinton,Lower East Side,13,Manhattan
+259,Clinton Hill,Fort Greene,259,Brooklyn
+260,Clinton Hill,Clinton Hill,149,Brooklyn
+261,Clinton Hill,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,97,Brooklyn
+262,Clinton Hill,Bedford,82,Brooklyn
+263,Clinton Hill,North Side-South Side,59,Brooklyn
+264,Clinton Hill,Park Slope-Gowanus,46,Brooklyn
+265,Clinton Hill,Brooklyn Heights-Cobble Hill,23,Brooklyn
+266,Clinton Hill,SoHo-TriBeCa-Civic Center-Little Italy,20,Brooklyn
+267,Clinton Hill,Stuyvesant Heights,18,Brooklyn
+268,Clinton Hill,park-cemetery-etc-Brooklyn,18,Brooklyn
+269,Clinton Hill,Battery Park City-Lower Manhattan,12,Brooklyn
+270,Clinton Hill,Prospect Heights,12,Brooklyn
+271,Clinton Hill,Greenpoint,12,Brooklyn
+272,Clinton Hill,Crown Heights North,12,Brooklyn
+273,Clinton Hill,East Village,10,Brooklyn
+274,Clinton Hill,Chinatown,10,Brooklyn
+290,Crown Heights North,Crown Heights North,26,Brooklyn
+291,Crown Heights North,Park Slope-Gowanus,21,Brooklyn
+292,Crown Heights North,Bedford,18,Brooklyn
+293,Crown Heights North,Stuyvesant Heights,16,Brooklyn
+294,Crown Heights North,Clinton Hill,14,Brooklyn
+295,Crown Heights North,Prospect Heights,11,Brooklyn
+327,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,593,Brooklyn
+328,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Fort Greene,306,Brooklyn
+329,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Brooklyn Heights-Cobble Hill,217,Brooklyn
+330,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Carroll Gardens-Columbia Street-Red Hook,201,Brooklyn
+331,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,SoHo-TriBeCa-Civic Center-Little Italy,197,Brooklyn
+332,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Park Slope-Gowanus,134,Brooklyn
+333,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,North Side-South Side,97,Brooklyn
+334,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Chinatown,80,Brooklyn
+335,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Clinton Hill,78,Brooklyn
+336,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Battery Park City-Lower Manhattan,75,Brooklyn
+337,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,West Village,50,Brooklyn
+338,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,park-cemetery-etc-Brooklyn,47,Brooklyn
+339,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Bedford,39,Brooklyn
+340,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Hudson Yards-Chelsea-Flatiron-Union Square,32,Brooklyn
+341,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,East Village,24,Brooklyn
+342,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Midtown-Midtown South,21,Brooklyn
+343,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Prospect Heights,21,Brooklyn
+344,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Murray Hill-Kips Bay,19,Brooklyn
+345,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Lower East Side,19,Brooklyn
+346,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Stuyvesant Heights,14,Brooklyn
+347,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,East Williamsburg,10,Brooklyn
+348,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,Crown Heights North,10,Brooklyn
+365,East Harlem North,East Harlem North,43,Manhattan
+366,East Harlem North,East Harlem South,28,Manhattan
+367,East Harlem North,Yorkville,24,Manhattan
+368,East Harlem North,Central Harlem South,23,Manhattan
+369,East Harlem North,Morningside Heights,16,Manhattan
+383,East Harlem South,East Harlem South,106,Manhattan
+384,East Harlem South,Yorkville,84,Manhattan
+385,East Harlem South,park-cemetery-etc-Manhattan,38,Manhattan
+386,East Harlem South,Midtown-Midtown South,29,Manhattan
+387,East Harlem South,East Harlem North,27,Manhattan
+388,East Harlem South,Lenox Hill-Roosevelt Island,26,Manhattan
+389,East Harlem South,Upper East Side-Carnegie Hill,25,Manhattan
+390,East Harlem South,Upper West Side,19,Manhattan
+391,East Harlem South,Lincoln Square,16,Manhattan
+392,East Harlem South,Central Harlem South,15,Manhattan
+393,East Harlem South,Morningside Heights,13,Manhattan
+394,East Harlem South,Turtle Bay-East Midtown,11,Manhattan
+406,East Village,West Village,1020,Manhattan
+407,East Village,East Village,724,Manhattan
+408,East Village,Hudson Yards-Chelsea-Flatiron-Union Square,494,Manhattan
+409,East Village,SoHo-TriBeCa-Civic Center-Little Italy,405,Manhattan
+410,East Village,Lower East Side,357,Manhattan
+411,East Village,Chinatown,317,Manhattan
+412,East Village,Murray Hill-Kips Bay,274,Manhattan
+413,East Village,Midtown-Midtown South,208,Manhattan
+414,East Village,Battery Park City-Lower Manhattan,175,Manhattan
+415,East Village,Stuyvesant Town-Cooper Village,163,Manhattan
+416,East Village,Gramercy,158,Manhattan
+417,East Village,Turtle Bay-East Midtown,91,Manhattan
+418,East Village,North Side-South Side,60,Manhattan
+419,East Village,Clinton,39,Manhattan
+420,East Village,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,29,Manhattan
+421,East Village,Lenox Hill-Roosevelt Island,25,Manhattan
+422,East Village,Fort Greene,14,Manhattan
+423,East Village,Lincoln Square,13,Manhattan
+424,East Village,Brooklyn Heights-Cobble Hill,13,Manhattan
+443,East Williamsburg,North Side-South Side,172,Brooklyn
+444,East Williamsburg,East Williamsburg,153,Brooklyn
+445,East Williamsburg,Greenpoint,61,Brooklyn
+446,East Williamsburg,Bushwick South,20,Brooklyn
+447,East Williamsburg,Bedford,14,Brooklyn
+448,East Williamsburg,Stuyvesant Heights,11,Brooklyn
+475,Fort Greene,Fort Greene,562,Brooklyn
+476,Fort Greene,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,254,Brooklyn
+477,Fort Greene,Clinton Hill,213,Brooklyn
+478,Fort Greene,Park Slope-Gowanus,72,Brooklyn
+479,Fort Greene,Bedford,67,Brooklyn
+480,Fort Greene,North Side-South Side,64,Brooklyn
+481,Fort Greene,park-cemetery-etc-Brooklyn,46,Brooklyn
+482,Fort Greene,Brooklyn Heights-Cobble Hill,41,Brooklyn
+483,Fort Greene,SoHo-TriBeCa-Civic Center-Little Italy,37,Brooklyn
+484,Fort Greene,Chinatown,32,Brooklyn
+485,Fort Greene,Hudson Yards-Chelsea-Flatiron-Union Square,25,Brooklyn
+486,Fort Greene,Prospect Heights,23,Brooklyn
+487,Fort Greene,West Village,22,Brooklyn
+488,Fort Greene,Carroll Gardens-Columbia Street-Red Hook,22,Brooklyn
+489,Fort Greene,Battery Park City-Lower Manhattan,17,Brooklyn
+490,Fort Greene,East Village,15,Brooklyn
+491,Fort Greene,Midtown-Midtown South,15,Brooklyn
+492,Fort Greene,Murray Hill-Kips Bay,12,Brooklyn
+493,Fort Greene,Stuyvesant Heights,10,Brooklyn
+509,Gramercy,Hudson Yards-Chelsea-Flatiron-Union Square,381,Manhattan
+510,Gramercy,Murray Hill-Kips Bay,282,Manhattan
+511,Gramercy,West Village,230,Manhattan
+512,Gramercy,Midtown-Midtown South,208,Manhattan
+513,Gramercy,East Village,197,Manhattan
+514,Gramercy,Gramercy,116,Manhattan
+515,Gramercy,Stuyvesant Town-Cooper Village,114,Manhattan
+516,Gramercy,SoHo-TriBeCa-Civic Center-Little Italy,112,Manhattan
+517,Gramercy,Chinatown,73,Manhattan
+518,Gramercy,Turtle Bay-East Midtown,68,Manhattan
+519,Gramercy,Lower East Side,59,Manhattan
+520,Gramercy,Battery Park City-Lower Manhattan,48,Manhattan
+521,Gramercy,Clinton,27,Manhattan
+522,Gramercy,Lincoln Square,14,Manhattan
+523,Gramercy,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,13,Manhattan
+524,Gramercy,North Side-South Side,11,Manhattan
+540,Greenpoint,North Side-South Side,319,Brooklyn
+541,Greenpoint,Greenpoint,238,Brooklyn
+542,Greenpoint,Hunters Point-Sunnyside-West Maspeth,72,Brooklyn
+543,Greenpoint,East Williamsburg,55,Brooklyn
+544,Greenpoint,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,17,Brooklyn
+545,Greenpoint,Chinatown,12,Brooklyn
+546,Greenpoint,West Village,10,Brooklyn
+547,Greenpoint,park-cemetery-etc-Brooklyn,10,Brooklyn
+573,Hudson Yards-Chelsea-Flatiron-Union Square,Hudson Yards-Chelsea-Flatiron-Union Square,4276,Manhattan
+574,Hudson Yards-Chelsea-Flatiron-Union Square,West Village,1860,Manhattan
+575,Hudson Yards-Chelsea-Flatiron-Union Square,Midtown-Midtown South,1636,Manhattan
+576,Hudson Yards-Chelsea-Flatiron-Union Square,Murray Hill-Kips Bay,882,Manhattan
+577,Hudson Yards-Chelsea-Flatiron-Union Square,SoHo-TriBeCa-Civic Center-Little Italy,822,Manhattan
+578,Hudson Yards-Chelsea-Flatiron-Union Square,Clinton,742,Manhattan
+579,Hudson Yards-Chelsea-Flatiron-Union Square,Battery Park City-Lower Manhattan,552,Manhattan
+580,Hudson Yards-Chelsea-Flatiron-Union Square,East Village,535,Manhattan
+581,Hudson Yards-Chelsea-Flatiron-Union Square,Gramercy,406,Manhattan
+582,Hudson Yards-Chelsea-Flatiron-Union Square,Turtle Bay-East Midtown,267,Manhattan
+583,Hudson Yards-Chelsea-Flatiron-Union Square,Stuyvesant Town-Cooper Village,248,Manhattan
+584,Hudson Yards-Chelsea-Flatiron-Union Square,Chinatown,233,Manhattan
+585,Hudson Yards-Chelsea-Flatiron-Union Square,Lincoln Square,222,Manhattan
+586,Hudson Yards-Chelsea-Flatiron-Union Square,Upper West Side,159,Manhattan
+587,Hudson Yards-Chelsea-Flatiron-Union Square,Lower East Side,148,Manhattan
+588,Hudson Yards-Chelsea-Flatiron-Union Square,park-cemetery-etc-Manhattan,67,Manhattan
+589,Hudson Yards-Chelsea-Flatiron-Union Square,North Side-South Side,43,Manhattan
+590,Hudson Yards-Chelsea-Flatiron-Union Square,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,39,Manhattan
+591,Hudson Yards-Chelsea-Flatiron-Union Square,Lenox Hill-Roosevelt Island,39,Manhattan
+592,Hudson Yards-Chelsea-Flatiron-Union Square,Upper East Side-Carnegie Hill,30,Manhattan
+593,Hudson Yards-Chelsea-Flatiron-Union Square,Morningside Heights,20,Manhattan
+594,Hudson Yards-Chelsea-Flatiron-Union Square,Brooklyn Heights-Cobble Hill,20,Manhattan
+595,Hudson Yards-Chelsea-Flatiron-Union Square,Fort Greene,20,Manhattan
+596,Hudson Yards-Chelsea-Flatiron-Union Square,Park Slope-Gowanus,12,Manhattan
+597,Hudson Yards-Chelsea-Flatiron-Union Square,Yorkville,10,Manhattan
+611,Hunters Point-Sunnyside-West Maspeth,Hunters Point-Sunnyside-West Maspeth,199,Queens
+612,Hunters Point-Sunnyside-West Maspeth,Greenpoint,78,Queens
+613,Hunters Point-Sunnyside-West Maspeth,North Side-South Side,32,Queens
+614,Hunters Point-Sunnyside-West Maspeth,Queensbridge-Ravenswood-Long Island City,30,Queens
+615,Hunters Point-Sunnyside-West Maspeth,Midtown-Midtown South,15,Queens
+616,Hunters Point-Sunnyside-West Maspeth,Astoria,14,Queens
+642,Lenox Hill-Roosevelt Island,Lenox Hill-Roosevelt Island,221,Manhattan
+643,Lenox Hill-Roosevelt Island,Turtle Bay-East Midtown,205,Manhattan
+644,Lenox Hill-Roosevelt Island,Midtown-Midtown South,162,Manhattan
+645,Lenox Hill-Roosevelt Island,Yorkville,157,Manhattan
+646,Lenox Hill-Roosevelt Island,Upper East Side-Carnegie Hill,107,Manhattan
+647,Lenox Hill-Roosevelt Island,Murray Hill-Kips Bay,81,Manhattan
+648,Lenox Hill-Roosevelt Island,park-cemetery-etc-Manhattan,53,Manhattan
+649,Lenox Hill-Roosevelt Island,Lincoln Square,52,Manhattan
+650,Lenox Hill-Roosevelt Island,Upper West Side,49,Manhattan
+651,Lenox Hill-Roosevelt Island,Hudson Yards-Chelsea-Flatiron-Union Square,35,Manhattan
+652,Lenox Hill-Roosevelt Island,Clinton,33,Manhattan
+653,Lenox Hill-Roosevelt Island,East Harlem South,31,Manhattan
+654,Lenox Hill-Roosevelt Island,Gramercy,26,Manhattan
+655,Lenox Hill-Roosevelt Island,West Village,24,Manhattan
+656,Lenox Hill-Roosevelt Island,SoHo-TriBeCa-Civic Center-Little Italy,21,Manhattan
+657,Lenox Hill-Roosevelt Island,East Village,19,Manhattan
+658,Lenox Hill-Roosevelt Island,Chinatown,16,Manhattan
+659,Lenox Hill-Roosevelt Island,Queensbridge-Ravenswood-Long Island City,12,Manhattan
+660,Lenox Hill-Roosevelt Island,Battery Park City-Lower Manhattan,10,Manhattan
+674,Lincoln Square,Lincoln Square,412,Manhattan
+675,Lincoln Square,Midtown-Midtown South,352,Manhattan
+676,Lincoln Square,Upper West Side,254,Manhattan
+677,Lincoln Square,Hudson Yards-Chelsea-Flatiron-Union Square,251,Manhattan
+678,Lincoln Square,Clinton,243,Manhattan
+679,Lincoln Square,park-cemetery-etc-Manhattan,141,Manhattan
+680,Lincoln Square,Turtle Bay-East Midtown,111,Manhattan
+681,Lincoln Square,West Village,89,Manhattan
+682,Lincoln Square,Lenox Hill-Roosevelt Island,63,Manhattan
+683,Lincoln Square,Upper East Side-Carnegie Hill,58,Manhattan
+684,Lincoln Square,Battery Park City-Lower Manhattan,53,Manhattan
+685,Lincoln Square,SoHo-TriBeCa-Civic Center-Little Italy,48,Manhattan
+686,Lincoln Square,Murray Hill-Kips Bay,47,Manhattan
+687,Lincoln Square,Yorkville,21,Manhattan
+688,Lincoln Square,Morningside Heights,18,Manhattan
+689,Lincoln Square,East Harlem South,15,Manhattan
+690,Lincoln Square,East Village,14,Manhattan
+691,Lincoln Square,Gramercy,11,Manhattan
+701,Lower East Side,Chinatown,476,Manhattan
+702,Lower East Side,Lower East Side,454,Manhattan
+703,Lower East Side,East Village,344,Manhattan
+704,Lower East Side,SoHo-TriBeCa-Civic Center-Little Italy,302,Manhattan
+705,Lower East Side,West Village,285,Manhattan
+706,Lower East Side,Battery Park City-Lower Manhattan,245,Manhattan
+707,Lower East Side,Hudson Yards-Chelsea-Flatiron-Union Square,167,Manhattan
+708,Lower East Side,Murray Hill-Kips Bay,109,Manhattan
+709,Lower East Side,Stuyvesant Town-Cooper Village,75,Manhattan
+710,Lower East Side,Gramercy,71,Manhattan
+711,Lower East Side,Midtown-Midtown South,69,Manhattan
+712,Lower East Side,Turtle Bay-East Midtown,67,Manhattan
+713,Lower East Side,North Side-South Side,49,Manhattan
+714,Lower East Side,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,21,Manhattan
+715,Lower East Side,Clinton,14,Manhattan
+716,Lower East Side,Fort Greene,12,Manhattan
+717,Lower East Side,Lenox Hill-Roosevelt Island,11,Manhattan
+733,Midtown-Midtown South,Midtown-Midtown South,2448,Manhattan
+734,Midtown-Midtown South,Hudson Yards-Chelsea-Flatiron-Union Square,1774,Manhattan
+735,Midtown-Midtown South,Murray Hill-Kips Bay,1171,Manhattan
+736,Midtown-Midtown South,Clinton,853,Manhattan
+737,Midtown-Midtown South,Turtle Bay-East Midtown,731,Manhattan
+738,Midtown-Midtown South,West Village,657,Manhattan
+739,Midtown-Midtown South,Lincoln Square,319,Manhattan
+740,Midtown-Midtown South,park-cemetery-etc-Manhattan,313,Manhattan
+741,Midtown-Midtown South,SoHo-TriBeCa-Civic Center-Little Italy,273,Manhattan
+742,Midtown-Midtown South,East Village,252,Manhattan
+743,Midtown-Midtown South,Gramercy,242,Manhattan
+744,Midtown-Midtown South,Upper West Side,138,Manhattan
+745,Midtown-Midtown South,Battery Park City-Lower Manhattan,122,Manhattan
+746,Midtown-Midtown South,Stuyvesant Town-Cooper Village,116,Manhattan
+747,Midtown-Midtown South,Lenox Hill-Roosevelt Island,116,Manhattan
+748,Midtown-Midtown South,Upper East Side-Carnegie Hill,110,Manhattan
+749,Midtown-Midtown South,Chinatown,87,Manhattan
+750,Midtown-Midtown South,Lower East Side,65,Manhattan
+751,Midtown-Midtown South,Yorkville,41,Manhattan
+752,Midtown-Midtown South,North Side-South Side,23,Manhattan
+753,Midtown-Midtown South,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,17,Manhattan
+754,Midtown-Midtown South,East Harlem South,16,Manhattan
+755,Midtown-Midtown South,Brooklyn Heights-Cobble Hill,13,Manhattan
+772,Morningside Heights,Upper West Side,82,Manhattan
+773,Morningside Heights,Morningside Heights,72,Manhattan
+774,Morningside Heights,park-cemetery-etc-Manhattan,30,Manhattan
+775,Morningside Heights,Lincoln Square,28,Manhattan
+776,Morningside Heights,Midtown-Midtown South,24,Manhattan
+777,Morningside Heights,Central Harlem South,24,Manhattan
+778,Morningside Heights,Lenox Hill-Roosevelt Island,13,Manhattan
+779,Morningside Heights,East Harlem South,12,Manhattan
+780,Morningside Heights,East Harlem North,11,Manhattan
+781,Morningside Heights,Yorkville,11,Manhattan
+796,Murray Hill-Kips Bay,Midtown-Midtown South,1222,Manhattan
+797,Murray Hill-Kips Bay,Murray Hill-Kips Bay,975,Manhattan
+798,Murray Hill-Kips Bay,Hudson Yards-Chelsea-Flatiron-Union Square,861,Manhattan
+799,Murray Hill-Kips Bay,Turtle Bay-East Midtown,390,Manhattan
+800,Murray Hill-Kips Bay,East Village,387,Manhattan
+801,Murray Hill-Kips Bay,West Village,379,Manhattan
+802,Murray Hill-Kips Bay,Gramercy,265,Manhattan
+803,Murray Hill-Kips Bay,Stuyvesant Town-Cooper Village,212,Manhattan
+804,Murray Hill-Kips Bay,SoHo-TriBeCa-Civic Center-Little Italy,205,Manhattan
+805,Murray Hill-Kips Bay,Clinton,193,Manhattan
+806,Murray Hill-Kips Bay,Chinatown,137,Manhattan
+807,Murray Hill-Kips Bay,Battery Park City-Lower Manhattan,137,Manhattan
+808,Murray Hill-Kips Bay,Lower East Side,131,Manhattan
+809,Murray Hill-Kips Bay,Lenox Hill-Roosevelt Island,73,Manhattan
+810,Murray Hill-Kips Bay,Lincoln Square,54,Manhattan
+811,Murray Hill-Kips Bay,park-cemetery-etc-Manhattan,49,Manhattan
+812,Murray Hill-Kips Bay,Upper East Side-Carnegie Hill,38,Manhattan
+813,Murray Hill-Kips Bay,Yorkville,22,Manhattan
+814,Murray Hill-Kips Bay,Upper West Side,21,Manhattan
+815,Murray Hill-Kips Bay,North Side-South Side,19,Manhattan
+816,Murray Hill-Kips Bay,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,16,Manhattan
+817,Murray Hill-Kips Bay,Fort Greene,13,Manhattan
+835,North Side-South Side,North Side-South Side,1069,Brooklyn
+836,North Side-South Side,Greenpoint,331,Brooklyn
+837,North Side-South Side,East Williamsburg,182,Brooklyn
+838,North Side-South Side,Chinatown,98,Brooklyn
+839,North Side-South Side,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,94,Brooklyn
+840,North Side-South Side,SoHo-TriBeCa-Civic Center-Little Italy,89,Brooklyn
+841,North Side-South Side,Bedford,62,Brooklyn
+842,North Side-South Side,East Village,59,Brooklyn
+843,North Side-South Side,Fort Greene,53,Brooklyn
+844,North Side-South Side,Clinton Hill,45,Brooklyn
+845,North Side-South Side,West Village,45,Brooklyn
+846,North Side-South Side,Lower East Side,43,Brooklyn
+847,North Side-South Side,park-cemetery-etc-Brooklyn,38,Brooklyn
+848,North Side-South Side,Hunters Point-Sunnyside-West Maspeth,38,Brooklyn
+849,North Side-South Side,Battery Park City-Lower Manhattan,35,Brooklyn
+850,North Side-South Side,Hudson Yards-Chelsea-Flatiron-Union Square,31,Brooklyn
+851,North Side-South Side,Midtown-Midtown South,25,Brooklyn
+852,North Side-South Side,Murray Hill-Kips Bay,19,Brooklyn
+853,North Side-South Side,Bushwick South,18,Brooklyn
+854,North Side-South Side,Park Slope-Gowanus,17,Brooklyn
+855,North Side-South Side,Williamsburg,14,Brooklyn
+856,North Side-South Side,Stuyvesant Heights,13,Brooklyn
+857,North Side-South Side,Turtle Bay-East Midtown,13,Brooklyn
+858,North Side-South Side,Brooklyn Heights-Cobble Hill,11,Brooklyn
+859,North Side-South Side,Stuyvesant Town-Cooper Village,10,Brooklyn
+872,Old Astoria,Astoria,27,Queens
+873,Old Astoria,Old Astoria,12,Queens
+874,Old Astoria,Steinway,12,Queens
+875,Old Astoria,Queensbridge-Ravenswood-Long Island City,10,Queens
+882,Park Slope-Gowanus,Park Slope-Gowanus,466,Brooklyn
+883,Park Slope-Gowanus,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,129,Brooklyn
+884,Park Slope-Gowanus,Carroll Gardens-Columbia Street-Red Hook,104,Brooklyn
+885,Park Slope-Gowanus,Fort Greene,72,Brooklyn
+886,Park Slope-Gowanus,park-cemetery-etc-Brooklyn,66,Brooklyn
+887,Park Slope-Gowanus,Prospect Heights,53,Brooklyn
+888,Park Slope-Gowanus,Brooklyn Heights-Cobble Hill,38,Brooklyn
+889,Park Slope-Gowanus,Clinton Hill,35,Brooklyn
+890,Park Slope-Gowanus,SoHo-TriBeCa-Civic Center-Little Italy,31,Brooklyn
+891,Park Slope-Gowanus,Bedford,18,Brooklyn
+892,Park Slope-Gowanus,Battery Park City-Lower Manhattan,16,Brooklyn
+893,Park Slope-Gowanus,North Side-South Side,11,Brooklyn
+912,Prospect Heights,Park Slope-Gowanus,47,Brooklyn
+913,Prospect Heights,Prospect Heights,22,Brooklyn
+914,Prospect Heights,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,21,Brooklyn
+915,Prospect Heights,Clinton Hill,17,Brooklyn
+916,Prospect Heights,Fort Greene,16,Brooklyn
+917,Prospect Heights,Carroll Gardens-Columbia Street-Red Hook,10,Brooklyn
+918,Prospect Heights,Crown Heights North,10,Brooklyn
+949,Queensbridge-Ravenswood-Long Island City,Hunters Point-Sunnyside-West Maspeth,39,Queens
+950,Queensbridge-Ravenswood-Long Island City,Astoria,31,Queens
+951,Queensbridge-Ravenswood-Long Island City,Queensbridge-Ravenswood-Long Island City,25,Queens
+952,Queensbridge-Ravenswood-Long Island City,Turtle Bay-East Midtown,20,Queens
+953,Queensbridge-Ravenswood-Long Island City,Lenox Hill-Roosevelt Island,13,Queens
+976,SoHo-TriBeCa-Civic Center-Little Italy,SoHo-TriBeCa-Civic Center-Little Italy,1943,Manhattan
+977,SoHo-TriBeCa-Civic Center-Little Italy,West Village,1245,Manhattan
+978,SoHo-TriBeCa-Civic Center-Little Italy,Battery Park City-Lower Manhattan,1090,Manhattan
+979,SoHo-TriBeCa-Civic Center-Little Italy,Hudson Yards-Chelsea-Flatiron-Union Square,822,Manhattan
+980,SoHo-TriBeCa-Civic Center-Little Italy,Chinatown,571,Manhattan
+981,SoHo-TriBeCa-Civic Center-Little Italy,East Village,418,Manhattan
+982,SoHo-TriBeCa-Civic Center-Little Italy,Lower East Side,287,Manhattan
+983,SoHo-TriBeCa-Civic Center-Little Italy,Midtown-Midtown South,267,Manhattan
+984,SoHo-TriBeCa-Civic Center-Little Italy,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,200,Manhattan
+985,SoHo-TriBeCa-Civic Center-Little Italy,Murray Hill-Kips Bay,183,Manhattan
+986,SoHo-TriBeCa-Civic Center-Little Italy,Clinton,144,Manhattan
+987,SoHo-TriBeCa-Civic Center-Little Italy,Gramercy,114,Manhattan
+988,SoHo-TriBeCa-Civic Center-Little Italy,North Side-South Side,84,Manhattan
+989,SoHo-TriBeCa-Civic Center-Little Italy,Brooklyn Heights-Cobble Hill,70,Manhattan
+990,SoHo-TriBeCa-Civic Center-Little Italy,Stuyvesant Town-Cooper Village,65,Manhattan
+991,SoHo-TriBeCa-Civic Center-Little Italy,Lincoln Square,53,Manhattan
+992,SoHo-TriBeCa-Civic Center-Little Italy,Turtle Bay-East Midtown,47,Manhattan
+993,SoHo-TriBeCa-Civic Center-Little Italy,Fort Greene,41,Manhattan
+994,SoHo-TriBeCa-Civic Center-Little Italy,Upper West Side,32,Manhattan
+995,SoHo-TriBeCa-Civic Center-Little Italy,Clinton Hill,23,Manhattan
+996,SoHo-TriBeCa-Civic Center-Little Italy,park-cemetery-etc-Manhattan,19,Manhattan
+997,SoHo-TriBeCa-Civic Center-Little Italy,Park Slope-Gowanus,14,Manhattan
+998,SoHo-TriBeCa-Civic Center-Little Italy,Carroll Gardens-Columbia Street-Red Hook,13,Manhattan
+999,SoHo-TriBeCa-Civic Center-Little Italy,Lenox Hill-Roosevelt Island,11,Manhattan
+1000,SoHo-TriBeCa-Civic Center-Little Italy,East Williamsburg,11,Manhattan
+1001,SoHo-TriBeCa-Civic Center-Little Italy,Upper East Side-Carnegie Hill,10,Manhattan
+1017,Steinway,Steinway,35,Queens
+1018,Steinway,Astoria,16,Queens
+1025,Stuyvesant Heights,Bedford,65,Brooklyn
+1026,Stuyvesant Heights,Stuyvesant Heights,41,Brooklyn
+1027,Stuyvesant Heights,Clinton Hill,20,Brooklyn
+1028,Stuyvesant Heights,North Side-South Side,18,Brooklyn
+1029,Stuyvesant Heights,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,13,Brooklyn
+1030,Stuyvesant Heights,Crown Heights North,11,Brooklyn
+1050,Stuyvesant Town-Cooper Village,Hudson Yards-Chelsea-Flatiron-Union Square,243,Manhattan
+1051,Stuyvesant Town-Cooper Village,Murray Hill-Kips Bay,227,Manhattan
+1052,Stuyvesant Town-Cooper Village,West Village,172,Manhattan
+1053,Stuyvesant Town-Cooper Village,East Village,143,Manhattan
+1054,Stuyvesant Town-Cooper Village,Midtown-Midtown South,133,Manhattan
+1055,Stuyvesant Town-Cooper Village,Stuyvesant Town-Cooper Village,123,Manhattan
+1056,Stuyvesant Town-Cooper Village,Gramercy,117,Manhattan
+1057,Stuyvesant Town-Cooper Village,Turtle Bay-East Midtown,97,Manhattan
+1058,Stuyvesant Town-Cooper Village,SoHo-TriBeCa-Civic Center-Little Italy,73,Manhattan
+1059,Stuyvesant Town-Cooper Village,Lower East Side,71,Manhattan
+1060,Stuyvesant Town-Cooper Village,Battery Park City-Lower Manhattan,70,Manhattan
+1061,Stuyvesant Town-Cooper Village,Chinatown,61,Manhattan
+1062,Stuyvesant Town-Cooper Village,Clinton,13,Manhattan
+1063,Stuyvesant Town-Cooper Village,Lenox Hill-Roosevelt Island,10,Manhattan
+1089,Turtle Bay-East Midtown,Midtown-Midtown South,844,Manhattan
+1090,Turtle Bay-East Midtown,Turtle Bay-East Midtown,555,Manhattan
+1091,Turtle Bay-East Midtown,Murray Hill-Kips Bay,399,Manhattan
+1092,Turtle Bay-East Midtown,Hudson Yards-Chelsea-Flatiron-Union Square,251,Manhattan
+1093,Turtle Bay-East Midtown,Clinton,240,Manhattan
+1094,Turtle Bay-East Midtown,Lenox Hill-Roosevelt Island,223,Manhattan
+1095,Turtle Bay-East Midtown,West Village,126,Manhattan
+1096,Turtle Bay-East Midtown,East Village,114,Manhattan
+1097,Turtle Bay-East Midtown,Lincoln Square,111,Manhattan
+1098,Turtle Bay-East Midtown,Gramercy,75,Manhattan
+1099,Turtle Bay-East Midtown,park-cemetery-etc-Manhattan,75,Manhattan
+1100,Turtle Bay-East Midtown,Yorkville,70,Manhattan
+1101,Turtle Bay-East Midtown,Lower East Side,65,Manhattan
+1102,Turtle Bay-East Midtown,Stuyvesant Town-Cooper Village,62,Manhattan
+1103,Turtle Bay-East Midtown,Upper East Side-Carnegie Hill,61,Manhattan
+1104,Turtle Bay-East Midtown,SoHo-TriBeCa-Civic Center-Little Italy,59,Manhattan
+1105,Turtle Bay-East Midtown,Battery Park City-Lower Manhattan,58,Manhattan
+1106,Turtle Bay-East Midtown,Chinatown,50,Manhattan
+1107,Turtle Bay-East Midtown,Upper West Side,36,Manhattan
+1108,Turtle Bay-East Midtown,North Side-South Side,18,Manhattan
+1109,Turtle Bay-East Midtown,Hunters Point-Sunnyside-West Maspeth,18,Manhattan
+1110,Turtle Bay-East Midtown,Queensbridge-Ravenswood-Long Island City,13,Manhattan
+1125,Upper East Side-Carnegie Hill,Midtown-Midtown South,122,Manhattan
+1126,Upper East Side-Carnegie Hill,Upper East Side-Carnegie Hill,103,Manhattan
+1127,Upper East Side-Carnegie Hill,park-cemetery-etc-Manhattan,95,Manhattan
+1128,Upper East Side-Carnegie Hill,Lenox Hill-Roosevelt Island,91,Manhattan
+1129,Upper East Side-Carnegie Hill,Turtle Bay-East Midtown,78,Manhattan
+1130,Upper East Side-Carnegie Hill,Yorkville,75,Manhattan
+1131,Upper East Side-Carnegie Hill,Lincoln Square,71,Manhattan
+1132,Upper East Side-Carnegie Hill,Murray Hill-Kips Bay,41,Manhattan
+1133,Upper East Side-Carnegie Hill,East Harlem South,40,Manhattan
+1134,Upper East Side-Carnegie Hill,Upper West Side,40,Manhattan
+1135,Upper East Side-Carnegie Hill,Hudson Yards-Chelsea-Flatiron-Union Square,39,Manhattan
+1136,Upper East Side-Carnegie Hill,Clinton,32,Manhattan
+1137,Upper East Side-Carnegie Hill,SoHo-TriBeCa-Civic Center-Little Italy,13,Manhattan
+1138,Upper East Side-Carnegie Hill,West Village,13,Manhattan
+1139,Upper East Side-Carnegie Hill,Gramercy,11,Manhattan
+1154,Upper West Side,Upper West Side,465,Manhattan
+1155,Upper West Side,Lincoln Square,291,Manhattan
+1156,Upper West Side,Midtown-Midtown South,196,Manhattan
+1157,Upper West Side,park-cemetery-etc-Manhattan,167,Manhattan
+1158,Upper West Side,Hudson Yards-Chelsea-Flatiron-Union Square,154,Manhattan
+1159,Upper West Side,Morningside Heights,93,Manhattan
+1160,Upper West Side,Clinton,87,Manhattan
+1161,Upper West Side,Upper East Side-Carnegie Hill,61,Manhattan
+1162,Upper West Side,Lenox Hill-Roosevelt Island,47,Manhattan
+1163,Upper West Side,Turtle Bay-East Midtown,43,Manhattan
+1164,Upper West Side,West Village,37,Manhattan
+1165,Upper West Side,Battery Park City-Lower Manhattan,36,Manhattan
+1166,Upper West Side,East Harlem South,35,Manhattan
+1167,Upper West Side,SoHo-TriBeCa-Civic Center-Little Italy,31,Manhattan
+1168,Upper West Side,Murray Hill-Kips Bay,30,Manhattan
+1169,Upper West Side,Central Harlem South,26,Manhattan
+1170,Upper West Side,Yorkville,20,Manhattan
+1179,West Village,West Village,2737,Manhattan
+1180,West Village,Hudson Yards-Chelsea-Flatiron-Union Square,1771,Manhattan
+1181,West Village,SoHo-TriBeCa-Civic Center-Little Italy,1283,Manhattan
+1182,West Village,East Village,974,Manhattan
+1183,West Village,Midtown-Midtown South,571,Manhattan
+1184,West Village,Battery Park City-Lower Manhattan,519,Manhattan
+1185,West Village,Murray Hill-Kips Bay,380,Manhattan
+1186,West Village,Chinatown,378,Manhattan
+1187,West Village,Lower East Side,271,Manhattan
+1188,West Village,Gramercy,236,Manhattan
+1189,West Village,Clinton,215,Manhattan
+1190,West Village,Stuyvesant Town-Cooper Village,196,Manhattan
+1191,West Village,Turtle Bay-East Midtown,90,Manhattan
+1192,West Village,Lincoln Square,69,Manhattan
+1193,West Village,DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill,56,Manhattan
+1194,West Village,North Side-South Side,53,Manhattan
+1195,West Village,Upper West Side,42,Manhattan
+1196,West Village,Fort Greene,30,Manhattan
+1197,West Village,park-cemetery-etc-Manhattan,27,Manhattan
+1198,West Village,Lenox Hill-Roosevelt Island,18,Manhattan
+1199,West Village,Brooklyn Heights-Cobble Hill,17,Manhattan
+1200,West Village,Park Slope-Gowanus,13,Manhattan
+1201,West Village,Bedford,12,Manhattan
+1202,West Village,Upper East Side-Carnegie Hill,11,Manhattan
+1203,West Village,Clinton Hill,10,Manhattan
+1218,Williamsburg,North Side-South Side,16,Brooklyn
+1219,Williamsburg,East Williamsburg,10,Brooklyn
+1237,Yorkville,Yorkville,185,Manhattan
+1238,Yorkville,Lenox Hill-Roosevelt Island,159,Manhattan
+1239,Yorkville,East Harlem South,78,Manhattan
+1240,Yorkville,Turtle Bay-East Midtown,74,Manhattan
+1241,Yorkville,Upper East Side-Carnegie Hill,68,Manhattan
+1242,Yorkville,park-cemetery-etc-Manhattan,65,Manhattan
+1243,Yorkville,Midtown-Midtown South,64,Manhattan
+1244,Yorkville,East Harlem North,29,Manhattan
+1245,Yorkville,Hudson Yards-Chelsea-Flatiron-Union Square,26,Manhattan
+1246,Yorkville,Upper West Side,24,Manhattan
+1247,Yorkville,Murray Hill-Kips Bay,19,Manhattan
+1248,Yorkville,Lincoln Square,17,Manhattan
+1249,Yorkville,Clinton,10,Manhattan
