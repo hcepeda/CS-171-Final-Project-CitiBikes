@@ -26,6 +26,7 @@ CitiLineGraph.prototype.initVis = function() {
 }
 
 CitiLineGraph.prototype.updateVis = function() {
+  var vis = this;
   this.xScale.domain(d3.extent(this.data, d => d.Date));
   this.yScale.domain(d3.extent(this.data, d => d.TripsToday));
 
@@ -84,45 +85,50 @@ CitiLineGraph.prototype.updateVis = function() {
     .attr("y", 15)
     .style("text-anchor", "end")
     .text("Number of Trips Taken (Daily)")
-/*
-  this.line.enter().append("path")
-    .classed("line", true)
-    .merge(this.line)
-    .attr("d", this.valueline_stations)
-    .attr("fill", "none")
-    .attr("stroke", "red")
-    .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
-    .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
-  */
+
   var t = d3.transition()
     .duration(5000)
     .ease(d3.easeLinear);
-  /*
-  this.svg.append("rect")
-    .attr("class", "overlay")
-    .attr("width", this.width)
-    .attr("height", this.height)
+  vis.svg.append("rect")
+    .attr("fill", "none")
+    .attr("pointer-events", "all")
+    .attr("width", vis.width)
+    .attr("height", vis.height)
     .on("mouseover", function() { focus.style("display", null); })
     .on("mouseout", function() { focus.style("display", "none"); })
     .on("mousemove", mousemove);
 
+  var focus = vis.svg.append("g")
+    .attr("class", "focus")
+    .style("display", "none");
+  focus.append("circle")
+    .attr("r", 4.5)
+    .attr("class", "dot");
+  focus.append('line')
+    .classed('x', true);
+  focus.append("text")
+    .data(vis.data)
+    .attr("x", 0)
+    .attr("font-size", 14)
+    .attr("text-anchor", "middle")
+    .attr("y", -15);
+  var bisectDate = d3.bisector(function (d) {return d.Date}).left;
   function mousemove() {
-    var x0 = this.xScale.invert(d3.mouse(this)[0]),
-      i = bisectDate(this.data, x0, 1),
-      d0 = this.data[i - 1],
-      d1 = this.data[i],
-      d = x0 - d0.Date > d1.Date - x0 ? d1 : d0;
-    focus.select('line.x')
-      .attr('x1', 0)
-      .attr('x2', 0)
-      .attr('y1', 0)
-      .attr('y2', this.height - this.yScale(d.TripsToday))
-      .style("stroke-width", 2)
-      .style("stroke", "steelblue");
-    focus.attr("transform", "translate(" + this.xScale(d.Date) + "," + this.yScale(d.TripsToday) +")");
-    focus.select("text").text(d.TripsToday);
+     var x0 = vis.xScale.invert(d3.mouse(this)[0]),
+         i = bisectDate(vis.data, x0, 1),
+         d0 = vis.data[i - 1],
+         d1 = vis.data[i],
+         d = x0 - d0.Date > d1.Date - x0 ? d1 : d0;
+     focus.select('line.x')
+         .attr('x1', 0)
+         .attr('x2', 0)
+         .attr('y1', 0)
+         .attr('y2', vis.height - vis.yScale(d.TripsAveraged))
+         .style("stroke-width", 2)
+         .style("stroke", "steelblue");
+     focus.attr("transform", "translate(" + vis.xScale(d.Date) + "," + vis.yScale(d.TripsAveraged) +")");
+     focus.select("text").html("Trips: " + Math.round(d.TripsAveraged));
   }
-  */
   this.svg.append("g")
     .attr("transform", "translate(0," + this.height + ")")
     .call(d3.axisBottom(this.xScale));
