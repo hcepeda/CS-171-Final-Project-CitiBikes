@@ -107,7 +107,12 @@ SubChart.prototype.wrangleData = function() {
        }
     });
 
-    console.log(subcount);
+    if (subcount[1].number > subcount[0].number) {
+        document.getElementById("avg-subscriber").innerText = "subscriber";
+    }
+    else {
+        document.getElementById("avg-subscriber").innerText = "non-subscriber";
+    }
 
     vis.displayData = subcount;
 

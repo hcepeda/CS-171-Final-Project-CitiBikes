@@ -111,37 +111,41 @@ var myEventHandler2 = {};
 
 function createVis() {
     var vis = this;
-    console.log(vis.geojsondata);
 
+    // Set information
+
+
+    // Visualization Objects
     barchart = new TotalVis("totalvis", allData, myEventHandler, myEventHandler2);
-
-    // create context bar chart with total rides per day per hour
-    greatmap = new NYMap("mapid", allData, [40.733060, -73.971249], vis.geojsondata);
+    // greatmap = new NYMap("mapid", allData, [40.733060, -73.971249], vis.geojsondata);
     age = new AgeChart("age", allData);
     gender = new GenderChart("gender", allData);
     subscriber = new SubChart("subscriber", allData);
-
     duration = new DurationChart("tripduration", "longtrip", allData);
 
+    // Click event to filter by hour
     $(myEventHandler).bind("hourChanged", function(event, hour) {
+        var time = document.getElementById("time");
+        time.innerText = " from " + hour + ":00 - " + (hour+1) + ":00";
         age.onSelectionChange(hour);
         gender.onSelectionChange(hour);
         subscriber.onSelectionChange(hour);
         duration.onSelectionChange(hour);
-        greatmap.onSelectionChange(hour);
+        // greatmap.onSelectionChange(hour);
     })
 
+    // Click out event to reset hour
     $(myEventHandler2).bind("resetHour", function() {
+        var time = document.getElementById("time");
+        time.innerText = "";
         barchart.onClick();
         age.onClick();
         gender.onClick();
         subscriber.onClick();
         duration.onClick();
-        greatmap.onClick();
+        // greatmap.onClick();
 
     })
-
-
 
 }
 
@@ -149,11 +153,10 @@ function selectionChanged() {
     $(myEventHandler2).trigger("resetHour");
 
     barchart.wrangleData();
-    histogram.wrangleData();
     age.wrangleData();
     gender.wrangleData();
     subscriber.wrangleData();
-    greatmap.wrangleData();
+    // greatmap.wrangleData();
 }
 
 function resetmap() {

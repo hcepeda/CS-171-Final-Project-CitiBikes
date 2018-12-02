@@ -63,9 +63,15 @@ TotalVis.prototype.wrangleData = function() {
     var vis = this;
     var hourFormatter = d3.timeFormat("%H");
     var newdateParser = d3.timeParse("%m %d %Y");
+    var dateFormatter = d3.timeFormat("%B %d, %Y");
 
     var selectbox = d3.select(".selectbox").property("value");
+
     selectbox = newdateParser(selectbox);
+
+    var date = document.getElementById("date");
+    date.innerText = dateFormatter(selectbox);
+
     console.log(selectbox);
 
     vis.nestedData = d3.nest()

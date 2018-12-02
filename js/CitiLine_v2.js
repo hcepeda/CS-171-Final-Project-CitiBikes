@@ -85,6 +85,29 @@ GeneralLine.prototype.updateVis = function() {
     .attr("stroke", "red")
     .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
     .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
+
+  this.svg.append("text")
+    .attr("class", "axis_label")
+    .attr("x", (this.width/2))
+    .attr("y", this.height+30)
+    .style("text-anchor", "middle")
+    .text("Date")
+
+  this.svg.append("text")
+    .attr("class", "axis_label")
+    .attr("transform", 'rotate(-90)')
+    .attr("x", -(this.height / 2))
+    .attr("y", -35)
+    .style("text-anchor", "middle")
+    .text("Number of Stations")
+
+  this.svg.append("text")
+    .attr("class", "axis_label")
+    .attr("transform", 'rotate(90)')
+    .attr("x", (this.height / 2))
+    .attr("y", -(this.width) - 40)
+    .style("text-anchor", "middle")
+    .text("Number of Bikes")
   var t = d3.transition()
     .duration(5000)
     .ease(d3.easeLinear);

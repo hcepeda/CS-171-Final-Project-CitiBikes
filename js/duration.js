@@ -125,9 +125,14 @@ DurationChart.prototype.wrangleData = function() {
         return 0;
     });
 
+    var total = 0;
+    var array = [];
 
     for (var i=0; i < vis.displayData.value.data.length; i++) {
         var duration = vis.displayData.value.data[i]["tripduration"]/60;
+        array.push(duration);
+        total += duration;
+
         if (duration < 10) {
             buckets[0]++;
         }
@@ -150,6 +155,10 @@ DurationChart.prototype.wrangleData = function() {
             buckets[6]++;
         }
     }
+
+    document.getElementById("avg-trip").innerHTML = Math.round(total/vis.displayData.value.data.length) + " min";
+    document.getElementById("long-trip").innerHTML = Math.round(d3.max(array)) + " min";
+    document.getElementById("short-trip").innerHTML = Math.round(d3.min(array)) + " min";
 
     for (var i=0; i < vis.displayData.value.data.length; i++) {
         var duration = vis.displayData.value.data[i]["tripduration"]/60;

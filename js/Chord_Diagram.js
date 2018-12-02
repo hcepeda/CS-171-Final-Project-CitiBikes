@@ -7,20 +7,14 @@ ChordMaker = function(_parentElement, _data){
 }
 
 ChordMaker.prototype.initVis = function(matrix, mmap) {
-  this.margin = {left: 40, right: 40, top: 40, bottom: 40};
+  this.margin = {left: 70, right: 70, top: 70, bottom: 70};
   this.width = $("#" + this.parentElement).width() - this.margin.left - this.margin.right;
   this.height = this.width; //  - this.margin.top - this.margin.bottom;
   var vis = this;
   var colorDf = this.colorDf;
-  //console.log(this.colorDf);
-  //console.log(mmap['Astoria']);
-  //for (i = 0; i < 43; i++){
-  //  mmap[i].coloring = colorDf[i].color
-  //}
-  //console.log(matrix)
-  //console.log(mmap)
+
   this.r1 = this.height / 2;
-  this.r0 = this.r1 - 110;
+  this.r0 = this.r1 - 100;
   // Do not delete this var.
   var r0 = this.r0;
   var r1 = this.r1;
@@ -63,9 +57,9 @@ ChordMaker.prototype.initVis = function(matrix, mmap) {
     .attr('transform', function(d, i) {
       var height = legendRectSize + legendSpacing;
       var offset =  height * color.domain().length / 2;
-      var horz = vis.width - 480;
+      var horz = (vis.r0 + vis.r1) /2;
       console.log(horz);
-      var vert = i * height - offset + (vis.height / 3);
+      var vert = i * height - offset  - vis.r0;
       return 'translate(' + horz + ',' + vert + ')';
     });
 

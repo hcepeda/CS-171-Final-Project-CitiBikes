@@ -115,6 +115,13 @@ GenderChart.prototype.wrangleData = function() {
 
     });
 
+    if (gendercount[0].number > gendercount[1].number) {
+        document.getElementById("avg-gender").innerText = "male";
+    }
+    else {
+        document.getElementById("avg-gender").innerText = "female";
+    }
+
     console.log(gendercount);
 
     vis.displayData = gendercount;
