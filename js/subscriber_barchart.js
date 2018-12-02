@@ -26,7 +26,7 @@ SubscriberBar.prototype.initVis = function() {
 
   this.xScale = d3.scaleTime()
     .range([0, this.width])
-    .domain([new Date(2014,1,1), new Date(2018, 9, 1)]);
+    .domain([new Date(2013,12,1), new Date(2018, 9, 1)]);
   this.yScale = d3.scaleLinear()
     .range([this.height, 0]);
   this.brushOverview = d3.scaleTime()
@@ -34,7 +34,7 @@ SubscriberBar.prototype.initVis = function() {
   this.brushYScale = d3.scaleLinear()
     .range([this.heightTimeline, 0]);
   this.brushXScale = d3.scaleTime()
-    .domain([new Date(2014, 1, 1), new Date(2018, 9, 1)])
+    .domain([new Date(2013, 12, 1), new Date(2018, 9, 1)])
     .range([0,57])
 
   this.xAxis = d3.axisBottom(this.xScale)
@@ -47,7 +47,9 @@ SubscriberBar.prototype.initVis = function() {
 SubscriberBar.prototype.updateVis = function() {
   console.log(this.data)
   var vis = this;
-
+  this.brush = d3.brushX()
+    .extent([[0,0], [this.width, this.heightTimeline]])
+    .on("brush end", brushed);
   this.colors = d3.scaleOrdinal()
     .domain(d3.keys(this.data[0]))
     .range(["#98abc5","#ff8c00", "#CC0000"]);
@@ -78,7 +80,7 @@ SubscriberBar.prototype.updateVis = function() {
     .enter()
     .append("g")
     .attr("class", "bar stack")
-    .attr("transform", d => "translate(" + this.xScale(d.Date) + ",0)")
+    .attr("transform", d => "translate(" + (this.xScale(d.Date) + 5) + ",0)")
     .selectAll("rect")
     .data(d => d.counts)
     .enter().append("rect")
@@ -97,7 +99,12 @@ SubscriberBar.prototype.updateVis = function() {
     .attr("width", 6)
     .attr("y", function(d) { return vis.brushYScale(d.total); })
     .attr("height", function(d) { return vis.heightTimeline - vis.brushYScale(d.total); });
-
+  this.timeline_bottom.append("g")
+    .attr("class", "x brush")
+    .call(brush)
+    .selectAll("rect")
+    .attr("y", -6)
+    .attr("height", vis.heightTimeline + 7);
 
   function brushed() {
     // update the main chart's x axis data range
