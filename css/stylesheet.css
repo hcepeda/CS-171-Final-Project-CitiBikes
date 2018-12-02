@@ -49,6 +49,7 @@ select {
 	padding: 20px;
 	display: inline-block;
 	margin: auto;
+    border: #082d6a 1px solid;
 }
 
 .area {
@@ -168,6 +169,7 @@ select {
 
 .row {
     padding-top: 20px;
+    padding-bottom: 10px;
 }
 
 .image-dailyvis {
