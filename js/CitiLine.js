@@ -53,11 +53,12 @@ CitiLineGraph.prototype.updateVis = function() {
     .x(d => this.xScale(d.Date))
     .y(d => this.yScale(d.TripsAveraged))
     .curve(d3.curveBasis)
+  /*
   this.valueline_stations = d3.line()
     .x(d => this.xScale(d.Date))
     .y(d => this.yScale(d.num_bikes))
     .curve(d3.curveBasis)
-
+  */
   this.line = this.svg.selectAll(".line")
     .data([this.data])
   this.line.enter().append("path")
@@ -68,6 +69,22 @@ CitiLineGraph.prototype.updateVis = function() {
     .attr("stroke", "steelblue")
     .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
     .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
+
+  this.svg.append("text")
+    .attr("class", "axis_label")
+    .attr("x", this.width)
+    .attr("y", this.height - 5)
+    .style("text-anchor", "end")
+    .text("Date")
+
+  this.svg.append("text")
+    .attr("class", "axis_label")
+    .attr("transform", 'rotate(-90)')
+    .attr("x", 0)
+    .attr("y", 15)
+    .style("text-anchor", "end")
+    .text("Number of Trips Taken (Daily)")
+/*
   this.line.enter().append("path")
     .classed("line", true)
     .merge(this.line)
@@ -76,6 +93,7 @@ CitiLineGraph.prototype.updateVis = function() {
     .attr("stroke", "red")
     .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
     .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
+  */
   var t = d3.transition()
     .duration(5000)
     .ease(d3.easeLinear);
