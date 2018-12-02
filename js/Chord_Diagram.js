@@ -14,7 +14,7 @@ ChordMaker.prototype.initVis = function(matrix, mmap) {
   var colorDf = this.colorDf;
 
   this.r1 = this.height / 2;
-  this.r0 = this.r1 - 110;
+  this.r0 = this.r1 - 100;
   // Do not delete this var.
   var r0 = this.r0;
   var r1 = this.r1;

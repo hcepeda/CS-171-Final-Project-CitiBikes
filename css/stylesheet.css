@@ -189,7 +189,7 @@ select {
 
 .axisRed text{
   fill: red;
-}  
+}
 
 
 #load{
@@ -283,4 +283,6 @@ select {
 	border-bottom: 1px solid #ddd;
 	border-top: 1px solid #ddd;
 	}
-
+.axis_label{
+	font-size: 11px
+}
