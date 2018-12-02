@@ -1,6 +1,8 @@
 import pandas as pd
 import glob, os
 import csv
+import json
+
 inputfiles = glob.glob("/Users/PeterAyala/Desktop/CS171_L/final_project/CS-171-Final-Project-CitiBikes/Complete_Citibike_Data/*.csv")
 df_list = []
 
@@ -37,8 +39,6 @@ AboutCitiBike['num_bikes'] = vect_of_bike_adds
 
 #AboutCitiBike = AboutCitiBike.drop(columns=["Unnamed: 10", "Unnamed: 11"])
 AboutCitiBike.to_csv("Compiled_V2.csv")
-
-full_df.head()
 
 full_df.columns
 Top15['Citable docs per Capita'].corr(Top15['Energy Supply per Capita'])

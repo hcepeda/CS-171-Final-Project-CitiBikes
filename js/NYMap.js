@@ -398,7 +398,7 @@ NYMap.prototype.updateVis = function() {
             //     });
 
             line.on('mouseover', function() {
-              this.setText('  ►  ', {
+              this.setText('  🚲 ► 🚲  ', {
                 repeat: true,
                 attributes: {
                   fill: 'purple'
@@ -414,9 +414,9 @@ NYMap.prototype.updateVis = function() {
             line.options.autoRoute = false;
             return line;}
 
-
         }).addTo(vis.mymap);
-    };
+    }
+
 
     var removeRoutingControl = function () {
         if (routingControl != null) {
@@ -425,6 +425,11 @@ NYMap.prototype.updateVis = function() {
         }
     };
     
+if (routingControl != null) {
+  routingControl.on("routingstart", function(error) {
+    alert("uh oh! Please refresh the page :)")
+  });};
+
     removeRoutingControl();
     addRoutingControl();
 
@@ -548,6 +553,8 @@ NYMap.prototype.updateVis = function() {
 
 
 
+    L.Routing.errorControl(routingControl).addTo(vis.mymap);
+
   vis.controlSearch.on('search:collapsed', function(e) {
       vis.mymap.setView([40.733060, -73.971249], 12);
   })
@@ -580,6 +587,16 @@ NYMap.prototype.onSelectionChange = function(hour) {
 
 };
 
+NYMap.prototype.onClick = function() {
+    var vis = this;
+    var alerted = localStorage.getItem('alerted') || '';
+    if (alerted != 'yes') {
+    alert("Dear 🚲 User, " + "In order to avoid slow map loading, the onClick reset feature has been disabled for the map. The map will only change when you select an hour." + 
+      " If you wish to see the full map again, please use the reset button");
+     localStorage.setItem('alerted','yes');
+    };
+}
+var vis = this;
 vis.mymap.on("zoomstart", function (event) {
       removeRoutingControl();
       // routingControl = null; 
@@ -606,3 +623,11 @@ vis.mymap.on("zoomstart", function (event) {
     console.log("zoooom end");
     vis.wrangleData();
     });
+
+NYMap.prototype.reset = function() {
+  var vis = this;
+  vis.datafiltered = vis.data;
+  vis.wrangleData();
+};
+
+
