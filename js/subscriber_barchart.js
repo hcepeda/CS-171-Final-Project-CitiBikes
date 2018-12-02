@@ -1,0 +1,104 @@
+SubscriberBar = function(_parentElement, _data){
+  this.parentElement = _parentElement;
+  this.data = _data;
+
+  this.wrangleData()
+}
+
+SubscriberBar.prototype.initVis = function() {
+  var vis = this;
+  this.margin = {left: 50, right: 30, top: 50, bottom: 100};
+  this.width = $("#" + this.parentElement).width() - this.margin.left - this.margin.right;
+  this.height = 500 - this.margin.top - this.margin.bottom;
+  this.timelineBrush = { top: 430, right: this.margin.right, bottom: 20,  left: this.margin.left }
+  this.heightTimeline = 500 - this.timelineBrush.top - this.timelineBrush.bottom,
+  this.padding = 50
+
+  this.colors = d3.scaleOrdinal().range(["#98abc5","#ff8c00"]);
+
+  this.svg = d3.select("#" + this.parentElement).append("svg")
+    .attr("width", this.width + this.margin.left + this.margin.right)
+    .attr("height", this.height + this.margin.top + this.margin.bottom);
+  this.main_chart = this.svg.append("g")
+      .attr("transform",
+            "translate(" + this.margin.left + "," + this.margin.top + ")");
+  this.timeline_bottom = this.svg.append("g")
+      .attr("class", "overview")
+      .attr("transform", "translate(" + this.timelineBrush.left + "," + this.timelineBrush.top +")")
+
+  this.xScale = d3.scaleTime()
+    .range([0, this.width])
+    .domain([new Date(2014,1,1), new Date(2018, 9, 1)]);
+  this.yScale = d3.scaleLinear()
+    .range([this.height, 0]);
+  this.brushOverview = d3.scaleTime()
+    .range([0, this.width]);
+  this.brushYScale = d3.scaleLinear()
+    .range([this.heightTimeline, 0]);
+  this.brushXScale = d3.scaleTime()
+    .domain([new Date(2014, 1, 1), new Date(2018, 9, 1)])
+    .range([0,57])
+
+  this.xAxis = d3.axisBottom(this.xScale)
+  this.yAxis = d3.axisLeft(this.yScale)
+  this.timexAxis = d3.axisBottom(this.brushOverview)
+
+  this.updateVis();
+}
+
+SubscriberBar.prototype.updateVis = function() {
+  console.log(this.data)
+  var vis = this;
+  //var parseDate = d3.timeFormat("%m/%d/%Y");
+  //var display_format = d3.timeFormat("%d-%b-%Y");
+
+  vis.yScale.domain([0, d3.max(this.data, d => d['Annual Members'])]);
+  vis.brushOverview.domain(vis.xScale.domain())
+  vis.brushYScale.domain(vis.yScale.domain())
+
+  this.main_chart.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate("+(-35)+"," +(this.height -this.padding-10)+ ")")
+    .call(this.xAxis);
+  this.main_chart.append("g")
+    .attr("class", "y axis")
+    .attr("transform", "translate(0," + -10 + ")")
+    .call(this.yAxis);
+  this.timeline_bottom.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + this.heightTimeline + ")")
+    .call(this.timexAxis);
+
+  this.main_chart.append("g")
+    .attr("class", "bars")
+    .selectAll(".bar.stack")
+    .data(this.data)
+    .enter()
+    .append("g")
+    .attr("class", "bar stack")
+    .attr("transform", d => "translate(" + this.xScale(d.Date) + ",0)")
+    .selectAll("rect")
+    .data(d => d.counts)
+    .enter().append("rect")
+    .attr("class", "bar")
+    .attr("width", 6)
+    .attr("y", d => this.yScale(d.y1))
+    .attr("height", d => (vis.yScale(d.y0) - vis.yScale(d.y1)))
+    .style("fill", "steelblue");
+
+  //this.date = this.svg.selectAll(".date").enter().append("g")
+}
+
+SubscriberBar.prototype.wrangleData = function() {
+  this.data.forEach(function(d){
+    var y0 = 0;
+    d.counts = ['Annual Members', "OneDay", "ThreeSeven"].map(function(name){
+      return {name: name,
+      y0: y0,
+      y1: y0 += +d[name]};
+    });
+    d.total = d.counts[d.counts.length - 1].y1;
+  })
+  this.initVis();
+
+}
