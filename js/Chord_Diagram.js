@@ -7,7 +7,7 @@ ChordMaker = function(_parentElement, _data){
 }
 
 ChordMaker.prototype.initVis = function(matrix, mmap) {
-  this.margin = {left: 40, right: 40, top: 40, bottom: 40};
+  this.margin = {left: 70, right: 70, top: 70, bottom: 70};
   this.width = $("#" + this.parentElement).width() - this.margin.left - this.margin.right;
   this.height = this.width; //  - this.margin.top - this.margin.bottom;
   var vis = this;
