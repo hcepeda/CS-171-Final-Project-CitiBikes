@@ -52,7 +52,7 @@ SubscriberBar.prototype.updateVis = function() {
     .on("brush end", brushed);
   this.colors = d3.scaleOrdinal()
     .domain(d3.keys(this.data[0]))
-    .range(["#98abc5","#ff8c00", "#CC0000"]);
+    .range(["#CC0000","#333", "#082D6A"]);
   //var parseDate = d3.timeFormat("%m/%d/%Y");
   //var display_format = d3.timeFormat("%d-%b-%Y");
 
@@ -85,7 +85,7 @@ SubscriberBar.prototype.updateVis = function() {
     .data(d => d.counts)
     .enter().append("rect")
     .attr("class", "bar")
-    .attr("width", 6)
+    .attr("width", (vis.width / 65))
     .attr("y", d => this.yScale(d.y1))
     .attr("height", d => (vis.yScale(d.y0) - vis.yScale(d.y1)))
     .style("fill", d => this.colors(d.name));
