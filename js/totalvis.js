@@ -71,6 +71,8 @@ TotalVis.prototype.wrangleData = function() {
 
     var date = document.getElementById("date");
     date.innerText = dateFormatter(selectbox);
+    document.getElementById("date1").innerText = dateFormatter(selectbox);
+    document.getElementById("date2").innerText = dateFormatter(selectbox);
 
     console.log(selectbox);
 
