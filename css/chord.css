@@ -30,3 +30,6 @@ path.chord {
 #circle:hover path.fade {
     display: none;
 }
+.legend{
+  font-size: 11px;
+}
