@@ -92,8 +92,11 @@ AgeChart.prototype.wrangleData = function() {
         return 0;
     });
 
+    var total = 0;
+
     for (var i=0; i < vis.displayData.value.data.length; i++) {
         var age = 2018 - vis.displayData.value.data[i]["birth year"];
+        total += age;
         if (age < 10) {
             ages[0]++;
         }
@@ -122,6 +125,8 @@ AgeChart.prototype.wrangleData = function() {
             ages[8]++;
         }
     }
+
+    document.getElementById("avg-age").innerHTML = Math.round(total/vis.displayData.value.data.length) + " y/o"
 
     vis.displayData = ages;
     console.log(vis.displayData);
@@ -185,7 +190,12 @@ AgeChart.prototype.updateVis = function() {
         .call(vis.xAxis)
         .selectAll("text")
         .text(function(d, i) {
-            return i*10 + "-" + ((i+1)*10 -1);
+            if (i == 8) {
+                return "80+";
+            }
+            else {
+                return i*10 + "-" + ((i+1)*10 -1);
+            }
         })
         .style("text-anchor", "end")
         .attr("dx", "-.8em")
