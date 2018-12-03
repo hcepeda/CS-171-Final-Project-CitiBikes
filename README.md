@@ -1,5 +1,8 @@
 CS171 NYCitiBike Final Project
 
+Link to final project video: 
+Link to project URL: https://hcepeda.github.io/CS-171-Final-Project-CitiBikes/
+
 about.html
 ----------
 Page showing the purpose of Citibike, how they've grown, and information on their users through their entire history. Linked to main_about.js, which houses various graphics. 
@@ -19,13 +22,12 @@ Python Scripts:
 - neighborhood.py: Determined each stations neighborhood and borough by referencing it's lat/long coordinates to NYCOpenData city limits.
 - Merge_complete.py: Consolidated quarterly csv files into one large dataset to determine when unnique stations and bike ids were added, as well as to take a random 1M sample for the arc diagram. 
 
+Credit: 
+- Timeline template from tutsplus on cssscript.com (https://www.cssscript.com/responsive-timeline-slider-javascript-css/).
+
 index.html
 ----------
-Daily visualization page. Linked to main.js which uses visualization objects in totalvis.js, duration.js, gender.js, age.js, subscriber.js, and NYMap.js to create the visualizations seen on the page.
-
-
-timeline.html
-----------
+Daily visualization page. Linked to main.js which uses visualization objects in totalvis.js, duration.js, gender.js, age.js, subscriber.js, and NYMap.js to create the visualizations seen on the page. totalvis.js is linked to all of them in order to increase the usability. 
 
 team.html
 ----------
