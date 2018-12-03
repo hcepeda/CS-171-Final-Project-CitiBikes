@@ -17,7 +17,7 @@ var geojsondata = []; // add json file for geojson layer
 
 
 
-    
+
 
 
 
@@ -117,7 +117,7 @@ function createVis() {
 
     // Visualization Objects
     barchart = new TotalVis("totalvis", allData, myEventHandler, myEventHandler2);
-    // greatmap = new NYMap("mapid", allData, [40.733060, -73.971249], vis.geojsondata);
+    greatmap = new NYMap("mapid", allData, [40.733060, -73.971249], vis.geojsondata);
     age = new AgeChart("age", allData);
     gender = new GenderChart("gender", allData);
     subscriber = new SubChart("subscriber", allData);
@@ -134,7 +134,7 @@ function createVis() {
         gender.onSelectionChange(hour);
         subscriber.onSelectionChange(hour);
         duration.onSelectionChange(hour);
-        // greatmap.onSelectionChange(hour);
+        greatmap.onSelectionChange(hour);
     })
 
     // Click out event to reset hour
@@ -148,7 +148,7 @@ function createVis() {
         gender.onClick();
         subscriber.onClick();
         duration.onClick();
-        // greatmap.onClick();
+        greatmap.onClick();
 
     })
 
@@ -161,13 +161,9 @@ function selectionChanged() {
     age.wrangleData();
     gender.wrangleData();
     subscriber.wrangleData();
-    // greatmap.wrangleData();
+    greatmap.wrangleData();
 }
 
 function resetmap() {
     greatmap.reset();
 }
-
-
-
-

@@ -9,7 +9,7 @@ NYMap = function(_parentElement, _data, _mapPosition, _geojsondata){
   this.initVis();
 }
 
-// set up color scale 
+// set up color scale
 var color = d3.scaleQuantize()
               .range(["rgb(186,228,179)",
                "rgb(116,196,118)", "rgb(49,163,84)", "rgb(0,109,44)"]);
@@ -20,7 +20,7 @@ var sizescale = d3.scaleLinear().range([.25, 1]);
 
 
 NYMap.prototype.wrangleData = function(){
-  var vis = this; 
+  var vis = this;
 
   var unique_locations = [];
   var unique_array = [];
@@ -71,8 +71,8 @@ vis.displayData.value.data.forEach(function(d){
   vis.displayData.value.data.forEach(function(d){
     if (!(unique_array.includes(d['start station name'] + " to " + d['end station name']))){
       unique_array.push(d['start station name'] + " to " + d['end station name']);
-      
-      
+
+
 
       var new_obj = {"name": d['start station name'],
               "latitude": d['start station latitude'],
@@ -94,7 +94,7 @@ vis.displayData.value.data.forEach(function(d){
   vis.unique_locations = unique_locations;
   // console.log(vis.unique_locations);
 
-  
+
 
     vis.decending = vis.unique_locations.sort(function(a, b) {
         return b.routecount - a.routecount;
@@ -140,7 +140,7 @@ NYMap.prototype.initVis = function() {
   // If the images are in the directory "/img":
   L.Icon.Default.imagePath = "img/";
 
-  // set up dual layers 
+  // set up dual layers
   vis.google = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGF5YWxhIiwiYSI6ImNqb25ibjQwYjB0OWkzcW81aDk1dTQ1NnAifQ.efDqfmRxK8A4OkuxaDR6jw', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
@@ -154,7 +154,8 @@ NYMap.prototype.initVis = function() {
   });
 
   // set up leaflet map
-  vis.mymap = L.map('mapid', {layers: [vis.google]}).setView(vis.mapPosition, 12);
+  vis.mymap = L.map('mapid', {layers: [vis.google], scrollWheelZoom: false}).setView(vis.mapPosition, 12);
+
   vis.dir = MQ.routing.directions();
 
   // add empty layer groups for makers and map objects
@@ -173,14 +174,14 @@ NYMap.prototype.initVis = function() {
   vis.overlayMaps = {
     "Starting Station": vis.red,
     "Ending Station": vis.green,
-    "Subway Lines": vis.subway, 
+    "Subway Lines": vis.subway,
     "Route Lines": vis.yellow,
     "Empty Slot 2": vis.blue
   }
 
   L.control.layers(vis.baseMaps, vis.overlayMaps).addTo(vis.mymap);
 
- 
+
 // add the search bar to the map, search by starting or ending station (i.e. all stations)
   vis.controlSearch = new L.Control.Search({
     position:'topleft',    // search bar location
@@ -190,7 +191,7 @@ NYMap.prototype.initVis = function() {
     marker: false,
     textPlaceholder: 'search...' // placeholder while nothing is searched
   });
- 
+
   vis.mymap.addControl(vis.controlSearch); // add it to the map
 
   // draw geojson objects on map
@@ -207,7 +208,7 @@ NYMap.prototype.initVis = function() {
     }
   });
 
-  // use the class to create individual icons 
+  // use the class to create individual icons
   vis.redMarker = new stationIcon({ iconUrl:  "img/marker-red.png" });
   vis.blueMarker = new stationIcon({ iconUrl:  "img/marker-blue.png" });
   vis.yellowMarker = new stationIcon({ iconUrl:  "img/marker-yellow.png" });
@@ -250,7 +251,7 @@ NYMap.prototype.updateVis = function() {
     vis.stationContentend += "Station ID: " + d["endstationid"] + "<br/>";
     vis.lineContent = "This route was traveled " + vis.count + " time(s)";
 
-    // create easily accesible variables 
+    // create easily accesible variables
     vis.lat = d['latitude'];
     vis.long = d['longitude'];
     vis.title = d["name"];  //value searched
@@ -263,7 +264,7 @@ NYMap.prototype.updateVis = function() {
 
 
     var routingControl = null;
-    var addRoutingControl = function () { 
+    var addRoutingControl = function () {
         if (routingControl != null)
             removeRoutingControl();
 
@@ -282,7 +283,7 @@ NYMap.prototype.updateVis = function() {
                               // This is the first marker, indicating start
                               vis.stationMarker = L.marker([d['latitude'], d['longitude']], {title: vis.title, icon: vis.redMarker} ).bindPopup(vis.stationContent);
                               vis.red.addLayer(vis.stationMarker);
-                            } 
+                            }
                             else if (i == n -1) {
                               //This is the last marker indicating destination
                               vis.endMarker = L.marker([d['endlat'], d['endlong']], {title: vis.endname, icon: vis.greenMarker} ).bindPopup(vis.stationContentend);
@@ -379,7 +380,7 @@ NYMap.prototype.updateVis = function() {
   //   var vis = this;
     console.log(vis.data);
     console.log(vis.datafiltered);
-    vis.datafiltered = vis.data; 
+    vis.datafiltered = vis.data;
     console.log(vis.datafiltered);
     vis.datafiltered = vis.data.filter(function(d) {
         return d.hour == hour;
@@ -403,7 +404,7 @@ NYMap.prototype.updateVis = function() {
 NYMap.prototype.onSelectionChange = function(hour) {
     var vis = this;
     console.log(vis.data);
-    vis.datafiltered = vis.data; 
+    vis.datafiltered = vis.data;
     vis.datafiltered = vis.data.filter(function(d) {
         return d.hour == hour;
     });
@@ -416,7 +417,7 @@ NYMap.prototype.onClick = function() {
     var vis = this;
     var alerted = localStorage.getItem('alerted') || '';
     if (alerted != 'yes') {
-    alert("Dear 🚲 User, " + "In order to avoid slow map loading, the onClick reset feature has been disabled for the map. The map will only change when you select an hour." + 
+    alert("Dear 🚲 User, " + "In order to avoid slow map loading, the onClick reset feature has been disabled for the map. The map will only change when you select an hour." +
       " If you wish to see the full map again, please use the reset button");
      localStorage.setItem('alerted','yes');
     };
@@ -430,5 +431,3 @@ NYMap.prototype.reset = function() {
   vis.datafiltered = vis.data;
   vis.wrangleData();
 };
-
-
