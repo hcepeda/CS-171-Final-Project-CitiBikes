@@ -36,3 +36,24 @@ Page for team bios.
 random.html/random.js
 ----------
 Not included in final website, but used to download a random sample of the total data
+
+NYMap.js
+-----------
+Map showing the various stations of Citibike, both starting and ending stations as well as their paths. It is linked to main.js along with various other visualizations. It has searching functionality, as well as various features described on the page when you click and hover over elements in the map (the markers and the routes). Routes are filtered starting at top 10 and increase in number as you zoom in. 
+	NYMap.js: Contains the code used to create the map.
+	leaflet-search.min.js, leaflet-search.src.js, leaflet-search.src.js: used for the searching feature on map
+	leaflet-src-esm.js, leaflet-src.esm.js.map, leaflet-src.js, leaflet-src.js.map, leaflet.js, leaflet.js.map: used to create map
+	leaflet.js: main leaflet script used for leaflet functions
+	Leaflet.MultiOptionsPolyline.min.js: orignally used for routes until a more efficient way was found
+	leaflet.spin.js: originally used for loading page until simpler method was used
+	leaflet.textpath.js: used to write text into line (bike emoji and arrow) to show direction of routes
+
+
+	Data Sources:
+	-Subway-Lines.json: originally used to show subway lines on map; taken away because of clutter per Celina's advice
+	-sample-data.csv: used to gather data for map
+	-marker-blue, green, red, and yellow.png used to create custom markers
+	-search-icon.png used for map search
+	-marker-shadow.png, layers.png, layers-2x.png: used for map
+	-loader.gif: used for loading screen
+
