@@ -1,7 +1,8 @@
 CS171 NYCitiBike Final Project
 
-Link to final project video: 
-Link to project URL: https://hcepeda.github.io/CS-171-Final-Project-CitiBikes/
+Link to final project video: https://www.youtube.com/watch?v=hIVb7JG512w&feature=youtu.be
+Link to project URL: https://hcepeda.github.io/CS-171-Final-Project-CitiBikes/about.html
+
 
 about.html
 ----------
