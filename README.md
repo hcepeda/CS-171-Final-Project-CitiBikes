@@ -6,24 +6,24 @@ Link to project URL: https://hcepeda.github.io/CS-171-Final-Project-CitiBikes/
 about.html
 ----------
 Page showing the purpose of Citibike, how they've grown, and information on their users through their entire history. Linked to main_about.js, which houses various graphics. 
-- Chord_Diagram.js: Contains the code used to the create the chord diagram.
-- CitiLine.js: Contains the code to create the first line graphs of the number of trips taken, smoothed by a rolling average of 5 days
-- CitiLive_v2.js: Contains the code for the double line chart of the number of stations and the number of bikes 
-- subscriber_barchart.js: Contains the code for the stacked bar chart + zoom and filter implementations. 
+    - Chord_Diagram.js: Contains the code used to the create the chord diagram.
+    - CitiLine.js: Contains the code to create the first line graphs of the number of trips taken, smoothed by a rolling average of 5 days
+    - CitiLive_v2.js: Contains the code for the double line chart of the number of stations and the number of bikes
+    - subscriber_barchart.js: Contains the code for the stacked bar chart + zoom and filter implementations.
 
-Data sources: 
-- Compiled_V2.csv: Contains daily information on the number of bikes and stations
-- sample-data.csv: Actually not needed for this.
-- chord_data_3.csv: Dataset containing the chord data
-- monthly_members.csv: Dataset containing each month's number of 3, 7, and daily passes sold, as well as current number of annual subscribers. Pulled from monthly executive reports 
+    Data sources:
+    - Compiled_V2.csv: Contains daily information on the number of bikes and stations
+    - sample-data.csv: Actually not needed for this.
+    - chord_data_3.csv: Dataset containing the chord data
+    - monthly_members.csv: Dataset containing each month's number of 3, 7, and daily passes sold, as well as current number of annual subscribers. Pulled from monthly executive reports
 
-Python Scripts: 
-- Python was used for data preprossessing to limit amount of computation during user-load. 
-- neighborhood.py: Determined each stations neighborhood and borough by referencing it's lat/long coordinates to NYCOpenData city limits.
-- Merge_complete.py: Consolidated quarterly csv files into one large dataset to determine when unnique stations and bike ids were added, as well as to take a random 1M sample for the arc diagram. 
+    Python Scripts:
+    - Python was used for data pre-processing to limit amount of computation during user-load.
+    - neighborhood.py: Determined each stations neighborhood and borough by referencing it's lat/long coordinates to NYCOpenData city limits.
+    - Merge_complete.py: Consolidated quarterly csv files into one large dataset to determine when unnique stations and bike ids were added, as well as to take a random 1M sample for the arc diagram.
 
-Credit: 
-- Timeline template from tutsplus on cssscript.com (https://www.cssscript.com/responsive-timeline-slider-javascript-css/).
+    Credit:
+    - Timeline template from tutsplus on cssscript.com (https://www.cssscript.com/responsive-timeline-slider-javascript-css/).
 
 index.html
 ----------
@@ -44,9 +44,9 @@ Map showing the various stations of Citibike, both starting and ending stations 
 	leaflet-search.min.js, leaflet-search.src.js, leaflet-search.src.js: used for the searching feature on map
 	leaflet-src-esm.js, leaflet-src.esm.js.map, leaflet-src.js, leaflet-src.js.map, leaflet.js, leaflet.js.map: used to create map
 	leaflet.js: main leaflet script used for leaflet functions
-	Leaflet.MultiOptionsPolyline.min.js: orignally used for routes until a more efficient way was found
+	Leaflet.MultiOptionsPolyline.min.js: originally used for routes until a more efficient way was found
 	leaflet.spin.js: originally used for loading page until simpler method was used
-	leaflet.textpath.js: used to write text into line (bike emoji and arrow) to show direction of routes
+	leaflet.textpath.js: used to write text into line (bike icon and arrow) to show direction of routes
 
 
 	Data Sources:
