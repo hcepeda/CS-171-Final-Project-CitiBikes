@@ -4,6 +4,8 @@ Link to final project video: https://www.youtube.com/watch?v=hIVb7JG512w&feature
 
 Link to project URL: https://hcepeda.github.io/CS-171-Final-Project-CitiBikes/about.html
 
+Link to process book: https://docs.google.com/document/d/1cbdM9QRzhSDz89IkMZv2WtTXOSkGTGWA-14UERM7dMs/edit?usp=sharing
+
 
 about.html
 ----------
