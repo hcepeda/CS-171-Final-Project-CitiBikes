@@ -16,8 +16,10 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
-
-
+<link rel="stylesheet" href="css/spin.css">
+<!-- <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css"> -->
+<!--     <script src="js/spin.js"></script>
+    <script src="js/leaflet.spin.js"></script> -->
 
 </head>
 <body>
@@ -49,10 +51,11 @@
         </li>
     </ul>
 </nav>
+
 <div id= "load">
     <div class="load-text"> 
         <h1> Please wait while the data loads... </h1>
-            <h2 id="status"> This should take about 20 seconds</h2>
+            <h2 id="status"> This should take about 5 seconds</h2>
         <h3>
 <!--             <progress value="0" max="10" id="progressBar"></progress> -->
         </h3>
@@ -129,6 +132,7 @@
 
         <div class="row border-bottom">
             <div class="col-md-6">
+
                 <p class="small"> The following map visualizes daily travel patterns in NYC.
                     Green markers represent starting stations while red represents ending stations. 
                     Yellow markers represent trips that started and ended in the same station.
@@ -137,7 +141,8 @@
                     Red lines represent routes commonly taken by riders. The darker the lines, the more commonly travelled the route.
                     Hover over a route to see its direction.
                     Click any route to see how many times it was traveled. 
-                    Click on the top right square to check/uncheck the elements you wish to show/hide.</p>
+                    Click on the top right square to check/uncheck the elements you wish to show/hide.
+                    Note that initially, only the top 10 traveled routes appear. If you zoom in, the top 25 will show. If you zoom in further, all routes will appear. </p>
                  <div id="mapid"></div>
 
             </div>
@@ -208,6 +213,8 @@
 <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-routing.js?key=No8YeXeqGULgGOfGz8jYYhSzvY0sQUuC"></script>
     <script src="js/leaflet.textpath.js"></script>
         <script src="js/Leaflet.MultiOptionsPolyline.min.js"></script>
+<!--         <script type='text/javascript' src="http://makinacorpus.github.io/Leaflet.Spin/leaflet.spin.js"></script>
+<script type='text/javascript' src="http://makinacorpus.github.io/Leaflet.Spin/spin.js/dist/spin.min.js"></script> -->
 
 
     <script src="js/totalvis.js"></script>
@@ -218,6 +225,7 @@
     <script src="js/subscriber.js"></script>
 
     <script src="js/main.js"></script>
+ 
 </div>
 </body>
 </html>

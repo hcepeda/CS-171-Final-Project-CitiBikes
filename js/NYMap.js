@@ -9,6 +9,9 @@ NYMap = function(_parentElement, _data, _mapPosition, _geojsondata){
   this.initVis();
 }
 
+
+
+
 // set up color scale 
 var color = d3.scaleQuantize()
               .range(["rgb(186,228,179)",
@@ -18,7 +21,7 @@ var sizescale = d3.scaleLinear().range([.25, 1]);
 // var sizescale2 = d3.scaleOrdinal().range("red", "green", "orange", "brown")
 
 
-
+// var spin = new Spinner({color: "#fff", lines: 12}).spin("mapid");
 NYMap.prototype.wrangleData = function(){
   var vis = this; 
 
@@ -103,9 +106,12 @@ vis.displayData.value.data.forEach(function(d){
   console.log(vis.decending);
 
 console.log(vis.unique_locations);
-var size = 10;
-vis.top10 = vis.decending.slice(0, size);
+var size1 = 10;
+var size2 = 25;
+vis.top10 = vis.decending.slice(0, size1);
+vis.top25 = vis.decending.slice(0, size2);
 
+console.log(vis.top25);
 console.log(vis.top10);
 
 
@@ -156,12 +162,12 @@ NYMap.prototype.initVis = function() {
   // set up leaflet map
   vis.mymap = L.map('mapid', {layers: [vis.google]}).setView(vis.mapPosition, 12);
   vis.dir = MQ.routing.directions();
-
+  // vis.mymap.spin(true);
   // add empty layer groups for makers and map objects
-  vis.red = L.layerGroup().addTo(vis.mymap);
+  vis.begin = L.layerGroup().addTo(vis.mymap);
   vis.blue = L.layerGroup().addTo(vis.mymap);
   vis.yellow = L.layerGroup().addTo(vis.mymap);
-  vis.green = L.layerGroup().addTo(vis.mymap);
+  vis.end = L.layerGroup().addTo(vis.mymap);
   vis.subway = L.geoJSON().addTo(vis.mymap);
 
   // base layers and overlays objects
@@ -171,11 +177,11 @@ NYMap.prototype.initVis = function() {
   };
 
   vis.overlayMaps = {
-    "Starting Station": vis.red,
-    "Ending Station": vis.green,
-    "Subway Lines": vis.subway, 
-    "Route Lines": vis.yellow,
-    "Empty Slot 2": vis.blue
+    "Starting Station": vis.begin,
+    "Ending Station": vis.end,
+    "Station Repeat": vis.blue,
+    "Top 10": vis.subway, 
+    "Route Lines": vis.yellow
   }
 
   L.control.layers(vis.baseMaps, vis.overlayMaps).addTo(vis.mymap);
@@ -184,7 +190,7 @@ NYMap.prototype.initVis = function() {
 // add the search bar to the map, search by starting or ending station (i.e. all stations)
   vis.controlSearch = new L.Control.Search({
     position:'topleft',    // search bar location
-    layer: L.featureGroup([vis.red, vis.green]),  // name of the layer
+    layer: L.featureGroup([vis.begin, vis.end]),  // name of the layer
     initial: false,
     zoom: 16,        // set zoom to found location when searched
     marker: false,
@@ -208,10 +214,10 @@ NYMap.prototype.initVis = function() {
   });
 
   // use the class to create individual icons 
-  vis.redMarker = new stationIcon({ iconUrl:  "img/marker-red.png" });
+  vis.startingstation = new stationIcon({ iconUrl:  "img/marker-red.png" });
   vis.blueMarker = new stationIcon({ iconUrl:  "img/marker-blue.png" });
-  vis.yellowMarker = new stationIcon({ iconUrl:  "img/marker-yellow.png" });
-  vis.greenMarker = new stationIcon({ iconUrl:  "img/marker-green.png" });
+  vis.repeat = new stationIcon({ iconUrl:  "img/marker-yellow.png" });
+  vis.endingstation = new stationIcon({ iconUrl:  "img/marker-green.png" });
 
 // wrangle and update
 vis.wrangleData();
@@ -223,11 +229,23 @@ NYMap.prototype.updateVis = function() {
   var vis = this;
 
   // clear the layer groups
-  vis.red.clearLayers();
-  vis.green.clearLayers();
+  vis.begin.clearLayers();
+  vis.end.clearLayers();
   vis.yellow.clearLayers();
   vis.blue.clearLayers();
 
+  var zoom = vis.mymap.getZoom();
+  var show;
+
+  if(0 < zoom < 13) {
+    show = vis.top10;
+  }
+  else if (15 >= zoom >= 13) {
+    show = vis.top25;
+  }
+  else {
+    show = vis.unique_locations;
+  }
 
 
 
@@ -241,7 +259,7 @@ NYMap.prototype.updateVis = function() {
     //     radius: 25
     //   }).addTo(vis.mymap);
     // circle.bindPopup(d["name"]);
-  vis.top10.forEach(function(d){
+  show.forEach(function(d){
     // create popup content for each station
     vis.stationContent = "<strong>" + d["name"] + "</strong><br/>";
     vis.stationContent += "Station ID: " + d["stationid"] + "<br/>";
@@ -259,7 +277,7 @@ NYMap.prototype.updateVis = function() {
     vis.count = d["routecount"];
     // vis.endlat = d['end station latitude']
     // vis.endlong = d['end station longitude']
-    console.log(vis.count);
+    // console.log(vis.count);
 
 
     var routingControl = null;
@@ -274,19 +292,19 @@ NYMap.prototype.updateVis = function() {
           ],
           createMarker: function (i, start, n){
                 if (vis.title == vis.endname) {
-                    vis.stationMarker = L.marker([d['latitude'], d['longitude']], {title: vis.title, icon: vis.yellowMarker} ).bindPopup(vis.stationContent);
+                    vis.stationMarker = L.marker([d['latitude'], d['longitude']], {title: vis.title, icon: vis.repeat} ).bindPopup(vis.stationContent);
                               vis.blue.addLayer(vis.stationMarker);
                 }
                 else {
                             if (i == 0) {
                               // This is the first marker, indicating start
-                              vis.stationMarker = L.marker([d['latitude'], d['longitude']], {title: vis.title, icon: vis.redMarker} ).bindPopup(vis.stationContent);
-                              vis.red.addLayer(vis.stationMarker);
+                              vis.stationMarker = L.marker([d['latitude'], d['longitude']], {title: vis.title, icon: vis.startingstation} ).bindPopup(vis.stationContent);
+                              vis.begin.addLayer(vis.stationMarker);
                             } 
                             else if (i == n -1) {
                               //This is the last marker indicating destination
-                              vis.endMarker = L.marker([d['endlat'], d['endlong']], {title: vis.endname, icon: vis.greenMarker} ).bindPopup(vis.stationContentend);
-                              vis.green.addLayer(vis.endMarker);
+                              vis.endMarker = L.marker([d['endlat'], d['endlong']], {title: vis.endname, icon: vis.endingstation} ).bindPopup(vis.stationContentend);
+                              vis.end.addLayer(vis.endMarker);
                             }}},
 
           show: false,
@@ -343,7 +361,10 @@ NYMap.prototype.updateVis = function() {
             line.options.autoRoute = false;
             return line;}
 
-        }).addTo(vis.mymap);}
+        })
+        // .on('routingstart', showSpinner)
+        // .on('routesfound routingerror', hideSpinner)
+        .addTo(vis.mymap);}
 
 
     var removeRoutingControl = function () {
@@ -385,8 +406,10 @@ NYMap.prototype.updateVis = function() {
         return d.hour == hour;
     });
     console.log("zoooom end");
+    console.log(vis.datafiltered);
+    console.log(zoom);
     vis.wrangleData();
-      console.log(vis.datafiltered);
+
   // });
 
 // vis.wrangleData();
