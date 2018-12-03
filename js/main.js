@@ -17,7 +17,7 @@ var geojsondata = []; // add json file for geojson layer
 
 
 
-    
+
 
 
 
@@ -167,7 +167,3 @@ function selectionChanged() {
 function resetmap() {
     greatmap.reset();
 }
-
-
-
-
