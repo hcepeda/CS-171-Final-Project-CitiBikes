@@ -8,6 +8,7 @@ Link to project URL: https://hcepeda.github.io/CS-171-Final-Project-CitiBikes/ab
 about.html
 ----------
 Page showing the purpose of Citibike, how they've grown, and information on their users through their entire history. Linked to main_about.js, which houses various graphics. 
+
     - Chord_Diagram.js: Contains the code used to the create the chord diagram.
     - CitiLine.js: Contains the code to create the first line graphs of the number of trips taken, smoothed by a rolling average of 5 days
     - CitiLive_v2.js: Contains the code for the double line chart of the number of stations and the number of bikes
