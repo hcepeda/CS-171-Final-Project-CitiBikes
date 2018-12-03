@@ -127,6 +127,9 @@ function createVis() {
     $(myEventHandler).bind("hourChanged", function(event, hour) {
         var time = document.getElementById("time");
         time.innerText = " from " + hour + ":00 - " + (hour+1) + ":00";
+
+        document.getElementById("hour").innerText = "at " + hour + ":00";
+        document.getElementById("hour1").innerText = "at " + hour + ":00";
         age.onSelectionChange(hour);
         gender.onSelectionChange(hour);
         subscriber.onSelectionChange(hour);
@@ -138,6 +141,8 @@ function createVis() {
     $(myEventHandler2).bind("resetHour", function() {
         var time = document.getElementById("time");
         time.innerText = "";
+        document.getElementById("hour").innerText = "";
+        document.getElementById("hour1").innerText = "";
         barchart.onClick();
         age.onClick();
         gender.onClick();

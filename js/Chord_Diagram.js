@@ -7,10 +7,10 @@ ChordMaker = function(_parentElement, _data){
 }
 
 ChordMaker.prototype.initVis = function(matrix, mmap) {
-  this.margin = {left: 70, right: 70, top: 70, bottom: 70};
-  this.width = $("#" + this.parentElement).width() - this.margin.left - this.margin.right;
-  this.height = this.width; //  - this.margin.top - this.margin.bottom;
-  var vis = this;
+    var vis = this;
+  vis.margin = {left: 70, right: 70, top: 10, bottom: 150};
+  vis.width = $("#" + vis.parentElement).width() - this.margin.left - this.margin.right;
+  this.height = $("#" + this.parentElement).width()  - this.margin.top - this.margin.bottom;
   var colorDf = this.colorDf;
 
   this.r1 = this.height / 2;
@@ -29,10 +29,9 @@ ChordMaker.prototype.initVis = function(matrix, mmap) {
   this.svg = d3.select("#" + this.parentElement).append("svg")
     .attr("width", this.width + this.margin.left + this.margin.right)
     .attr("height", this.height + this.margin.top + this.margin.bottom)
-  .append("g")
+    .append("g")
     .attr("id", "circle")
-    .attr("transform",
-          "translate(" + this.width / 2 + "," + this.height / 2 + ")")
+      .attr("transform", "translate(" + this.width/2 + "," + this.height/2 + ")")
     .datum(this.chord(matrix));
   this.svg.append("circle").attr("r", this.r0 + 20);
   this.ribbon = d3.ribbon().radius(this.r0)
