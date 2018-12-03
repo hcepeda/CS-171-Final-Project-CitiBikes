@@ -33,3 +33,8 @@ path.chord {
 .legend{
   font-size: 11px;
 }
+.zoom {
+  cursor: move;
+  fill: none;
+  pointer-events: all;
+}
