@@ -194,15 +194,15 @@ select {
 }
 
 .axisRed line{
-  stroke: red;
+  stroke: #F45B69;
 }
 
 .axisRed path{
-  stroke: red;
+  stroke: #F45B69;
 }
 
 .axisRed text{
-  fill: red;
+  fill: #F45B69;
 }
 
 

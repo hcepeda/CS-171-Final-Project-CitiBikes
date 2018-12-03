@@ -67,7 +67,7 @@ CitiLineGraph.prototype.updateVis = function() {
     .merge(this.line)
     .attr("d", this.valueline)
     .attr("fill", "none")
-    .attr("stroke", "steelblue")
+    .attr("stroke", "#3fa3de")
     .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
     .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
 

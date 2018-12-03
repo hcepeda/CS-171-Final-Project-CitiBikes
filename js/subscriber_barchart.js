@@ -63,7 +63,7 @@ SubscriberBar.prototype.updateVis = function() {
     .on("brush end", brushed);*/
   this.colors = d3.scaleOrdinal()
     .domain(d3.keys(this.data[0]))
-    .range(["#CC0000","#FF7F50", "#082D6A"]);
+    .range(["#3fa3de", "#f45b69", "#082D6A"]);
   //var parseDate = d3.timeFormat("%m/%d/%Y");
   //var display_format = d3.timeFormat("%d-%b-%Y");
 

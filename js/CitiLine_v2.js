@@ -7,7 +7,7 @@ GeneralLine = function(_parentElement, _data, _column_item){
 }
 
 GeneralLine.prototype.initVis = function() {
-  this.margin = {left: 50, right: 50, top: 30, bottom: 30};
+  this.margin = {left: 50, right: 60, top: 30, bottom: 30};
   this.width = $("#" + this.parentElement).width() - this.margin.left - this.margin.right;
   this.height = 500 - this.margin.top - this.margin.bottom;
 
@@ -74,7 +74,7 @@ GeneralLine.prototype.updateVis = function() {
     .merge(this.line)
     .attr("d", this.valueline)
     .attr("fill", "none")
-    .attr("stroke", "steelblue")
+    .attr("stroke", "#3fa3de")
     .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
     .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
   this.line.enter().append("path")
@@ -82,7 +82,7 @@ GeneralLine.prototype.updateVis = function() {
     .merge(this.line)
     .attr("d", this.valueline_bikes)
     .attr("fill", "none")
-    .attr("stroke", "red")
+    .attr("stroke", "#F45B69")
     .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
     .attr("stroke-dashoffset", function(d){ return this.getTotalLength() });
 
@@ -91,7 +91,7 @@ GeneralLine.prototype.updateVis = function() {
     .attr("x", (this.width/2))
     .attr("y", this.height+30)
     .style("text-anchor", "middle")
-    .text("Date")
+    .text("Date");
 
   this.svg.append("text")
     .attr("class", "axis_label")
@@ -99,15 +99,16 @@ GeneralLine.prototype.updateVis = function() {
     .attr("x", -(this.height / 2))
     .attr("y", -35)
     .style("text-anchor", "middle")
-    .text("Number of Stations")
+    .text("Number of Stations");
 
   this.svg.append("text")
     .attr("class", "axis_label")
     .attr("transform", 'rotate(90)')
     .attr("x", (this.height / 2))
-    .attr("y", -(this.width) - 40)
+    .attr("y", -(this.width) - 50)
     .style("text-anchor", "middle")
-    .text("Number of Bikes")
+    .text("Number of Bikes");
+
   var t = d3.transition()
     .duration(5000)
     .ease(d3.easeLinear);

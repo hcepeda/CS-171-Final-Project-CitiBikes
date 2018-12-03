@@ -31,7 +31,7 @@ ChordMaker.prototype.initVis = function(matrix, mmap) {
     .attr("height", this.height + this.margin.top + this.margin.bottom)
     .append("g")
     .attr("id", "circle")
-      .attr("transform", "translate(" + this.width/2 + "," + this.height/2 + ")")
+      .attr("transform", "translate(" + this.width/2 + "," + this.height/2  + ")")
     .datum(this.chord(matrix));
   this.svg.append("circle").attr("r", this.r0 + 20);
   this.ribbon = d3.ribbon().radius(this.r0)
